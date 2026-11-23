@@ -1,0 +1,83 @@
+[INFO] device=cuda amp=True split=subject
+[INFO] Found 822 sequences. Caching at 64x64, 32 frames each...
+  cached 100/822
+  cached 200/822
+  cached 300/822
+  cached 400/822
+  cached 500/822
+  cached 600/822
+  cached 700/822
+  cached 800/822
+  cached 822/822
+[INFO] train=606 val=108 test=108 | subjects train=84 val=15 test=15
+[INFO] Parameters: 0.430 M
+C:\Users\Asus\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\optim\lr_scheduler.py:227: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+Epoch [1/100] loss 1.9385 | train acc 22.77% | val loss 1.6051 acc 22.22% f1 0.0727
+  [SAVED] best val acc 22.22%
+Epoch [2/100] loss 1.8086 | train acc 23.27% | val loss 1.5717 acc 23.15% f1 0.0893
+  [SAVED] best val acc 23.15%
+Epoch [3/100] loss 1.7088 | train acc 32.84% | val loss 1.5647 acc 34.26% f1 0.2212
+  [SAVED] best val acc 34.26%
+Epoch [4/100] loss 1.6871 | train acc 38.45% | val loss 1.5527 acc 38.89% f1 0.2556
+  [SAVED] best val acc 38.89%
+Epoch [5/100] loss 1.6121 | train acc 40.76% | val loss 1.5186 acc 38.89% f1 0.2821
+  [SAVED] best val acc 38.89%
+Epoch [6/100] loss 1.5120 | train acc 39.11% | val loss 1.3529 acc 38.89% f1 0.2535
+  [SAVED] best val acc 38.89%
+Epoch [7/100] loss 1.5028 | train acc 38.61% | val loss 1.2870 acc 37.96% f1 0.2534
+Epoch [8/100] loss 1.4373 | train acc 40.92% | val loss 1.2288 acc 39.81% f1 0.2760
+  [SAVED] best val acc 39.81%
+Epoch [9/100] loss 1.4072 | train acc 42.57% | val loss 1.2050 acc 40.74% f1 0.3013
+  [SAVED] best val acc 40.74%
+Epoch [10/100] loss 1.4036 | train acc 48.02% | val loss 1.1857 acc 46.30% f1 0.4842
+  [SAVED] best val acc 46.30%
+Epoch [11/100] loss 1.3967 | train acc 56.60% | val loss 1.1519 acc 59.26% f1 0.6114
+  [SAVED] best val acc 59.26%
+Epoch [12/100] loss 1.3043 | train acc 56.93% | val loss 1.1130 acc 59.26% f1 0.5855
+  [SAVED] best val acc 59.26%
+Epoch [13/100] loss 1.2827 | train acc 53.47% | val loss 1.0645 acc 51.85% f1 0.5386
+Epoch [14/100] loss 1.2516 | train acc 62.05% | val loss 1.0028 acc 61.11% f1 0.5931
+  [SAVED] best val acc 61.11%
+Epoch [15/100] loss 1.1693 | train acc 68.15% | val loss 0.9610 acc 61.11% f1 0.6421
+  [SAVED] best val acc 61.11%
+Epoch [16/100] loss 1.1652 | train acc 67.82% | val loss 0.9382 acc 59.26% f1 0.6191
+Epoch [17/100] loss 1.1476 | train acc 70.13% | val loss 0.9091 acc 63.89% f1 0.6616
+  [SAVED] best val acc 63.89%
+Epoch [18/100] loss 1.1092 | train acc 69.97% | val loss 0.9034 acc 67.59% f1 0.6906
+  [SAVED] best val acc 67.59%
+Epoch [19/100] loss 1.1226 | train acc 71.95% | val loss 0.8991 acc 67.59% f1 0.6907
+  [SAVED] best val acc 67.59%
+Epoch [20/100] loss 1.0394 | train acc 72.94% | val loss 0.8790 acc 67.59% f1 0.6822
+  [SAVED] best val acc 67.59%
+Epoch [21/100] loss 1.0636 | train acc 74.59% | val loss 0.8466 acc 68.52% f1 0.6934
+  [SAVED] best val acc 68.52%
+Epoch [22/100] loss 1.0559 | train acc 76.73% | val loss 0.8363 acc 66.67% f1 0.6809
+Epoch [23/100] loss 1.0292 | train acc 75.91% | val loss 0.8153 acc 67.59% f1 0.6875
+Epoch [24/100] loss 1.0531 | train acc 75.91% | val loss 0.8059 acc 68.52% f1 0.7013
+  [SAVED] best val acc 68.52%
+Epoch [25/100] loss 1.0557 | train acc 77.39% | val loss 0.7659 acc 69.44% f1 0.7111
+  [SAVED] best val acc 69.44%
+Epoch [26/100] loss 0.9776 | train acc 77.39% | val loss 0.7636 acc 64.81% f1 0.6688
+Epoch [27/100] loss 1.0472 | train acc 76.90% | val loss 0.7565 acc 67.59% f1 0.6928
+Epoch [28/100] loss 0.9727 | train acc 76.24% | val loss 0.7311 acc 69.44% f1 0.7076
+  [SAVED] best val acc 69.44%
+Epoch [29/100] loss 0.9490 | train acc 77.06% | val loss 0.7207 acc 66.67% f1 0.6899
+Epoch [30/100] loss 0.9978 | train acc 78.88% | val loss 0.7243 acc 65.74% f1 0.6833
+Epoch [31/100] loss 0.9101 | train acc 79.37% | val loss 0.7227 acc 64.81% f1 0.6771
+Epoch [32/100] loss 0.9497 | train acc 79.54% | val loss 0.7168 acc 62.96% f1 0.6609
+Epoch [33/100] loss 0.9274 | train acc 80.69% | val loss 0.6966 acc 62.04% f1 0.6514
+Epoch [34/100] loss 0.8830 | train acc 82.01% | val loss 0.6508 acc 64.81% f1 0.6740
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\cra-net\cra-net\st_cra_net_v2.py", line 494, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Asus\Desktop\cra-net\cra-net\st_cra_net_v2.py", line 458, in main
+    _, tr_acc, _, _, _ = evaluate(eval_model, data, labels, tr, args, device, use_amp)
+                         ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\Asus\Desktop\cra-net\cra-net\st_cra_net_v2.py", line 322, in evaluate
+    tot_loss += crit(out, y).item() * len(bi)
+                ~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt

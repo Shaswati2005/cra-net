@@ -1,0 +1,15 @@
+[INFO] device=cuda amp=True split=subject
+[INFO] Found 822 sequences. Caching at 64x64, 32 frames each...
+  cached 100/822
+  cached 200/822
+  cached 300/822
+  cached 400/822
+  cached 500/822
+  cached 600/822
+  cached 700/822
+  cached 800/822
+  cached 822/822
+[INFO] train=606 val=108 test=108 | subjects train=84 val=15 test=15
+[INFO] Parameters: 0.430 M
+C:\Users\Asus\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\optim\lr_scheduler.py:227: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(

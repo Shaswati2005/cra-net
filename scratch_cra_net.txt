@@ -1,0 +1,788 @@
+
+--- Page 1 ---
+ 
+Contents lists available at ScienceDirect
+Biomedical Signal Processing and Control
+journal homepage: www.elsevier.com/locate/bspc  
+CRA-Net: Cross reverse attention network for classification of 
+neuro-degenerative diseases based on gait analysis
+Deepika Bodepu a, Mohammad Iman Junaid a, Sandeep Madarapu b,a, Jaya Prakash Sahoo c, 
+Samit Ari a
+ ,∗
+a Department of Electronics and Communication, National Institute of Technology Rourkela, Rourkela, Odisha 769008, India
+b Department of Artificial Intelligence, Amrita School of Artificial Intelligence, Amrita Vishwa Vidyapeetham, Bengaluru, Karnataka 560035, India
+c Department of Electrical Electronics and Communication Engineering, GITAM School of Technology, GITAM Deemed to be 
+University, Bengaluru, Karnataka 561203, India
+A R T I C L E  I N F O
+Keywords:
+Cross reverse attention network
+Cross attention block
+Convolution neural network
+Gait pathology
+ A B S T R A C T
+Gait is the manner or pattern of walking governed by the coordination of muscles, joints, and the nervous 
+system. Abnormal gait can affect general mobility and quality of life by stressing muscle joints and raising the 
+chance of falling. Gait analysis poses several challenges, which include inter-class similarities and variations in 
+walking patterns among individuals with the same pathology. The limited dataset and class imbalance further 
+hinder the performance of the model. Earlier vision-based systems analyzing gait to detect these abnormalities 
+were often limited to binary classification, distinguishing only between normal and abnormal. Later, some 
+advanced systems attempted to identify specific pathologies. However, these models could not capture subtle 
+variations in gait patterns, reducing overall performance. To address this issue, a novel network, cross 
+reverse attention network (CRA-Net), which incorporates two complementary attention mechanisms called 
+cross reverse attention block (CRAB) and cross attention block (CAB) to capture inter-class variations better, 
+is proposed. CRAB adopts an inverse attention mask to extract complex features from discriminative regions 
+and integrate them into features extracted by traditional Convolutional neural networks (CNN), making the 
+model robust. CAB is designed to integrate diverse feature sets from local and global layers, thereby balancing 
+multi-scale feature integration. Concatenating features from three levels of the proposed architecture makes 
+the model learn all relevant features that aid in classifying gait pathologies. The experimental results have 
+shown that CRA-Net effectively captures variations in gait patterns, achieving superior performance compared 
+to existing methods.
+1. Introduction
+Gait is typically defined as a cyclical series of limb movements 
+that facilitate human locomotion. Various disorders [1,2] impair this 
+cycle, leading to abnormal gait patterns that differ from normal move-
+ment in parameters such as walking speed, joint angles, step or stride 
+length, and foot pressure. The nervous system is critical in control-
+ling movement and coordination, so walking abnormalities are often 
+linked to neurological conditions. Recent technological advancements 
+have transformed gait analysis [3,4] into a valuable tool for medical 
+assessments, particularly in diagnosing an individual’s health, identity, 
+and walking patterns [5,6].
+Gait analysis mainly relies on vision-based and sensor-based meth-
+ods. Vision-based techniques use cameras to record or take pictures of 
+∗ Corresponding author.
+E-mail addresses: 223ec3180@nitrkl.ac.in (D. Bodepu), 520ec6013@nitrkl.ac.in (M.I. Junaid), m_sandeep@blr.amrita.edu (S. Madarapu), jsahoo@gitam.edu 
+(J.P. Sahoo), samit@nitrkl.ac.in (S. Ari).
+people walking, which are used to study body motions, such as swing-
+ing of the arms and legs. A popular method that aids concentrating on 
+the general body shape and movement is, extracting silhouettes, or the 
+contour of the person in action. After the visual data is ready, signifi-
+cant features are extracted from these movements using deep learning 
+models [7], particularly convolutional neural networks (CNNs). CNNs 
+can recognize patterns in a person’s gait, such as how their feet move, 
+or joints bend, and categorize it as normal or abnormal. The reason 
+why vision-based techniques [8] are so popular is that they do not need 
+direct human contact, therefore analysis can be done remotely. The 
+outcomes, however, can be impacted by dim illumination that obstructs 
+the camera vision but can be mitigated through the proper camera 
+setup or preprocessing. On the other hand, sensor-based techniques [9,
+10] measure body movements directly using floor sensors, such as 
+https://doi.org/10.1016/j.bspc.2025.107886
+Received 8 January 2025; Received in revised form 9 March 2025; Accepted 12 April 2025
+Biomedical Signal Processing and Control 108 (2025) 107886 
+Available online 26 April 2025 
+1746-8094/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+--- Page 2 ---
+D. Bodepu et al.
+pressure mats, or wearable sensors, such as gyroscopes or accelerome-
+ters [11]. These sensors are able to monitor joint angles, foot speed, and 
+pressure applied to the ground. Sensor-based approaches can provide 
+more precise and comprehensive data regarding an individual’s gait 
+since the information is obtained straight from the body. Though these 
+techniques are efficient, they frequently need specialized equipment, 
+and they also need to fit on the body by taking advice from physicians.
+Deep learning offers effective methods for automatically extracting 
+features from unprocessed data. By learning structured representations, 
+deep learning models like CNN [12] show a remarkable ability to 
+extract complex patterns from images. These multilayer networks are 
+efficient for image classification since each layer captures more abstract 
+information like edges, textures, and objects. CNN is widely applied 
+in numerous domains, such as object recognition [13] and medical 
+image analysis [14]. Similarly, applying transfer learning techniques 
+for these tasks is common, particularly when datasets are limited. 
+Pre-trained models like VGG16 and VGG19 [15,16] are widely used. 
+Though these techniques boost efficiency, they may experience over-
+fitting when trained on small-scale datasets, as the model does not 
+perform well when applied to task-specific data. Also, recent advance-
+ments in hierarchical and progressive learning [17] enhance classifi-
+cation by extracting features at multiple abstraction levels and refining 
+details gradually. These methods address challenges like low-resolution 
+inputs and class imbalances. Key point sensitive loss further improves 
+feature separability, aiding the recognition of underrepresented pat-
+terns, which are applied in sonar image classification. Nowadays, deep 
+learning models increasingly incorporate attention mechanisms [18,19] 
+for classification tasks. Attention can assist the model in focusing on 
+important features that are essential for finding anomalies in motion. 
+Unlike transfer learning, which depends on standard features from 
+unrelated tasks, these mechanisms can learn to prioritize task-specific 
+aspects. This makes attention mechanisms very useful for tough clas-
+sification tasks. The proposed CRA-Net model overcomes challenges 
+in identifying specific pathologies through CRAB, which creates an 
+inverse attention mask that enhances subtle variations by suppressing 
+non-discriminative features, ensuring even minor abnormalities are 
+highlighted. CAB preserves spatial dependencies by allowing multi-
+scale feature interactions, preventing information loss and improving 
+robustness to class imbalances. By combining CRAB and CAB, these 
+processes improve feature representations, resulting in the diagnosis of 
+more precise gait abnormalities.
+The contributions of the proposed work can be summarized as 
+follows :
+• The cross-reverse attention block (CRAB) employs a reverse atten-
+tion mechanism that revisits less prominent or neglected details 
+to enhance feature representation and ensure finer feature re-
+finement. CRAB captures cross-dimensional feature interactions 
+to improve the model’s understanding of complex relationships 
+within the data.
+• The proposed cross attention block (CAB), integrates features 
+from various local and global layers to capture cross-correlation 
+between the features of complementary attention networks.
+• The proposed architecture combines two complementary atten-
+tion mechanisms, CRAB and CAB, to focus on important and less 
+obvious gait patterns from various layers, improving its ability to 
+differentiate between normal and pathological gaits.
+• The proposed model delivers a more computationally efficient 
+network while utilizing fewer trainable parameters than tradi-
+tional CNN mechanisms.
+The contributions of this work lie in integrating CRAB and CAB atten-
+tion mechanisms with convolution layers. These contributions collec-
+tively improve the accuracy of the proposed model in the pathological 
+gait classification.
+The remaining sections are organized as follows:  Section 2 presents 
+literature work, followed by Section 3 which presents the proposed 
+architecture for classifying pathologies. Section 4 discusses the experi-
+mental results. Finally, Section 5 gives the conclusion.
+2. Related works
+Everyday living depends greatly on walking, and gait analysis is es-
+sential for the early identification and detection of a number of medical 
+disorders, which enhances the effectiveness of treatment. Gait analysis 
+is used in rehabilitation programs to monitor the effects of treatment. 
+With an emphasis on clinical gait assessment, the study [4] exam-
+ines various methods of gait analysis. It shows how early subjective 
+techniques gave way to more realistic vision-based strategies.
+2.1. Deep learning
+Deep learning techniques popularly assist in the classification of 
+gait disorders and help in extracting significant features from gait 
+sequences. CNNs examine the silhouette patterns, accurately discrim-
+inating between normal and abnormal gaits.
+Nieto et al. [20] used a computer vision-based feature extraction 
+method, selecting legs-angle time series and gait energy image (GEI) 
+features to classify gait pathologies. Results showed that both fea-
+tures distinguished normal from abnormal gait; however, the legs-angle 
+had difficulty differentiating hemiplegic from diplegic and neuropathic 
+from regular due to similar patterns. To improve classification ac-
+curacy across a range of gait disorders, the study [15] introduced 
+a novel method that used GEI and VGG-19-based feature extraction 
+with transfer learning. The proposed method outperformed traditional 
+approaches. Similarly, the study [21] suggests the skeleton energy 
+image (SEI), a condensed representation that emphasizes mobility and 
+reduces dependency on body structure. The proposed method created 
+a new pathological gait dataset for community usage and improved 
+classification performance by merging GEI and SEI. A variable step-size 
+conjugate gradient technique was utilized to integrate data from three 
+simulated abnormal gaits. The method pre-processes data using a gait 
+information localization approach to facilitate classification through 
+efficient feature extraction and temporal relevance handling. Similarly, 
+using silhouettes in sagittal views from three datasets (INIT, DAI, and 
+DAI 2), an improved CNN was created in the study [22], which showed 
+stability and efficient generalization, with substantial advantages with 
+adjusted optimizer, batch size, and epochs. GEI, meanwhile, is of-
+ten confused with diplegic and parkinsonian, and hemiplegic, with 
+neuropathic gait, due to similar silhouettes. Gao et al. [23] presents 
+LCSWnet, an algorithm that combines long short-term memory (LSTM) 
+and CNN layers. Similarly, the study [24] used the CNN-LSTM model 
+that uses Kinect-recorded skeleton data to categorize multi-class gait 
+patterns across nine walking types. These results demonstrate Kinect’s 
+potential for automated, non-invasive gait evaluation in assisted living 
+and clinical settings.
+Zeng et al. [25] presented a video-based gait analysis that uses 
+a skeleton-silhouette fusion network to quantify Parkinson’s disease-
+related gait parameters such as velocity and arm swing. Skeletal-based 
+gait categorization is now possible because of recent developments 
+in depth sensors and skeleton tracking, although current techniques 
+mainly deal with basic gait patterns. By concentrating on leg joints, Jun 
+et al. [26] developed a GRU-based classifier that classified different gait 
+styles by combining plantar foot pressure and 3D skeleton data. The 
+results show the GRU classifier’s versatility in responding to joint data 
+restrictions and its potential to support medicinal properties. Similarly, 
+Jun et al. [27] proposed a model that addresses noise and unnecessary 
+information in skeleton-based gait data by providing an automatic 
+feature extraction method that employs RNN-based autoencoders (AEs), 
+specifically LSTM and GRU AEs. Cola et al. [28] proposed an ap-
+proach for continuous, unsupervised gait monitoring using a single 
+waist-mounted accelerometer to support fall prevention and mobility 
+assessments in older patients. This method detects minor gait irregu-
+larities using real-time, acceleration-based characteristics. Similarly, Li 
+et al. [29] proposed a classification system for gait problems caused by 
+neurodegenerative diseases such as Parkinson’s and Hemiplegia based 
+Biomedical Signal Processing and Control 108 (2025) 107886 
+2 
+--- Page 3 ---
+D. Bodepu et al.
+Fig. 1. The proposed Cross Reverse Attention Network (CRA-Net).
+on motion anomalies detected in joint trajectories acquired by a Kinetic 
+sensor.
+Despite their successes, previous studies using deep learning models 
+had substantial limitations. Deep learning models are prone to over-
+fitting and poor generalization and require more parameters. These 
+problems highlight the urgent need for more advanced ways to improve 
+the performance.
+2.2. Attention
+Attention mechanisms in deep learning enable models to focus 
+on essential input data elements while dynamically prioritizing more 
+relevant features to the task. This enhances performance by increasing 
+the model’s capacity to detect key patterns, particularly in sequential 
+or spatial data.
+Xia et al. proposed a dual-modal deep learning approach [30] 
+to evaluate gait in Parkinson’s disease (PD) patients, allowing for 
+binary classification of PD and normal gaits and severity evaluation. 
+The model employs CNNs and attention-enhanced LSTMs based on 
+segmented vertical ground response force signals for left and right 
+gait modeling. This resulted in excellent classification accuracy and 
+a dependable, quantitative tool for PD gait evaluation. Similarly, a 
+lightweight vision-based system [31] was proposed by Zhou et al. for 
+stroke therapy and provides real-time gait assessment on mobile de-
+vices, allowing for home-based monitoring of hemiplegia recovery. The 
+system achieved good classification accuracy for hemiplegia severity 
+levels with minimal computing needs using SEI and an attention-based 
+CNN. A convolved self-attention neural network for wearable IMU 
+sensor-based gait detection and human activity recognition (HAR) [32] 
+is proposed by Tai et al. The model uses a simplified, fully connected 
+layer to minimize parameters and embeds a convolved window in the 
+self-attention module to use previous time steps. This method outper-
+forms previous state-of-the-art models by achieving excellent accuracy 
+with a small network size.
+A 2D video-based technique with posture estimation [33] is pro-
+posed by Tang et al. to differentiate between the gait patterns of 
+children with developmental coordination disorder (DCD), early onset 
+ataxia (EOA), and healthy controls (HC). The model achieves a better 
+f1-score in group-level classification using an attention-based graph 
+convolutional network (A-GCN) with channel-wise and temporal at-
+tention, showing promise for more effective and objective diagnosis 
+in child movement disorders. Tian et al. employed spatio-temporal 
+attention enhanced gait-structural graph convolutional network(AGS-
+GCN) [34] framework for abnormal gait recognition to extract fine-
+grained gait properties from skeletal data. This model performed well 
+on abnormal gait datasets by improving representation and general-
+ization by enhancing critical joint features. Similarly, a two-stream 
+spatial–temporal attention graph convolution network (2s-ST-AGCN) 
+[35] is proposed by Guo et al. for automated evaluation of the gait 
+of people with Parkinson’s disease (PD). It models the spatial and 
+temporal dynamics of motor disorders using video skeletal sequences. 
+This approach is promising as a distant, objective PD evaluation tool in 
+clinical practice, as it effectively captures discriminative gait variables 
+under intense supervision and multi-scale attention.
+The attention module effectively builds global dependencies among 
+features, enhancing image clarity. This is demonstrated by the proposed 
+cross-view gait recognition model [36], which combines a multi-scale 
+feature residual module (MFRM) and self-attention (SA) mechanism 
+within a GAN framework. The MFRM extracts both local and global fea-
+tures, while the SA module strengthens them. Similarly, Chen et al. [37] 
+proposed the gait pyramid attention network (GPAN), which combines 
+local pyramid attention with global attention fusion Learning to focus 
+on key gait features across several receptive fields for gait recognition.
+Though attention mechanisms focus on essential information, they 
+may not observe inter-class variations and co-relations between feature 
+sets, which must be considered for classification tasks.
+3. Methodology
+3.1. Overview of the proposed architecture
+Fig.  1 shows the proposed model’s architecture for classifying 
+gait pathologies. The proposed approach is a multi-level, attention-
+enhanced architecture intended to classify pathological gait data effi-
+ciently. It combines two complementary mechanisms, CRAB and CAB 
+modules, with convolution layers, allowing the model to highlight the 
+key features required flexibly. The architecture is separated into several 
+levels (block I, II, and III) that gradually integrate different types of 
+features from each level. Convolution and pooling layers are incor-
+porated throughout each model’s level to extract hierarchical features 
+gradually. Skip connections guarantee improved information retention 
+by enabling feature reuse across levels. The aggregated features are 
+processed through numerous layers to generate the final classification 
+by multi-level feature extraction.
+Biomedical Signal Processing and Control 108 (2025) 107886 
+3 
+--- Page 4 ---
+D. Bodepu et al.
+Fig. 2. (a) & (c) Accuracy curves for training and validation on the INIT and GAIT-IT datasets. (b) & (d) Loss curves for training and validation on the INIT and GAIT-IT datasets, 
+respectively.
+3.1.1. Double conv block
+The double convolution block is a fundamental part of CNNs and is 
+commonly used in architectures designed for deep feature extraction. 
+This block comprises two consecutive convolution layers, each followed 
+by activation functions (typically ReLU) to enhance the features. Con-
+sider 𝑋 as the input data, with dimensions 𝑋 ∈ 𝑅𝐻×𝑊 ×𝐶 , where 𝐶 is 
+the number of channels, and 𝐻 and 𝑊  are height and width of input 
+images respectively. The operations in the block is described using the 
+following equation : 
+𝐷𝑓 = 𝑅𝑒𝐿𝑈 (𝐵𝑁 (𝑓 3×3
+𝐶𝑜𝑛𝑣
+(𝑅𝑒𝐿𝑈 (𝐵𝑁 (𝑓 3×3
+𝐶𝑜𝑛𝑣 (𝑋)))))) (1)
+where 𝐷𝑓 is feature map obtained from the double conv block, 𝑅𝑒𝐿𝑈
+(𝑧) = 𝑚𝑎𝑥(0, 𝑧) is the activation function applied element-wise, 𝐵𝑁 is 
+batch normalization, 𝑋 is the input.
+The block produces an improved feature map that captures both low 
+and intermediate-level information through consecutive convolutions. 
+These feature maps are fed to another layer for further processing.
+3.1.2. Single conv block
+The single convolution block is a simple element in CNN architec-
+tures used for simple feature extraction. This block is made of one 
+convolution layer followed by an activation function. This method 
+efficiently processes features focusing on enhancing critical patterns 
+from earlier layers. With 𝑋 as the input data, with dimensions 𝑋 ∈
+𝑅𝐻×𝑊 ×𝐶 . The operations of this block are represented as follows : 
+𝑆𝑓 = 𝑅𝑒𝐿𝑈 (𝐵𝑁 (𝑓 3×3
+𝐶𝑜𝑛𝑣 (𝑋))) (2)
+where 𝑆𝑓 is the feature map obtained from a single conv block.
+3.1.3. Cross reverse attention block
+The CRAB shown in Fig.  1 is an attention mechanism that uti-
+lizes inverse attention masks to highlight distinctive features between 
+two input feature maps. The CRAB is designed by summation of fea-
+tures obtained by cross-connection of inverse attention features, which 
+are obtained by element-wise multiplication with negative bias and 
+then removed from the whole. The CRAB is constructed by cross-
+connecting inverse attention features, which are generated through an 
+element-wise multiplication operation with a negative bias. This pro-
+cess selectively suppresses less relevant information by subtracting the 
+inverse attention features from the original feature map, ensuring the 
+model focuses on all crucial patterns overlooked through convolution 
+layers. The summation of these refined features further strengthens the 
+model’s ability to differentiate subtle variations, making it effective 
+for classification where minor structural and motion differences are 
+significant. The mechanism of CRAB is explained through a series of 
+mathematical equations below.
+CRAB is designed with two input feature maps, generating attention 
+masks for each and then employing a reverse mask to emphasize 
+features cross-dependently. The operations in CRAB are described as 
+follows:
+Consider the feature maps 𝑅𝑓 1 and 𝑅𝑓 2 with dimensions 𝑅𝑓 1, 𝑅𝑓 1 ∈
+𝑅𝐻×𝑊 ×𝐶 as the inputs of CRAB which are taken from double conv 
+and single conv blocks respectively. 𝑅𝑠1 and 𝑅𝑠2 are features which are 
+Biomedical Signal Processing and Control 108 (2025) 107886 
+4 
+--- Page 5 ---
+D. Bodepu et al.
+Table 1
+Gait styles with their names in the structure of the file.
+ File name Gait style  
+ a-l0 Normal motion of RIGHT arm/LEFT arm motionless  
+ a-l0.5 Normal motion of RIGHT arm/half motion of LEFT arm 
+ a-r0 Normal motion of LEFT arm/RIGHT arm motionless  
+ a-r0.5 Normal motion of LEFT arm/half motion of RIGHT arm 
+ l-r0.5 Normal motion of LEFT leg/half motion of RIGHT leg  
+ l-l0.5 Normal motion of RIGHT leg/half motion of LEFT leg  
+ fb Full body affected  
+ nm Normal gait pattern  
+obtained on passing 𝑅𝑓 1 and 𝑅𝑓 2 through convolution block followed 
+by sigmoid function.
+𝑅𝑠1 = 𝜎(𝑓 1×1
+𝐶𝑜𝑛𝑣 (𝑅𝑓 1)) (3)
+𝑅𝑠2 = 𝜎(𝑓 1×1
+𝐶𝑜𝑛𝑣 (𝑅𝑓 2)) (4)
+where 𝜎(.) is a sigmoid function. Then, after passing 𝑅𝑠1 and 𝑅𝑠2
+through the biases 𝑏2, 𝑏3 and 𝑏0, 𝑏1 which create inverse attention by 
+multiplying and removing it from whole; 𝑅1 and 𝑅2 feature maps are 
+obtained shown below,
+𝑅1 = (𝑏3 ⊕ (𝑏2 ⊗ 𝑅𝑠1)) (5)
+𝑅2 = (𝑏1 ⊕ (𝑏0 ⊗ 𝑅𝑠2)) (6)
+where 𝑏0 = 𝑏2 = −1& 𝑏1 = 𝑏3 = 1 , ⊗ is element-wise multiplication, ⊕
+is element-wise addition. Consider 𝑅𝑐1, which is obtained by element-
+wise multiplication of 𝑅2 with features maps obtained after passing 𝑅𝑓 1
+through Conv2D with 𝐶 filters. Similarly, 𝑅𝑐2 is obtained by element-
+wise addition of 𝑅𝑓 2 feature maps with 𝑅𝑐1. These are represented by 
+equations as follows:
+𝑅𝑐1 = (𝑓 1×1
+𝐶𝑜𝑛𝑣 (𝑅𝑓 1)) ⊗ 𝑅2, (7)
+𝑅𝑐2 = 𝑅𝑐1 ⊕ 𝑅𝑓 2, (8)
+𝑅 is the final output of the CRAB obtained by the element-wise addition 
+of features 𝑅𝑐2 and 𝑅𝑖, where 𝑅𝑖 is the element-wise multiplication of 
+features 𝑅1 and 𝑅2. The corresponding equation is shown below: 
+𝑅 = (𝑅1 ⊗ 𝑅2) ⊕ 𝑅𝑐2, (9)
+The features obtained at 𝑅1, 𝑅2, 𝑅𝑐1, 𝑅𝑐2, 𝑅𝑖 and 𝑅 are shown in Fig. 
+1 for visualization purpose.
+3.1.4. Cross attention block
+The CAB designed, shown in Fig.  1, is an attention mechanism that 
+learns to attend to relevant regions in two separate input feature maps 
+from local and global layers. The CAB is designed to correlate and 
+extract features from two distinct feature maps by cross-element-wise 
+multiplication between them. It models the interactions between two 
+distinct feature representations. This enables the network to attend to 
+the relevant regions in one feature map relative to the other, selectively 
+highlighting the spatial features. The mechanism of CAB is explained 
+through a series of mathematical equations below.
+This CAB aims to model the interactions between two distinct 
+feature maps, allowing the model to focus on informative areas in each 
+input relative to the other. It is used to enhance the model’s ability to 
+focus on relevant features by attending to distinct feature map sets in a 
+cross-dependent manner. Let 𝐶𝑓 1 and 𝐶𝑓 2 having dimensions 𝐶𝑓 1, 𝐶𝑓 2 ∈
+𝑅𝐻×𝑊 ×𝐶 , be features obtained from level II. Consider 𝐶𝑠1 and 𝐶𝑠2, 
+obtained by passing 𝐶𝑓 1 and 𝐶𝑓 2 through Conv2D with filters same as 𝐶
+followed by sigmoid function. These are shown by the equations below
+𝐶𝑠1 = 𝜎(𝑓 1×1
+𝐶𝑜𝑛𝑣 (𝐶𝑓 1)) (10)
+𝐶𝑠2 = 𝜎(𝑓 1×1
+𝐶𝑜𝑛𝑣 (𝐶𝑓 2)) (11)
+From the architecture, 𝐶12 is obtained by cross element-wise multipli-
+cation of 𝐶𝑠2 with 𝐶𝑠1. Similarly, 𝐶21 obtained by cross element-wise 
+Table 2
+Gait pathologies and their affects on the body.
+ Pathology Description  
+ Scissor gait (diplegia) Affects both sides of the body with 
+circular leg motion
+ 
+ Spastic gait (hemiplegia) Affects one side of body with 
+dragging leg motion
+ 
+ Steppage gait (neuropathy) Leads to foot drop and high knee lift 
+ Propulsive gait (Parkinson) Features a stooped posture with 
+small, rapid steps
+ 
+ Normal gait No affect on walking  
+Fig. 3. Accuracy vs. batch size.
+multiplication of 𝐶𝑠1 with 𝐶𝑠2. Element-wise addition of both these 
+cross-attended features gives the final output of CAB, 𝐶 given by 
+equation, 
+𝐶 = (𝐶𝑠2 ⊗ 𝐶𝑠1) ⊕ (𝐶𝑠1 ⊗ 𝐶𝑠2) (12)
+3.2. Overall methodology
+The features extracted from blocks I, II, and III are concatenated and 
+passed through a single conv block followed by a flattened and dense 
+layer with softmax activation function, used for classifying pathologies. 
+The equation is represented as follows: 
+𝑌 = 𝑆𝑜𝑓 𝑡𝑚𝑎𝑥(𝑊 × (𝑅𝑒𝐿𝑈 (𝐵𝑁 (𝑓 3×3
+𝐶𝑜𝑛𝑣 (𝑐𝑜𝑛𝑐𝑎𝑡(𝐷𝑓 , 𝑆𝑓 , 𝐶))))) + 𝑏𝑖𝑎𝑠) (13)
+where 𝑌 is classification output, 𝐷𝑓 , 𝑆𝑓 &𝐶 are features from three 
+levels of the model, 𝑊  represents weights.
+4. Experimental results
+To assess the effectiveness of the proposed architecture, the model 
+is trained and evaluated over two publicly available datasets: the INIT 
+gait dataset and the GAIT-IT dataset.
+4.1. Datasets and experimental setup
+Several datasets in gait recognition that show people walking prop-
+erly, typically from diverse angles and under varying settings, such 
+as changes in clothes, carrying goods, or walking at different speeds, 
+are publicly available. However, datasets focused on abnormal gait 
+are rare due to the difficulty of obtaining data from actual patients 
+and the privacy and ethical constraints associated with sharing such 
+information. Because of these, most available datasets for pathological 
+gait are small and frequently rely on simulated gait disorders, limiting 
+their application for further studies. The pathological gait datasets used 
+in this paper for training and evaluating the proposed model are:
+Biomedical Signal Processing and Control 108 (2025) 107886 
+5 
+--- Page 6 ---
+D. Bodepu et al.
+Fig. 4. Confusion matrix of proposed model for (a) INIT gait dataset & (b) GAIT-IT dataset.
+Table 3
+Ablation study results for CRA-Net model on INIT and GAIT-IT datasets.
+ Block INIT GAIT-IT No. of parameters (in millions) 
+ Accuracy (%) QWK Accuracy (%) QWK  
+ Block I 86.52 79.77 96.06 94.19 0.844  
+ Block I + Block II 90.12 85.70 96.41 95.46 0.890  
+ Block I + Block II + Block III 99.66 99.60 99.16 99.33 0.934  
+Table 4
+Evaluation on INIT gait dataset.
+ Class Precision Recall F1-score  
+ a-l0 1.00 1.00 1.00  
+ a-l0.5 0.99 0.99 0.99  
+ a-r0 1.00 1.00 1.00  
+ a-r0.5 0.99 1.00 0.99  
+ fb 1.00 1.00 1.00  
+ l-l0.5 1.00 1.00 1.00  
+ l-r0.5 0.99 1.00 1.00  
+ nm 1.00 0.99 0.99  
+4.1.1. INIT gait dataset
+The INIT gait dataset [38] contains side-view sequences of high-
+quality binary silhouettes of 10 healthy people (9 males, one female) 
+exhibiting diverse abnormal walking types. The dataset was collected 
+in a controlled studio environment with a green chroma background. It 
+includes seven simulated impaired gait styles inspired by neurological 
+disorders such as Parkinson’s and a normal gait pattern. The simulated 
+gaits include asymmetrical leg step lengths (left or right left half step), 
+restricted arm swing (partial or no movement in one arm), and a 
+whole body shuffling gait, which affects posture and movement while 
+capturing complex gait features. The INIT gait database’s gait styles 
+are outlined below in Table  1, using the naming conventions from the 
+database file structure. For each subject, two sequences per gait style 
+are recorded, resulting in 160 gait sequences.
+4.1.2. GAIT-IT dataset
+The GAIT-IT dataset [39] contains the simulation of pathological 
+gait to be used for testing gait analysis and classification systems. The 
+dataset was recorded in a professional studio with controlled lighting 
+and a green chroma key background and provided high-quality side-
+view binary silhouette sequences. It included 21 subjects (19 males 
+and two females, ages 20–56) with 828 gait sequences. The dataset 
+simulated five gait types associated with neurological conditions, given 
+in Table  2.
+4.2. Experimental setup
+The proposed CRA-Net is implemented using Keras with Tensorflow 
+as the backend. The model is trained with Adam optimizer at 0.001 
+Table 5
+Evaluation on GAIT-IT dataset.
+ Class Precision Recall F1-score  
+ Diplegic 0.99 0.99 0.99  
+ Hemiplegic 0.99 0.99 0.99  
+ Neuropathic 0.99 0.99 0.99  
+ Normal 0.96 0.97 0.97  
+ Parkinson 1.00 1.00 1.00  
+learning rate and sparse categorical cross-entropy loss. Training lasts 
+50 epochs, with model checkpoints used to store the best-performing 
+model based on validation accuracy. To reduce overfitting, data aug-
+mentation techniques like horizontal flipping, vertical flipping, and 
+random rotation are used to input gait silhouettes during training. 
+Accuracy and loss metrics are used to assess the model’s performance; 
+the corresponding curves for INIT and GAIT-IT datasets are shown in 
+Fig.  2.
+4.3. Performance analysis
+This analysis explores the impact of varying batch sizes to assess 
+the effectiveness of the proposed model. Furthermore, ablation studies 
+and quantitative evaluations are conducted to validate and evaluate the 
+performance of the proposed approach thoroughly.
+4.3.1. Effect of performance on batch size variation
+The term batch size in neural network training denotes the number 
+of training samples processed per iteration. It is a critical factor in bal-
+ancing computational efficiency and model accuracy. Fig.  3 illustrates 
+the impact of different batch sizes on the model’s performance. The 
+experimental findings reveal that a batch size of 32 delivers optimal 
+results for both INIT and GAIT-IT datasets. These findings highlight 
+the significance of selecting an appropriate batch size to achieve an 
+effective trade-off between computational speed and model accuracy.
+4.3.2. Ablation study
+An ablation analysis is performed to evaluate the proposed CRA-
+Net’s effectiveness by analyzing the individual contributions of its 
+different components. Table  3 summarizes the accuracy and perfor-
+mance comparisons for different level combinations using INIT and 
+Biomedical Signal Processing and Control 108 (2025) 107886 
+6 
+--- Page 7 ---
+D. Bodepu et al.
+Table 6
+Performance comparison of different models from the literature on the INIT gait and GAIT-IT datasets.
+ Literature INIT GAIT-IT No. of parameters (in millions) GFlops Inference time (ms) 
+ Accuracy (%) QWK score Accuracy (%) QWK score  
+ VGG16 [40] 89.56 89.71 91.89 92.33 14.848 30.726 19.134  
+ VGG19 [40] 91.39 89.25 90.47 90.23 20.157 39.051 22.616  
+ CBAM [41] 96.08 94.24 98.64 96.69 25.705 7.598 151.412  
+ SE-Net [42] 95.86 92.37 97.67 95.73 24.881 7.171 180.683  
+ NLN-Net [43] 95.54 92.38 97.52 96.72 7.703 5.899 103.578  
+ GC-Net [44] 58.68 32.06 90.37 91.06 24.377 7.753 197.823  
+ GhostNet [31] 95.39 92.69 98.82 99.22 2.600 0.176 75.135  
+ Proposed CRA-Net 99.66 99.60 99.16 99.33 0.934 1.928 56.473  
+GAIT-IT datasets. The network architecture comprises three levels: 
+the double conv block, the single conv block integrated with CRAB, 
+and the CAB. Additionally, the performance impact of incorporating 
+level I and the combined level I and level II blocks is assessed sep-
+arately. The results demonstrate a notable performance improvement 
+when CRAB, CAB and CNN components are integrated into the net-
+work. Also, a quadratic weighted kappa score (QWK) is observed, 
+which accounts for the disagreement between predicted and true labels, 
+targeting misclassifications more heavily when error is large.
+4.3.3. Evaluation of class-specific metrics
+The class-wise evaluation results of the proposed model using stan-
+dard performance metrics like accuracy, precision, recall, and F1-score 
+are mentioned in this section. Accuracy is a fundamental measure, 
+indicating the overall correctness of the model’s predictions across 
+all classes. To further analyze the model’s performance, precision and 
+recall are employed. Precision assesses the model’s ability to minimize 
+false positives, ensuring that the positive predictions are accurate. At 
+the same time, recall evaluates its effectiveness in identifying all true 
+positive cases, which is critical in medical applications. The F1-score, 
+as the harmonic mean of precision and recall, combines these metrics 
+into a single value, providing a balanced measure that is particularly 
+useful in scenarios with imbalanced class distributions.
+The overall class-wise evaluation metrics for both INIT and GAIT-IT 
+datasets are summarized in Tables  4 & 5, respectively.
+In addition to evaluation metrics, the confusion matrices are dis-
+played in Fig.  4, which visualizes the model’s classification perfor-
+mance. It shows correct predictions along the diagonal and high-
+lights misclassifications off the diagonal, offering valuable insights into 
+specific error patterns.
+4.3.4. Comparison with different existing models
+To evaluate the performance of the proposed model, a comparison 
+is made with several state-of-the-art techniques shown in Table  6. The 
+comparison is based on classification accuracy, number of parame-
+ters, QWK (Quadratic Weighted Kappa) for agreement measurement, 
+GFLOPs (Giga Floating Point Operations per second) for computational 
+complexity and inference time for efficiency and speed. QWK is a sta-
+tistical metric that measures agreement between predicted and actual 
+classifications. GFLOPs measure the computational complexity of the 
+model by counting the number of floating-point operations required for 
+inference. In contrast, inference time refers to the time the model takes 
+to process and classify a gait sample. The authors in [40] introduced 
+the VGG16 model, a deep CNN utilizing small 3 × 3 filters, achieving an 
+accuracy of 89.56% on the INIT gait dataset and 91.89% on the GAIT-
+IT dataset. The VGG19 model [40], an extended version of VGG16 
+with additional layers, resulted in an accuracy of 91.39% on the INIT 
+gait dataset and 90.47% on the GAIT-IT dataset. CBAM (Convolutional 
+Block Attention Module) [41] enhanced feature representation using 
+channel and spatial attention mechanisms, improving accuracy and 
+QWK. Similarly, the authors in [42] proposed Squeeze-and-Excitation 
+network, which incorporates channel-wise refinement, achieved an 
+accuracy of 95.86% on the INIT gait dataset and 97.67% on the 
+GAIT-IT dataset. Also, models by authors in [43,44] are compared 
+with the proposed model. An attention-based lightweight CNN [31] 
+incorporating Ghostnet [45] is also trained over INIT gait and GAIT-
+IT datasets, achieving accuracies of 95.39% and 98.82%, respectively. 
+While GhostNet [45] has lower GFLOPs, its inference time is slightly 
+higher compared to CRA-Net. The proposed CRA-Net outperformed all 
+other techniques in classification, achieving an accuracy of 99.66% 
+on the INIT gait dataset and 99.16% on the GAIT-IT dataset, while 
+also demonstrating lower GFLOPs and faster inference time, making 
+it efficient computationally efficient model and establishing itself as a 
+relatively best-performing model with fewer parameters.
+5. Conclusion
+In this study, a novel approach for the classification of gait patholo-
+gies was introduced using the proposed CRA-Net. The model incorpo-
+rates two complementary attention mechanisms, CRAB and CAB, to 
+address the limitations of previous models in capturing inter-class vari-
+ations in gait patterns. CRAB employs inverse attention masks to focus 
+on complex and discriminative regions, enhancing feature extraction 
+beyond the capabilities of CNNs. On the other hand, CAB integrates 
+diverse feature sets from local and global layers, ensuring balanced, 
+multi-scale feature representation. The concatenation of features across 
+multiple levels within the proposed CRA-Net architecture further en-
+hanced its ability to learn all relevant features crucial for accurately 
+classifying pathologies. Experimental results demonstrated that the 
+CRA-Net effectively captures variations in gait patterns, outperforming 
+existing methods in accuracy and robustness. This work can be used for 
+early detection and monitoring of gait-related abnormalities. However, 
+this model only considers spatial data. Future work can incorporate 
+temporal data along with spatial data.
+CRediT authorship contribution statement
+Deepika Bodepu: Writing – original draft, Validation, Methodol-
+ogy, Investigation. Mohammad Iman Junaid: Writing – review & 
+editing, Methodology, Investigation. Sandeep Madarapu: Writing – 
+review & editing, Methodology, Investigation. Jaya Prakash Sahoo: 
+Writing – review & editing, Methodology, Investigation. Samit Ari: 
+Writing – review & editing, Supervision, Resources, Investigation.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to 
+influence the work reported in this paper.
+Acknowledgments
+This work was supported by the research grant of Science and 
+Engineering Research Board, India (Grant no. CRG/2019/001414).
+Data availability
+The authors do not have permission to share data.
+Biomedical Signal Processing and Control 108 (2025) 107886 
+7 
+--- Page 8 ---
+D. Bodepu et al.
+References
+[1] V. Dietz, Gait disorders, Handb. Clin. Neurol. 110 (2013) 133–143.
+[2] J.M. Baker, Gait disorders, Am. J. Med. 131 (6) (2018) 602–607.
+[3] S. Cai, D. Chen, B. Fan, M. Du, G. Bao, G. Li, Gait phases recognition based 
+on lower limb sEMG signals using LDA-PSO-LSTM algorithm, Biomed. Signal 
+Process. Control. 80 (2023) 104272.
+[4] N. Prajapati, A. Kaur, D. Sethi, A review on clinical gait analysis, in: 2021 5th 
+International Conference on Trends in Electronics and Informatics, ICOEI, IEEE, 
+2021, pp. 967–974.
+[5] Ç.B. Erdaş, E. Sümer, S. Kibaroğlu, Neurodegenerative disease detection and 
+severity prediction using deep learning approaches, Biomed. Signal Process. 
+Control. 70 (2021) 103069.
+[6] L. Panahi, V. Ghods, Human fall detection using machine vision techniques on 
+RGB–D images, Biomed. Signal Process. Control. 44 (2018) 146–153.
+[7] A. Khan, O. Galarraga, S. Garcia-Salicetti, V. Vigneron, Deep learning for 
+quantified gait analysis: A systematic literature review, IEEE Access (2024).
+[8] J.P. Singh, S. Jain, S. Arora, U.P. Singh, Vision-based gait recognition: A survey, 
+IEEE Access 6 (2018) 70497–70527.
+[9] J. Chakraborty, A. Nandy, Discrete wavelet transform based data representation 
+in deep neural network for gait abnormality detection, Biomed. Signal Process. 
+Control. 62 (2020) 102076.
+[10] Q. Zou, L. Ni, Q. Wang, Q. Li, S. Wang, Robust gait recognition by integrating 
+inertial and RGBD sensors, IEEE Trans. Cybern. 48 (4) (2017) 1136–1150.
+[11] L. Sigcha, L. Borzì, G. Olmo, Deep learning algorithms for detecting freezing 
+of gait in parkinson’s disease: A cross-dataset study, Expert Syst. Appl. (2024) 
+124522.
+[12] Z. Li, F. Liu, W. Yang, S. Peng, J. Zhou, A survey of convolutional neural 
+networks: analysis, applications, and prospects, IEEE Trans. Neural Netw. Learn. 
+Syst. 33 (12) (2021) 6999–7019.
+[13] D.P. Sudharshan, S. Raj, Object recognition in images using convolutional neural 
+network, in: 2018 2nd International Conference on Inventive Systems and 
+Control, ICISC, IEEE, 2018, pp. 718–722.
+[14] A. Tripathi, T. Singh, B.C. Sulochana, B.S. Pragada, B.C. Kiran, G.A. Reddy, P. 
+Duraswamy, S.S. Shivakumar, A deep learning-oriented approach for lung CT 
+augmentation: Leveraging U-net and GAN architecture, in: 2024 IEEE Recent 
+Advances in Intelligent Computational Systems, RAICS, IEEE, 2024, pp. 1–7.
+[15] T.T. Verlekar, P.L. Correia, L.D. Soares, Using transfer learning for classification 
+of gait pathologies, in: 2018 IEEE International Conference on Bioinformatics 
+and Biomedicine, BIBM, IEEE, 2018, pp. 2376–2381.
+[16] S. Mascarenhas, M. Agarwal, A comparison between VGG16, VGG19 and 
+ResNet50 architecture frameworks for image classification, in: 2021 International 
+Conference on Disruptive Technologies for Multi-Disciplinary Research and 
+Applications, CENTCON, Vol. 1, IEEE, 2021, pp. 96–99.
+[17] X. Chen, H. Tao, H. Zhou, P. Zhou, Y. Deng, Hierarchical and progressive learning 
+with key point sensitive loss for sonar image classification, Multimedia Syst. 30 
+(6) (2024) 1–16.
+[18] G. Brauwers, F. Frasincar, A general survey on attention mechanisms in deep 
+learning, IEEE Trans. Knowl. Data Eng. 35 (4) (2021) 3279–3298.
+[19] R.P. Kumar, K. Venkatraman, C. Jawahar, B. Harish, S. Bharathraj, K. Mukesh, 
+Attention-guided residual network for skin lesion classification using deep rein-
+forcement learning, in: 2023 International Conference on Integrated Intelligence 
+and Communication Systems, ICIICS, IEEE, 2023, pp. 1–7.
+[20] M. Nieto-Hidalgo, J.M. García-Chamizo, Classification of pathologies using a 
+vision based feature extraction, in: Ubiquitous Computing and Ambient Intel-
+ligence: 11th International Conference, UCAmI 2017, Philadelphia, PA, USA, 
+November 7–10, 2017, Proceedings, Springer, 2017, pp. 265–274.
+[21] J. Loureiro, P.L. Correia, Using a skeleton gait energy image for pathological 
+gait classification, in: 2020 15th IEEE International Conference on Automatic 
+Face and Gesture Recognition (FG 2020), IEEE, 2020, pp. 503–507.
+[22] P. Nithyakani, et al., Classification of gait pathology using enhanced con-
+volutional neural network, in: 2022 International Conference on Computer 
+Communication and Informatics, ICCCI, IEEE, 2022, pp. 1–5.
+[23] J. Gao, P. Gu, Q. Ren, J. Zhang, X. Song, Abnormal gait recognition algorithm 
+based on LSTM-CNN fusion network, IEEE Access 7 (2019) 163180–163190.
+[24] N. Sadeghzadehyazdi, T. Batabyal, S.T. Acton, Modeling spatiotemporal patterns 
+of gait anomaly with a CNN-LSTM deep neural network, Expert Syst. Appl. 185 
+(2021) 115582.
+[25] Q. Zeng, P. Liu, N. Yu, J. Wu, W. Huo, J. Han, Video-based quantification of gait 
+impairments in parkinson’s disease using skeleton-silhouette fusion convolution 
+network, IEEE Trans. Neural Syst. Rehabil. Eng. (2023).
+[26] K. Jun, Y. Lee, S. Lee, D.-W. Lee, M.S. Kim, Pathological gait classification 
+using Kinect v2 and gated recurrent neural networks, IEEE Access 8 (2020) 
+139881–139891.
+[27] K. Jun, D.-W. Lee, K. Lee, S. Lee, M.S. Kim, Feature extraction using an RNN 
+autoencoder for skeleton-based abnormal gait recognition, IEEE Access 8 (2020) 
+19196–19207.
+[28] G. Cola, M. Avvenuti, A. Vecchio, G.-Z. Yang, B. Lo, An on-node processing 
+approach for anomaly detection in gait, IEEE Sensors J. 15 (11) (2015) 
+6640–6649.
+[29] Q. Li, Y. Wang, A. Sharf, Y. Cao, C. Tu, B. Chen, S. Yu, Classification of gait 
+anomalies from kinect, Vis. Comput. 34 (2018) 229–241.
+[30] Y. Xia, Z. Yao, Q. Ye, N. Cheng, A dual-modal attention-enhanced deep learning 
+network for quantification of parkinson’s disease characteristics, IEEE Trans. 
+Neural Syst. Rehabil. Eng. 28 (1) (2019) 42–51.
+[31] C. Zhou, D. Feng, S. Chen, N. Ban, J. Pan, Portable vision-based gait assessment 
+for post-stroke rehabilitation using an attention-based lightweight CNN, Expert 
+Syst. Appl. 238 (2024) 122074.
+[32] S. Tao, W.L. Goh, Y. Gao, A convolved self-attention model for IMU-based 
+gait detection and human activity recognition, in: 2023 IEEE 5th International 
+Conference on Artificial Intelligence Circuits and Systems, AICAS, 2023, pp. 1–5.
+[33] W. Tang, P.M.A. van Ooijen, D.A. Sival, N.M. Maurits, Classification of movement 
+disorders using video recordings of gait with attention-based graph convolutional 
+networks, in: 2023 IEEE EMBS International Conference on Biomedical and 
+Health Informatics, BHI, 2023, pp. 1–4.
+[34] H. Tian, X. Ma, H. Wu, Y. Li, Skeleton-based abnormal gait recognition with 
+spatio-temporal attention enhanced gait-structural graph convolutional networks, 
+Neurocomputing 473 (2022) 116–126.
+[35] R. Guo, X. Shao, C. Zhang, X. Qian, Multi-scale sparse graph convolutional 
+network for the assessment of parkinsonian gait, IEEE Trans. Multimed. 24 
+(2021) 1583–1594.
+[36] J. Wang, J. Guo, Z. Xu, Cross-view gait recognition model combining multi-scale 
+feature residual structure and self-attention mechanism, IEEE Access 11 (2023) 
+127769–127782.
+[37] J. Chen, Z. Wang, P. Yi, K. Zeng, Z. He, Q. Zou, Gait pyramid attention network: 
+toward silhouette semantic relation learning for gait recognition, IEEE Trans. 
+Biom. Behav. Identity Sci. 4 (4) (2022) 582–595.
+[38] J. Ortells, M.T. Herrero-Ezquerro, R.A. Mollineda, Vision-based gait impairment 
+analysis for aided diagnosis, Med. Biol. Eng. Comput. 56 (2018) 1553–1564.
+[39] P. Albuquerque, J.P. Machado, T.T. Verlekar, P.L. Correia, L.D. Soares, Remote 
+gait type classification system using markerless 2D video, Diagn. 11 (10) (2021) 
+1824.
+[40] K. Simonyan, A. Zisserman, Very deep convolutional networks for large-scale 
+image recognition, 2014, arXiv preprint arXiv:1409.1556.
+[41] S. Woo, J. Park, J.-Y. Lee, I.S. Kweon, Cbam: Convolutional block attention 
+module, in: Proceedings of the European Conference on Computer Vision, ECCV, 
+2018, pp. 3–19.
+[42] J. Hu, L. Shen, G. Sun, Squeeze-and-excitation networks, in: Proceedings of 
+the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 
+7132–7141.
+[43] X. Wang, R. Girshick, A. Gupta, K. He, Non-local neural networks, in: Proceedings 
+of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 
+7794–7803.
+[44] Y. Cao, J. Xu, S. Lin, F. Wei, H. Hu, Gcnet: Non-local networks meet squeeze-
+excitation networks and beyond, in: Proceedings of the IEEE/CVF International 
+Conference on Computer Vision Workshops, 2019.
+[45] K. Han, Y. Wang, Q. Tian, J. Guo, C. Xu, C. Xu, Ghostnet: More features from 
+cheap operations, in: Proceedings of the IEEE/CVF Conference on Computer 
+Vision and Pattern Recognition, 2020, pp. 1580–1589.
+Biomedical Signal Processing and Control 108 (2025) 107886 
+8 

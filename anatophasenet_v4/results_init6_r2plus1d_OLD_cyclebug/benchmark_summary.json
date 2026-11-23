@@ -1,0 +1,193 @@
+{
+    "dataset": "init6",
+    "args": {
+        "dataset": "init",
+        "dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\INIT\\INIT_GaitDB\\INIT_8\\silhouettes",
+        "init_classes": 6,
+        "pretrained_path": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\resnet18_pretrained.pth",
+        "out_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\anatophasenet_v4\\results_init6_r2plus1d",
+        "img_size": 96,
+        "jitter": 2,
+        "no_canon": false,
+        "backbone": "r2plus1d",
+        "num_parts": 6,
+        "last_stride": 2,
+        "head_dim": 128,
+        "dropout": 0.3,
+        "epochs": 20,
+        "batch_size": 16,
+        "lr": 0.001,
+        "backbone_lr_mult": 0.3,
+        "weight_decay": 0.05,
+        "focal_gamma": 1.5,
+        "label_smoothing": 0.05,
+        "part_loss_weight": 0.5,
+        "balance": "sqrt",
+        "ema": 0.98,
+        "select": "last",
+        "no_tta": false,
+        "folds": 10,
+        "run_folds": 10,
+        "fold_ids": null,
+        "seed": 42,
+        "save_models": false
+    },
+    "params": 4135786,
+    "val_cycle_accuracy_mean": 86.75038197695567,
+    "cycle_accuracy_mean": 88.14946026347909,
+    "cycle_accuracy_std": 10.272592319159726,
+    "session_accuracy_mean": 90.0,
+    "session_accuracy_std": 8.00390529679106,
+    "aggregated_confusion": [
+        [
+            54,
+            3,
+            12,
+            2,
+            0,
+            0
+        ],
+        [
+            6,
+            119,
+            9,
+            17,
+            0,
+            0
+        ],
+        [
+            11,
+            2,
+            138,
+            0,
+            0,
+            0
+        ],
+        [
+            2,
+            11,
+            0,
+            46,
+            1,
+            0
+        ],
+        [
+            2,
+            1,
+            4,
+            8,
+            47,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            169
+        ]
+    ],
+    "fold_results": [
+        {
+            "fold": 1,
+            "best_epoch": 20,
+            "val_cycle_acc": 85.07462686567165,
+            "val_sess_acc": 93.75,
+            "test_cycle_acc": 61.0,
+            "test_cycle_f1": 0.5138662910402041,
+            "test_sess_acc": 75.0,
+            "test_sess_f1": 0.7388888888888889
+        },
+        {
+            "fold": 2,
+            "best_epoch": 20,
+            "val_cycle_acc": 86.36363636363636,
+            "val_sess_acc": 87.5,
+            "test_cycle_acc": 89.55223880597015,
+            "test_cycle_f1": 0.8885521885521886,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9259259259259259
+        },
+        {
+            "fold": 3,
+            "best_epoch": 20,
+            "val_cycle_acc": 90.9090909090909,
+            "val_sess_acc": 87.5,
+            "test_cycle_acc": 90.9090909090909,
+            "test_cycle_f1": 0.8989898989898989,
+            "test_sess_acc": 87.5,
+            "test_sess_f1": 0.8888888888888888
+        },
+        {
+            "fold": 4,
+            "best_epoch": 20,
+            "val_cycle_acc": 85.13513513513513,
+            "val_sess_acc": 93.75,
+            "test_cycle_acc": 93.18181818181817,
+            "test_cycle_f1": 0.9282296650717704,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9428571428571427
+        },
+        {
+            "fold": 5,
+            "best_epoch": 20,
+            "val_cycle_acc": 88.37209302325581,
+            "val_sess_acc": 75.0,
+            "test_cycle_acc": 85.13513513513513,
+            "test_cycle_f1": 0.8426073131955484,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9259259259259259
+        },
+        {
+            "fold": 6,
+            "best_epoch": 20,
+            "val_cycle_acc": 96.29629629629629,
+            "val_sess_acc": 93.75,
+            "test_cycle_acc": 88.37209302325581,
+            "test_cycle_f1": 0.7111111111111111,
+            "test_sess_acc": 75.0,
+            "test_sess_f1": 0.6640211640211641
+        },
+        {
+            "fold": 7,
+            "best_epoch": 20,
+            "val_cycle_acc": 82.35294117647058,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 98.14814814814815,
+            "test_cycle_f1": 0.9727095516569201,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9428571428571427
+        },
+        {
+            "fold": 8,
+            "best_epoch": 20,
+            "val_cycle_acc": 90.0,
+            "val_sess_acc": 93.75,
+            "test_cycle_acc": 83.52941176470588,
+            "test_cycle_f1": 0.819011682939796,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9259259259259259
+        },
+        {
+            "fold": 9,
+            "best_epoch": 20,
+            "val_cycle_acc": 100.0,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 91.66666666666666,
+            "test_cycle_f1": 0.9196919874669235,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9576719576719577
+        },
+        {
+            "fold": 10,
+            "best_epoch": 20,
+            "val_cycle_acc": 63.0,
+            "val_sess_acc": 81.25,
+            "test_cycle_acc": 100.0,
+            "test_cycle_f1": 1.0,
+            "test_sess_acc": 100.0,
+            "test_sess_f1": 1.0
+        }
+    ]
+}

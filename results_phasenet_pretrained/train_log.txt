@@ -1,0 +1,567 @@
+===========================================================================
+  ST-PhaseNet (Pretrained Backbone): Clinical Spatio-Temporal Classifier
+  Device: cuda | AMP: True | Pretrained: C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth
+===========================================================================
+[INFO] Reusing existing phase cache from results_phasenet_pretrained\..\results_phasenet_full\phase_cache_64.pt: (3813 cycles)
+[INFO] Model Architecture: ST-PhaseNet-Pretrained | Parameters: 1.665M
+
+---------------------------------------------------------------------------
+[Fold 1/10] Train: 2820 cycles | Val: 479 cycles | Test: 514 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 35.62% (Loss: 1.4719) | Val Cycle Acc: 43.42% | Val Session Acc: 34.26% (Best: 43.42% @ep1)
+  Ep [ 2/40] | Train Acc: 50.28% (Loss: 1.2194) | Val Cycle Acc: 49.27% | Val Session Acc: 43.52% (Best: 49.27% @ep2)
+  Ep [ 3/40] | Train Acc: 55.72% (Loss: 1.1110) | Val Cycle Acc: 53.03% | Val Session Acc: 45.37% (Best: 53.03% @ep3)
+  Ep [ 4/40] | Train Acc: 57.85% (Loss: 1.0662) | Val Cycle Acc: 60.33% | Val Session Acc: 50.93% (Best: 60.33% @ep4)
+  Ep [ 5/40] | Train Acc: 65.66% (Loss: 0.9348) | Val Cycle Acc: 70.56% | Val Session Acc: 63.89% (Best: 70.56% @ep5)
+  Ep [ 6/40] | Train Acc: 70.35% (Loss: 0.8455) | Val Cycle Acc: 72.03% | Val Session Acc: 64.81% (Best: 72.03% @ep6)
+  Ep [ 7/40] | Train Acc: 78.69% (Loss: 0.6939) | Val Cycle Acc: 79.96% | Val Session Acc: 78.70% (Best: 79.96% @ep7)
+  Ep [ 8/40] | Train Acc: 83.98% (Loss: 0.6102) | Val Cycle Acc: 81.21% | Val Session Acc: 80.56% (Best: 81.21% @ep8)
+  Ep [ 9/40] | Train Acc: 86.22% (Loss: 0.5575) | Val Cycle Acc: 82.05% | Val Session Acc: 81.48% (Best: 82.05% @ep9)
+  Ep [10/40] | Train Acc: 87.36% (Loss: 0.5339) | Val Cycle Acc: 84.13% | Val Session Acc: 86.11% (Best: 84.13% @ep10)
+  Ep [11/40] | Train Acc: 89.99% (Loss: 0.4833) | Val Cycle Acc: 83.51% | Val Session Acc: 83.33% (Best: 84.13% @ep10)
+  Ep [12/40] | Train Acc: 91.55% (Loss: 0.4550) | Val Cycle Acc: 84.97% | Val Session Acc: 87.04% (Best: 84.97% @ep12)
+  Ep [13/40] | Train Acc: 93.15% (Loss: 0.4167) | Val Cycle Acc: 82.67% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [14/40] | Train Acc: 92.33% (Loss: 0.4261) | Val Cycle Acc: 83.30% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [15/40] | Train Acc: 93.36% (Loss: 0.4263) | Val Cycle Acc: 84.34% | Val Session Acc: 86.11% (Best: 84.97% @ep12)
+  Ep [16/40] | Train Acc: 94.64% (Loss: 0.3906) | Val Cycle Acc: 83.51% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [17/40] | Train Acc: 94.71% (Loss: 0.3847) | Val Cycle Acc: 83.30% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [18/40] | Train Acc: 95.06% (Loss: 0.3822) | Val Cycle Acc: 83.72% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [19/40] | Train Acc: 95.70% (Loss: 0.3635) | Val Cycle Acc: 83.92% | Val Session Acc: 84.26% (Best: 84.97% @ep12)
+  Ep [20/40] | Train Acc: 96.73% (Loss: 0.3447) | Val Cycle Acc: 84.55% | Val Session Acc: 86.11% (Best: 84.97% @ep12)
+  Ep [21/40] | Train Acc: 96.84% (Loss: 0.3366) | Val Cycle Acc: 82.67% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [22/40] | Train Acc: 97.34% (Loss: 0.3361) | Val Cycle Acc: 83.30% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [23/40] | Train Acc: 96.70% (Loss: 0.3389) | Val Cycle Acc: 84.13% | Val Session Acc: 87.04% (Best: 84.97% @ep12)
+  Ep [24/40] | Train Acc: 97.90% (Loss: 0.3175) | Val Cycle Acc: 83.30% | Val Session Acc: 84.26% (Best: 84.97% @ep12)
+  Ep [25/40] | Train Acc: 98.47% (Loss: 0.3043) | Val Cycle Acc: 82.88% | Val Session Acc: 84.26% (Best: 84.97% @ep12)
+  Ep [26/40] | Train Acc: 98.26% (Loss: 0.3022) | Val Cycle Acc: 83.51% | Val Session Acc: 86.11% (Best: 84.97% @ep12)
+  Ep [27/40] | Train Acc: 99.04% (Loss: 0.2940) | Val Cycle Acc: 83.09% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [28/40] | Train Acc: 98.97% (Loss: 0.2952) | Val Cycle Acc: 83.09% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [29/40] | Train Acc: 98.76% (Loss: 0.2904) | Val Cycle Acc: 83.51% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [30/40] | Train Acc: 99.18% (Loss: 0.2892) | Val Cycle Acc: 83.51% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [31/40] | Train Acc: 99.18% (Loss: 0.2893) | Val Cycle Acc: 83.72% | Val Session Acc: 86.11% (Best: 84.97% @ep12)
+  Ep [32/40] | Train Acc: 99.33% (Loss: 0.2826) | Val Cycle Acc: 84.34% | Val Session Acc: 87.04% (Best: 84.97% @ep12)
+  Ep [33/40] | Train Acc: 99.50% (Loss: 0.2818) | Val Cycle Acc: 84.34% | Val Session Acc: 86.11% (Best: 84.97% @ep12)
+  Ep [34/40] | Train Acc: 99.64% (Loss: 0.2800) | Val Cycle Acc: 83.51% | Val Session Acc: 87.04% (Best: 84.97% @ep12)
+  Ep [35/40] | Train Acc: 99.75% (Loss: 0.2768) | Val Cycle Acc: 82.67% | Val Session Acc: 84.26% (Best: 84.97% @ep12)
+  Ep [36/40] | Train Acc: 99.79% (Loss: 0.2766) | Val Cycle Acc: 84.34% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [37/40] | Train Acc: 99.75% (Loss: 0.2759) | Val Cycle Acc: 83.72% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [38/40] | Train Acc: 99.57% (Loss: 0.2792) | Val Cycle Acc: 84.13% | Val Session Acc: 87.04% (Best: 84.97% @ep12)
+  Ep [39/40] | Train Acc: 99.54% (Loss: 0.2770) | Val Cycle Acc: 84.13% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+  Ep [40/40] | Train Acc: 99.82% (Loss: 0.2746) | Val Cycle Acc: 84.13% | Val Session Acc: 85.19% (Best: 84.97% @ep12)
+
+>> [Fold 1/10 RESULT] Test Cycle Acc: 95.14% (F1: 0.9546) | Test Session Acc: 99.07% (F1: 0.9917)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       25
+diplegic         0.894   0.909   0.902      121
+hemiplegic       0.935   0.860   0.896      100
+neuropathic      0.969   1.000   0.984       94
+parkinson        0.983   1.000   0.991      174
+
+---------------------------------------------------------------------------
+[Fold 2/10] Train: 2776 cycles | Val: 558 cycles | Test: 479 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 32.70% (Loss: 1.5009) | Val Cycle Acc: 40.68% | Val Session Acc: 26.85% (Best: 40.68% @ep1)
+  Ep [ 2/40] | Train Acc: 51.16% (Loss: 1.1927) | Val Cycle Acc: 75.09% | Val Session Acc: 69.44% (Best: 75.09% @ep2)
+  Ep [ 3/40] | Train Acc: 58.16% (Loss: 1.0766) | Val Cycle Acc: 78.32% | Val Session Acc: 73.15% (Best: 78.32% @ep3)
+  Ep [ 4/40] | Train Acc: 65.93% (Loss: 0.9270) | Val Cycle Acc: 82.80% | Val Session Acc: 84.26% (Best: 82.80% @ep4)
+  Ep [ 5/40] | Train Acc: 73.41% (Loss: 0.7982) | Val Cycle Acc: 86.38% | Val Session Acc: 87.96% (Best: 86.38% @ep5)
+  Ep [ 6/40] | Train Acc: 78.36% (Loss: 0.6966) | Val Cycle Acc: 89.25% | Val Session Acc: 90.74% (Best: 89.25% @ep6)
+  Ep [ 7/40] | Train Acc: 82.44% (Loss: 0.6169) | Val Cycle Acc: 89.78% | Val Session Acc: 91.67% (Best: 89.78% @ep7)
+  Ep [ 8/40] | Train Acc: 85.40% (Loss: 0.5738) | Val Cycle Acc: 93.01% | Val Session Acc: 96.30% (Best: 93.01% @ep8)
+  Ep [ 9/40] | Train Acc: 87.83% (Loss: 0.5328) | Val Cycle Acc: 93.19% | Val Session Acc: 93.52% (Best: 93.19% @ep9)
+  Ep [10/40] | Train Acc: 88.44% (Loss: 0.5096) | Val Cycle Acc: 93.73% | Val Session Acc: 94.44% (Best: 93.73% @ep10)
+  Ep [11/40] | Train Acc: 89.78% (Loss: 0.4802) | Val Cycle Acc: 94.27% | Val Session Acc: 92.59% (Best: 94.27% @ep11)
+  Ep [12/40] | Train Acc: 92.16% (Loss: 0.4378) | Val Cycle Acc: 94.62% | Val Session Acc: 93.52% (Best: 94.62% @ep12)
+  Ep [13/40] | Train Acc: 92.92% (Loss: 0.4299) | Val Cycle Acc: 95.34% | Val Session Acc: 95.37% (Best: 95.34% @ep13)
+  Ep [14/40] | Train Acc: 93.03% (Loss: 0.4147) | Val Cycle Acc: 94.80% | Val Session Acc: 94.44% (Best: 95.34% @ep13)
+  Ep [15/40] | Train Acc: 93.17% (Loss: 0.4163) | Val Cycle Acc: 95.16% | Val Session Acc: 94.44% (Best: 95.34% @ep13)
+  Ep [16/40] | Train Acc: 95.63% (Loss: 0.3721) | Val Cycle Acc: 95.34% | Val Session Acc: 95.37% (Best: 95.34% @ep16)
+  Ep [17/40] | Train Acc: 95.41% (Loss: 0.3685) | Val Cycle Acc: 95.70% | Val Session Acc: 96.30% (Best: 95.70% @ep17)
+  Ep [18/40] | Train Acc: 95.09% (Loss: 0.3724) | Val Cycle Acc: 94.62% | Val Session Acc: 95.37% (Best: 95.70% @ep17)
+  Ep [19/40] | Train Acc: 96.60% (Loss: 0.3419) | Val Cycle Acc: 95.88% | Val Session Acc: 97.22% (Best: 95.88% @ep19)
+  Ep [20/40] | Train Acc: 96.57% (Loss: 0.3481) | Val Cycle Acc: 96.24% | Val Session Acc: 98.15% (Best: 96.24% @ep20)
+  Ep [21/40] | Train Acc: 97.72% (Loss: 0.3253) | Val Cycle Acc: 95.70% | Val Session Acc: 97.22% (Best: 96.24% @ep20)
+  Ep [22/40] | Train Acc: 97.62% (Loss: 0.3185) | Val Cycle Acc: 95.16% | Val Session Acc: 96.30% (Best: 96.24% @ep20)
+  Ep [23/40] | Train Acc: 98.05% (Loss: 0.3180) | Val Cycle Acc: 95.52% | Val Session Acc: 98.15% (Best: 96.24% @ep20)
+  Ep [24/40] | Train Acc: 98.48% (Loss: 0.3034) | Val Cycle Acc: 95.34% | Val Session Acc: 96.30% (Best: 96.24% @ep20)
+  Ep [25/40] | Train Acc: 98.66% (Loss: 0.3024) | Val Cycle Acc: 96.95% | Val Session Acc: 99.07% (Best: 96.95% @ep25)
+  Ep [26/40] | Train Acc: 98.84% (Loss: 0.2965) | Val Cycle Acc: 97.13% | Val Session Acc: 99.07% (Best: 97.13% @ep26)
+  Ep [27/40] | Train Acc: 98.99% (Loss: 0.2923) | Val Cycle Acc: 97.13% | Val Session Acc: 99.07% (Best: 97.13% @ep26)
+  Ep [28/40] | Train Acc: 99.17% (Loss: 0.2905) | Val Cycle Acc: 96.77% | Val Session Acc: 99.07% (Best: 97.13% @ep26)
+  Ep [29/40] | Train Acc: 99.35% (Loss: 0.2848) | Val Cycle Acc: 96.24% | Val Session Acc: 97.22% (Best: 97.13% @ep26)
+  Ep [30/40] | Train Acc: 99.53% (Loss: 0.2842) | Val Cycle Acc: 96.77% | Val Session Acc: 99.07% (Best: 97.13% @ep26)
+  Ep [31/40] | Train Acc: 99.64% (Loss: 0.2800) | Val Cycle Acc: 96.24% | Val Session Acc: 99.07% (Best: 97.13% @ep26)
+  Ep [32/40] | Train Acc: 99.31% (Loss: 0.2856) | Val Cycle Acc: 96.59% | Val Session Acc: 98.15% (Best: 97.13% @ep26)
+  Ep [33/40] | Train Acc: 99.64% (Loss: 0.2793) | Val Cycle Acc: 96.24% | Val Session Acc: 97.22% (Best: 97.13% @ep26)
+  Ep [34/40] | Train Acc: 99.64% (Loss: 0.2768) | Val Cycle Acc: 96.95% | Val Session Acc: 99.07% (Best: 97.13% @ep26)
+  Ep [35/40] | Train Acc: 99.67% (Loss: 0.2760) | Val Cycle Acc: 96.42% | Val Session Acc: 97.22% (Best: 97.13% @ep26)
+  Ep [36/40] | Train Acc: 99.89% (Loss: 0.2728) | Val Cycle Acc: 96.77% | Val Session Acc: 97.22% (Best: 97.13% @ep26)
+  Ep [37/40] | Train Acc: 99.71% (Loss: 0.2757) | Val Cycle Acc: 96.59% | Val Session Acc: 98.15% (Best: 97.13% @ep26)
+  Ep [38/40] | Train Acc: 99.86% (Loss: 0.2725) | Val Cycle Acc: 96.77% | Val Session Acc: 98.15% (Best: 97.13% @ep26)
+  Ep [39/40] | Train Acc: 99.86% (Loss: 0.2721) | Val Cycle Acc: 96.95% | Val Session Acc: 98.15% (Best: 97.13% @ep26)
+  Ep [40/40] | Train Acc: 99.71% (Loss: 0.2761) | Val Cycle Acc: 96.95% | Val Session Acc: 98.15% (Best: 97.13% @ep26)
+
+>> [Fold 2/10 RESULT] Test Cycle Acc: 83.72% (F1: 0.8671) | Test Session Acc: 87.04% (F1: 0.8859)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       24
+diplegic         0.594   0.809   0.685       94
+hemiplegic       0.933   0.824   0.875      102
+neuropathic      0.989   0.899   0.942       99
+parkinson        0.871   0.800   0.834      160
+
+---------------------------------------------------------------------------
+[Fold 3/10] Train: 2947 cycles | Val: 308 cycles | Test: 558 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 36.41% (Loss: 1.4467) | Val Cycle Acc: 58.44% | Val Session Acc: 59.72% (Best: 58.44% @ep1)
+  Ep [ 2/40] | Train Acc: 51.36% (Loss: 1.1854) | Val Cycle Acc: 51.62% | Val Session Acc: 50.00% (Best: 58.44% @ep1)
+  Ep [ 3/40] | Train Acc: 53.60% (Loss: 1.1246) | Val Cycle Acc: 63.64% | Val Session Acc: 61.11% (Best: 63.64% @ep3)
+  Ep [ 4/40] | Train Acc: 60.46% (Loss: 1.0263) | Val Cycle Acc: 81.82% | Val Session Acc: 81.94% (Best: 81.82% @ep4)
+  Ep [ 5/40] | Train Acc: 65.56% (Loss: 0.9182) | Val Cycle Acc: 86.04% | Val Session Acc: 90.28% (Best: 86.04% @ep5)
+  Ep [ 6/40] | Train Acc: 73.74% (Loss: 0.7868) | Val Cycle Acc: 87.99% | Val Session Acc: 91.67% (Best: 87.99% @ep6)
+  Ep [ 7/40] | Train Acc: 78.74% (Loss: 0.7127) | Val Cycle Acc: 90.26% | Val Session Acc: 91.67% (Best: 90.26% @ep7)
+  Ep [ 8/40] | Train Acc: 81.56% (Loss: 0.6426) | Val Cycle Acc: 90.58% | Val Session Acc: 91.67% (Best: 90.58% @ep8)
+  Ep [ 9/40] | Train Acc: 84.82% (Loss: 0.5895) | Val Cycle Acc: 94.16% | Val Session Acc: 94.44% (Best: 94.16% @ep9)
+  Ep [10/40] | Train Acc: 86.55% (Loss: 0.5642) | Val Cycle Acc: 91.56% | Val Session Acc: 93.06% (Best: 94.16% @ep9)
+  Ep [11/40] | Train Acc: 87.87% (Loss: 0.5081) | Val Cycle Acc: 93.83% | Val Session Acc: 97.22% (Best: 94.16% @ep9)
+  Ep [12/40] | Train Acc: 89.10% (Loss: 0.4916) | Val Cycle Acc: 93.83% | Val Session Acc: 95.83% (Best: 94.16% @ep9)
+  Ep [13/40] | Train Acc: 91.44% (Loss: 0.4620) | Val Cycle Acc: 95.78% | Val Session Acc: 97.22% (Best: 95.78% @ep13)
+  Ep [14/40] | Train Acc: 92.02% (Loss: 0.4444) | Val Cycle Acc: 94.81% | Val Session Acc: 95.83% (Best: 95.78% @ep13)
+  Ep [15/40] | Train Acc: 92.32% (Loss: 0.4325) | Val Cycle Acc: 96.75% | Val Session Acc: 97.22% (Best: 96.75% @ep15)
+  Ep [16/40] | Train Acc: 93.34% (Loss: 0.4151) | Val Cycle Acc: 95.78% | Val Session Acc: 95.83% (Best: 96.75% @ep15)
+  Ep [17/40] | Train Acc: 93.78% (Loss: 0.4099) | Val Cycle Acc: 95.13% | Val Session Acc: 95.83% (Best: 96.75% @ep15)
+  Ep [18/40] | Train Acc: 94.40% (Loss: 0.3970) | Val Cycle Acc: 95.78% | Val Session Acc: 97.22% (Best: 96.75% @ep15)
+  Ep [19/40] | Train Acc: 95.52% (Loss: 0.3675) | Val Cycle Acc: 95.45% | Val Session Acc: 97.22% (Best: 96.75% @ep15)
+  Ep [20/40] | Train Acc: 95.75% (Loss: 0.3613) | Val Cycle Acc: 97.40% | Val Session Acc: 100.00% (Best: 97.40% @ep20)
+  Ep [21/40] | Train Acc: 97.01% (Loss: 0.3446) | Val Cycle Acc: 96.75% | Val Session Acc: 98.61% (Best: 97.40% @ep20)
+  Ep [22/40] | Train Acc: 97.35% (Loss: 0.3325) | Val Cycle Acc: 97.73% | Val Session Acc: 100.00% (Best: 97.73% @ep22)
+  Ep [23/40] | Train Acc: 97.69% (Loss: 0.3251) | Val Cycle Acc: 96.75% | Val Session Acc: 97.22% (Best: 97.73% @ep22)
+  Ep [24/40] | Train Acc: 98.47% (Loss: 0.3141) | Val Cycle Acc: 97.08% | Val Session Acc: 100.00% (Best: 97.73% @ep22)
+  Ep [25/40] | Train Acc: 98.17% (Loss: 0.3117) | Val Cycle Acc: 96.75% | Val Session Acc: 98.61% (Best: 97.73% @ep22)
+  Ep [26/40] | Train Acc: 98.03% (Loss: 0.3141) | Val Cycle Acc: 97.08% | Val Session Acc: 100.00% (Best: 97.73% @ep22)
+  Ep [27/40] | Train Acc: 98.57% (Loss: 0.3029) | Val Cycle Acc: 96.43% | Val Session Acc: 98.61% (Best: 97.73% @ep22)
+  Ep [28/40] | Train Acc: 98.40% (Loss: 0.3022) | Val Cycle Acc: 96.10% | Val Session Acc: 98.61% (Best: 97.73% @ep22)
+  Ep [29/40] | Train Acc: 99.12% (Loss: 0.2926) | Val Cycle Acc: 97.40% | Val Session Acc: 98.61% (Best: 97.73% @ep22)
+  Ep [30/40] | Train Acc: 99.01% (Loss: 0.2931) | Val Cycle Acc: 96.43% | Val Session Acc: 98.61% (Best: 97.73% @ep22)
+  Ep [31/40] | Train Acc: 99.39% (Loss: 0.2872) | Val Cycle Acc: 97.08% | Val Session Acc: 98.61% (Best: 97.73% @ep22)
+  Ep [32/40] | Train Acc: 99.52% (Loss: 0.2838) | Val Cycle Acc: 97.73% | Val Session Acc: 98.61% (Best: 97.73% @ep32)
+  Ep [33/40] | Train Acc: 99.52% (Loss: 0.2825) | Val Cycle Acc: 96.43% | Val Session Acc: 100.00% (Best: 97.73% @ep32)
+  Ep [34/40] | Train Acc: 99.73% (Loss: 0.2801) | Val Cycle Acc: 97.08% | Val Session Acc: 98.61% (Best: 97.73% @ep32)
+  Ep [35/40] | Train Acc: 99.35% (Loss: 0.2829) | Val Cycle Acc: 97.40% | Val Session Acc: 98.61% (Best: 97.73% @ep32)
+  Ep [36/40] | Train Acc: 99.63% (Loss: 0.2802) | Val Cycle Acc: 97.40% | Val Session Acc: 98.61% (Best: 97.73% @ep32)
+  Ep [37/40] | Train Acc: 99.59% (Loss: 0.2792) | Val Cycle Acc: 97.08% | Val Session Acc: 98.61% (Best: 97.73% @ep32)
+  Ep [38/40] | Train Acc: 99.80% (Loss: 0.2761) | Val Cycle Acc: 97.40% | Val Session Acc: 98.61% (Best: 97.73% @ep32)
+  Ep [39/40] | Train Acc: 99.66% (Loss: 0.2780) | Val Cycle Acc: 97.73% | Val Session Acc: 98.61% (Best: 97.73% @ep39)
+  Ep [40/40] | Train Acc: 99.69% (Loss: 0.2758) | Val Cycle Acc: 97.40% | Val Session Acc: 98.61% (Best: 97.73% @ep39)
+
+>> [Fold 3/10 RESULT] Test Cycle Acc: 98.03% (F1: 0.9811) | Test Session Acc: 99.07% (F1: 0.9917)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       27
+diplegic         0.949   0.965   0.957      115
+hemiplegic       0.990   0.933   0.961      105
+neuropathic      0.991   1.000   0.995      109
+parkinson        0.985   1.000   0.993      202
+
+---------------------------------------------------------------------------
+[Fold 4/10] Train: 3154 cycles | Val: 351 cycles | Test: 308 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 36.04% (Loss: 1.4576) | Val Cycle Acc: 36.18% | Val Session Acc: 37.14% (Best: 36.18% @ep1)
+  Ep [ 2/40] | Train Acc: 54.89% (Loss: 1.1225) | Val Cycle Acc: 42.45% | Val Session Acc: 40.00% (Best: 42.45% @ep2)
+  Ep [ 3/40] | Train Acc: 57.87% (Loss: 1.0519) | Val Cycle Acc: 42.45% | Val Session Acc: 38.57% (Best: 42.45% @ep2)
+  Ep [ 4/40] | Train Acc: 62.60% (Loss: 0.9752) | Val Cycle Acc: 42.74% | Val Session Acc: 42.86% (Best: 42.74% @ep4)
+  Ep [ 5/40] | Train Acc: 68.18% (Loss: 0.8652) | Val Cycle Acc: 56.70% | Val Session Acc: 61.43% (Best: 56.70% @ep5)
+  Ep [ 6/40] | Train Acc: 74.11% (Loss: 0.7747) | Val Cycle Acc: 62.68% | Val Session Acc: 72.86% (Best: 62.68% @ep6)
+  Ep [ 7/40] | Train Acc: 78.43% (Loss: 0.6892) | Val Cycle Acc: 63.25% | Val Session Acc: 68.57% (Best: 63.25% @ep7)
+  Ep [ 8/40] | Train Acc: 83.57% (Loss: 0.6167) | Val Cycle Acc: 65.24% | Val Session Acc: 71.43% (Best: 65.24% @ep8)
+  Ep [ 9/40] | Train Acc: 87.12% (Loss: 0.5506) | Val Cycle Acc: 65.81% | Val Session Acc: 70.00% (Best: 65.81% @ep9)
+  Ep [10/40] | Train Acc: 88.52% (Loss: 0.5030) | Val Cycle Acc: 65.53% | Val Session Acc: 72.86% (Best: 65.81% @ep9)
+  Ep [11/40] | Train Acc: 89.69% (Loss: 0.4913) | Val Cycle Acc: 64.67% | Val Session Acc: 70.00% (Best: 65.81% @ep9)
+  Ep [12/40] | Train Acc: 90.51% (Loss: 0.4748) | Val Cycle Acc: 64.96% | Val Session Acc: 72.86% (Best: 65.81% @ep9)
+  Ep [13/40] | Train Acc: 91.56% (Loss: 0.4518) | Val Cycle Acc: 65.81% | Val Session Acc: 74.29% (Best: 65.81% @ep9)
+  Ep [14/40] | Train Acc: 93.69% (Loss: 0.4148) | Val Cycle Acc: 66.67% | Val Session Acc: 72.86% (Best: 66.67% @ep14)
+  Ep [15/40] | Train Acc: 93.59% (Loss: 0.4128) | Val Cycle Acc: 69.52% | Val Session Acc: 77.14% (Best: 69.52% @ep15)
+  Ep [16/40] | Train Acc: 94.45% (Loss: 0.3986) | Val Cycle Acc: 67.52% | Val Session Acc: 72.86% (Best: 69.52% @ep15)
+  Ep [17/40] | Train Acc: 95.53% (Loss: 0.3738) | Val Cycle Acc: 67.81% | Val Session Acc: 71.43% (Best: 69.52% @ep15)
+  Ep [18/40] | Train Acc: 95.49% (Loss: 0.3755) | Val Cycle Acc: 68.09% | Val Session Acc: 75.71% (Best: 69.52% @ep15)
+  Ep [19/40] | Train Acc: 96.35% (Loss: 0.3590) | Val Cycle Acc: 70.37% | Val Session Acc: 77.14% (Best: 70.37% @ep19)
+  Ep [20/40] | Train Acc: 96.22% (Loss: 0.3548) | Val Cycle Acc: 66.95% | Val Session Acc: 72.86% (Best: 70.37% @ep19)
+  Ep [21/40] | Train Acc: 96.16% (Loss: 0.3478) | Val Cycle Acc: 69.80% | Val Session Acc: 78.57% (Best: 70.37% @ep19)
+  Ep [22/40] | Train Acc: 96.95% (Loss: 0.3363) | Val Cycle Acc: 71.79% | Val Session Acc: 81.43% (Best: 71.79% @ep22)
+  Ep [23/40] | Train Acc: 97.43% (Loss: 0.3329) | Val Cycle Acc: 69.52% | Val Session Acc: 74.29% (Best: 71.79% @ep22)
+  Ep [24/40] | Train Acc: 97.72% (Loss: 0.3258) | Val Cycle Acc: 68.66% | Val Session Acc: 74.29% (Best: 71.79% @ep22)
+  Ep [25/40] | Train Acc: 98.57% (Loss: 0.3089) | Val Cycle Acc: 71.51% | Val Session Acc: 78.57% (Best: 71.79% @ep22)
+  Ep [26/40] | Train Acc: 97.78% (Loss: 0.3158) | Val Cycle Acc: 72.08% | Val Session Acc: 77.14% (Best: 72.08% @ep26)
+  Ep [27/40] | Train Acc: 98.57% (Loss: 0.3018) | Val Cycle Acc: 70.94% | Val Session Acc: 78.57% (Best: 72.08% @ep26)
+  Ep [28/40] | Train Acc: 98.98% (Loss: 0.2961) | Val Cycle Acc: 69.80% | Val Session Acc: 74.29% (Best: 72.08% @ep26)
+  Ep [29/40] | Train Acc: 98.57% (Loss: 0.2997) | Val Cycle Acc: 72.08% | Val Session Acc: 78.57% (Best: 72.08% @ep29)
+  Ep [30/40] | Train Acc: 98.86% (Loss: 0.2921) | Val Cycle Acc: 72.36% | Val Session Acc: 77.14% (Best: 72.36% @ep30)
+  Ep [31/40] | Train Acc: 99.24% (Loss: 0.2901) | Val Cycle Acc: 75.21% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [32/40] | Train Acc: 99.30% (Loss: 0.2863) | Val Cycle Acc: 70.66% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [33/40] | Train Acc: 99.27% (Loss: 0.2863) | Val Cycle Acc: 71.51% | Val Session Acc: 77.14% (Best: 75.21% @ep31)
+  Ep [34/40] | Train Acc: 99.71% (Loss: 0.2785) | Val Cycle Acc: 71.51% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [35/40] | Train Acc: 99.81% (Loss: 0.2762) | Val Cycle Acc: 70.94% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [36/40] | Train Acc: 99.56% (Loss: 0.2816) | Val Cycle Acc: 71.79% | Val Session Acc: 77.14% (Best: 75.21% @ep31)
+  Ep [37/40] | Train Acc: 99.59% (Loss: 0.2792) | Val Cycle Acc: 72.36% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [38/40] | Train Acc: 99.87% (Loss: 0.2741) | Val Cycle Acc: 71.79% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [39/40] | Train Acc: 99.75% (Loss: 0.2757) | Val Cycle Acc: 72.36% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+  Ep [40/40] | Train Acc: 99.68% (Loss: 0.2770) | Val Cycle Acc: 72.36% | Val Session Acc: 78.57% (Best: 75.21% @ep31)
+
+>> [Fold 4/10 RESULT] Test Cycle Acc: 95.13% (F1: 0.9507) | Test Session Acc: 100.00% (F1: 1.0000)
+                  prec  recall      f1  support
+normal           1.000   0.882   0.938       17
+diplegic         0.895   0.975   0.933       79
+hemiplegic       0.937   0.967   0.952       61
+neuropathic      0.969   1.000   0.984       62
+parkinson        1.000   0.899   0.947       89
+
+---------------------------------------------------------------------------
+[Fold 5/10] Train: 3155 cycles | Val: 307 cycles | Test: 351 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 36.93% (Loss: 1.4508) | Val Cycle Acc: 60.91% | Val Session Acc: 49.23% (Best: 60.91% @ep1)
+  Ep [ 2/40] | Train Acc: 53.71% (Loss: 1.1118) | Val Cycle Acc: 66.12% | Val Session Acc: 58.46% (Best: 66.12% @ep2)
+  Ep [ 3/40] | Train Acc: 58.47% (Loss: 1.0224) | Val Cycle Acc: 65.80% | Val Session Acc: 61.54% (Best: 66.12% @ep2)
+  Ep [ 4/40] | Train Acc: 66.59% (Loss: 0.8968) | Val Cycle Acc: 77.52% | Val Session Acc: 78.46% (Best: 77.52% @ep4)
+  Ep [ 5/40] | Train Acc: 73.73% (Loss: 0.7928) | Val Cycle Acc: 76.87% | Val Session Acc: 75.38% (Best: 77.52% @ep4)
+  Ep [ 6/40] | Train Acc: 77.92% (Loss: 0.7127) | Val Cycle Acc: 84.69% | Val Session Acc: 87.69% (Best: 84.69% @ep6)
+  Ep [ 7/40] | Train Acc: 82.39% (Loss: 0.6372) | Val Cycle Acc: 85.99% | Val Session Acc: 87.69% (Best: 85.99% @ep7)
+  Ep [ 8/40] | Train Acc: 85.41% (Loss: 0.5925) | Val Cycle Acc: 85.34% | Val Session Acc: 87.69% (Best: 85.99% @ep7)
+  Ep [ 9/40] | Train Acc: 86.20% (Loss: 0.5621) | Val Cycle Acc: 84.69% | Val Session Acc: 84.62% (Best: 85.99% @ep7)
+  Ep [10/40] | Train Acc: 87.85% (Loss: 0.5330) | Val Cycle Acc: 89.58% | Val Session Acc: 90.77% (Best: 89.58% @ep10)
+  Ep [11/40] | Train Acc: 89.66% (Loss: 0.4916) | Val Cycle Acc: 89.25% | Val Session Acc: 89.23% (Best: 89.58% @ep10)
+  Ep [12/40] | Train Acc: 90.96% (Loss: 0.4701) | Val Cycle Acc: 90.23% | Val Session Acc: 90.77% (Best: 90.23% @ep12)
+  Ep [13/40] | Train Acc: 91.12% (Loss: 0.4658) | Val Cycle Acc: 91.53% | Val Session Acc: 96.92% (Best: 91.53% @ep13)
+  Ep [14/40] | Train Acc: 91.85% (Loss: 0.4499) | Val Cycle Acc: 91.86% | Val Session Acc: 92.31% (Best: 91.86% @ep14)
+  Ep [15/40] | Train Acc: 92.86% (Loss: 0.4279) | Val Cycle Acc: 90.23% | Val Session Acc: 95.38% (Best: 91.86% @ep14)
+  Ep [16/40] | Train Acc: 93.43% (Loss: 0.4156) | Val Cycle Acc: 92.18% | Val Session Acc: 98.46% (Best: 92.18% @ep16)
+  Ep [17/40] | Train Acc: 94.99% (Loss: 0.3910) | Val Cycle Acc: 92.83% | Val Session Acc: 96.92% (Best: 92.83% @ep17)
+  Ep [18/40] | Train Acc: 95.34% (Loss: 0.3752) | Val Cycle Acc: 94.79% | Val Session Acc: 98.46% (Best: 94.79% @ep18)
+  Ep [19/40] | Train Acc: 95.46% (Loss: 0.3797) | Val Cycle Acc: 94.46% | Val Session Acc: 96.92% (Best: 94.79% @ep18)
+  Ep [20/40] | Train Acc: 95.24% (Loss: 0.3684) | Val Cycle Acc: 96.09% | Val Session Acc: 98.46% (Best: 96.09% @ep20)
+  Ep [21/40] | Train Acc: 96.26% (Loss: 0.3553) | Val Cycle Acc: 94.14% | Val Session Acc: 98.46% (Best: 96.09% @ep20)
+  Ep [22/40] | Train Acc: 97.18% (Loss: 0.3417) | Val Cycle Acc: 94.79% | Val Session Acc: 96.92% (Best: 96.09% @ep20)
+  Ep [23/40] | Train Acc: 96.89% (Loss: 0.3353) | Val Cycle Acc: 94.46% | Val Session Acc: 98.46% (Best: 96.09% @ep20)
+  Ep [24/40] | Train Acc: 97.49% (Loss: 0.3265) | Val Cycle Acc: 96.09% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [25/40] | Train Acc: 97.65% (Loss: 0.3210) | Val Cycle Acc: 95.77% | Val Session Acc: 96.92% (Best: 96.09% @ep24)
+  Ep [26/40] | Train Acc: 97.87% (Loss: 0.3195) | Val Cycle Acc: 95.44% | Val Session Acc: 98.46% (Best: 96.09% @ep24)
+  Ep [27/40] | Train Acc: 98.45% (Loss: 0.3068) | Val Cycle Acc: 95.44% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [28/40] | Train Acc: 98.54% (Loss: 0.3047) | Val Cycle Acc: 95.44% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [29/40] | Train Acc: 98.45% (Loss: 0.3040) | Val Cycle Acc: 93.81% | Val Session Acc: 98.46% (Best: 96.09% @ep24)
+  Ep [30/40] | Train Acc: 98.73% (Loss: 0.2985) | Val Cycle Acc: 94.14% | Val Session Acc: 98.46% (Best: 96.09% @ep24)
+  Ep [31/40] | Train Acc: 99.18% (Loss: 0.2883) | Val Cycle Acc: 94.14% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [32/40] | Train Acc: 98.98% (Loss: 0.2904) | Val Cycle Acc: 95.11% | Val Session Acc: 98.46% (Best: 96.09% @ep24)
+  Ep [33/40] | Train Acc: 99.14% (Loss: 0.2905) | Val Cycle Acc: 94.14% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [34/40] | Train Acc: 99.30% (Loss: 0.2879) | Val Cycle Acc: 95.11% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [35/40] | Train Acc: 99.24% (Loss: 0.2841) | Val Cycle Acc: 95.77% | Val Session Acc: 100.00% (Best: 96.09% @ep24)
+  Ep [36/40] | Train Acc: 99.33% (Loss: 0.2832) | Val Cycle Acc: 95.44% | Val Session Acc: 98.46% (Best: 96.09% @ep24)
+  Ep [37/40] | Train Acc: 99.59% (Loss: 0.2780) | Val Cycle Acc: 96.09% | Val Session Acc: 100.00% (Best: 96.09% @ep37)
+  Ep [38/40] | Train Acc: 99.40% (Loss: 0.2812) | Val Cycle Acc: 96.09% | Val Session Acc: 100.00% (Best: 96.09% @ep38)
+  Ep [39/40] | Train Acc: 99.65% (Loss: 0.2790) | Val Cycle Acc: 96.09% | Val Session Acc: 100.00% (Best: 96.09% @ep39)
+  Ep [40/40] | Train Acc: 99.59% (Loss: 0.2809) | Val Cycle Acc: 96.09% | Val Session Acc: 100.00% (Best: 96.09% @ep39)
+
+>> [Fold 5/10 RESULT] Test Cycle Acc: 76.07% (F1: 0.8039) | Test Session Acc: 84.29% (F1: 0.8584)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       19
+diplegic         0.679   0.383   0.490       94
+hemiplegic       0.980   0.721   0.831       68
+neuropathic      1.000   0.900   0.947       70
+parkinson        0.602   1.000   0.752      100
+
+---------------------------------------------------------------------------
+[Fold 6/10] Train: 3153 cycles | Val: 353 cycles | Test: 307 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 34.99% (Loss: 1.4757) | Val Cycle Acc: 53.54% | Val Session Acc: 47.30% (Best: 53.54% @ep1)
+  Ep [ 2/40] | Train Acc: 51.49% (Loss: 1.1600) | Val Cycle Acc: 51.84% | Val Session Acc: 44.59% (Best: 53.54% @ep1)
+  Ep [ 3/40] | Train Acc: 57.52% (Loss: 1.0609) | Val Cycle Acc: 62.61% | Val Session Acc: 66.22% (Best: 62.61% @ep3)
+  Ep [ 4/40] | Train Acc: 60.34% (Loss: 1.0028) | Val Cycle Acc: 76.20% | Val Session Acc: 75.68% (Best: 76.20% @ep4)
+  Ep [ 5/40] | Train Acc: 69.54% (Loss: 0.8680) | Val Cycle Acc: 78.19% | Val Session Acc: 86.49% (Best: 78.19% @ep5)
+  Ep [ 6/40] | Train Acc: 74.97% (Loss: 0.7548) | Val Cycle Acc: 77.62% | Val Session Acc: 87.84% (Best: 78.19% @ep5)
+  Ep [ 7/40] | Train Acc: 78.62% (Loss: 0.6980) | Val Cycle Acc: 81.87% | Val Session Acc: 87.84% (Best: 81.87% @ep7)
+  Ep [ 8/40] | Train Acc: 82.01% (Loss: 0.6449) | Val Cycle Acc: 80.17% | Val Session Acc: 87.84% (Best: 81.87% @ep7)
+  Ep [ 9/40] | Train Acc: 83.72% (Loss: 0.6090) | Val Cycle Acc: 81.30% | Val Session Acc: 85.14% (Best: 81.87% @ep7)
+  Ep [10/40] | Train Acc: 86.80% (Loss: 0.5603) | Val Cycle Acc: 83.29% | Val Session Acc: 87.84% (Best: 83.29% @ep10)
+  Ep [11/40] | Train Acc: 88.48% (Loss: 0.5200) | Val Cycle Acc: 84.70% | Val Session Acc: 91.89% (Best: 84.70% @ep11)
+  Ep [12/40] | Train Acc: 89.05% (Loss: 0.5082) | Val Cycle Acc: 86.12% | Val Session Acc: 89.19% (Best: 86.12% @ep12)
+  Ep [13/40] | Train Acc: 89.34% (Loss: 0.4815) | Val Cycle Acc: 85.27% | Val Session Acc: 91.89% (Best: 86.12% @ep12)
+  Ep [14/40] | Train Acc: 92.10% (Loss: 0.4533) | Val Cycle Acc: 87.54% | Val Session Acc: 91.89% (Best: 87.54% @ep14)
+  Ep [15/40] | Train Acc: 92.70% (Loss: 0.4425) | Val Cycle Acc: 87.25% | Val Session Acc: 93.24% (Best: 87.54% @ep14)
+  Ep [16/40] | Train Acc: 93.12% (Loss: 0.4204) | Val Cycle Acc: 89.24% | Val Session Acc: 94.59% (Best: 89.24% @ep16)
+  Ep [17/40] | Train Acc: 94.13% (Loss: 0.4039) | Val Cycle Acc: 90.37% | Val Session Acc: 95.95% (Best: 90.37% @ep17)
+  Ep [18/40] | Train Acc: 94.48% (Loss: 0.3880) | Val Cycle Acc: 86.12% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [19/40] | Train Acc: 95.27% (Loss: 0.3817) | Val Cycle Acc: 88.10% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [20/40] | Train Acc: 95.88% (Loss: 0.3638) | Val Cycle Acc: 87.82% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [21/40] | Train Acc: 96.10% (Loss: 0.3597) | Val Cycle Acc: 88.67% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [22/40] | Train Acc: 96.86% (Loss: 0.3458) | Val Cycle Acc: 87.25% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [23/40] | Train Acc: 97.11% (Loss: 0.3371) | Val Cycle Acc: 87.54% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [24/40] | Train Acc: 97.14% (Loss: 0.3384) | Val Cycle Acc: 88.10% | Val Session Acc: 94.59% (Best: 90.37% @ep17)
+  Ep [25/40] | Train Acc: 97.30% (Loss: 0.3316) | Val Cycle Acc: 89.24% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [26/40] | Train Acc: 98.10% (Loss: 0.3155) | Val Cycle Acc: 88.10% | Val Session Acc: 94.59% (Best: 90.37% @ep17)
+  Ep [27/40] | Train Acc: 98.45% (Loss: 0.3055) | Val Cycle Acc: 88.39% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [28/40] | Train Acc: 98.64% (Loss: 0.2995) | Val Cycle Acc: 90.08% | Val Session Acc: 94.59% (Best: 90.37% @ep17)
+  Ep [29/40] | Train Acc: 98.67% (Loss: 0.2997) | Val Cycle Acc: 86.69% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [30/40] | Train Acc: 99.02% (Loss: 0.2935) | Val Cycle Acc: 89.52% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [31/40] | Train Acc: 99.08% (Loss: 0.2937) | Val Cycle Acc: 85.27% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [32/40] | Train Acc: 98.86% (Loss: 0.2904) | Val Cycle Acc: 86.69% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [33/40] | Train Acc: 99.43% (Loss: 0.2832) | Val Cycle Acc: 86.69% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [34/40] | Train Acc: 99.30% (Loss: 0.2872) | Val Cycle Acc: 88.10% | Val Session Acc: 93.24% (Best: 90.37% @ep17)
+  Ep [35/40] | Train Acc: 99.59% (Loss: 0.2802) | Val Cycle Acc: 87.54% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [36/40] | Train Acc: 99.43% (Loss: 0.2825) | Val Cycle Acc: 86.97% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [37/40] | Train Acc: 99.52% (Loss: 0.2816) | Val Cycle Acc: 86.97% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [38/40] | Train Acc: 99.43% (Loss: 0.2809) | Val Cycle Acc: 87.54% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [39/40] | Train Acc: 99.75% (Loss: 0.2768) | Val Cycle Acc: 86.40% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+  Ep [40/40] | Train Acc: 99.84% (Loss: 0.2755) | Val Cycle Acc: 86.40% | Val Session Acc: 91.89% (Best: 90.37% @ep17)
+
+>> [Fold 6/10 RESULT] Test Cycle Acc: 88.27% (F1: 0.8978) | Test Session Acc: 93.85% (F1: 0.9314)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       19
+diplegic         0.603   0.854   0.707       48
+hemiplegic       0.965   0.932   0.948       59
+neuropathic      1.000   0.889   0.941       54
+parkinson        0.939   0.850   0.893      127
+
+---------------------------------------------------------------------------
+[Fold 7/10] Train: 3151 cycles | Val: 309 cycles | Test: 353 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 37.47% (Loss: 1.4332) | Val Cycle Acc: 45.95% | Val Session Acc: 40.28% (Best: 45.95% @ep1)
+  Ep [ 2/40] | Train Acc: 53.57% (Loss: 1.1325) | Val Cycle Acc: 48.54% | Val Session Acc: 44.44% (Best: 48.54% @ep2)
+  Ep [ 3/40] | Train Acc: 55.45% (Loss: 1.1047) | Val Cycle Acc: 54.37% | Val Session Acc: 48.61% (Best: 54.37% @ep3)
+  Ep [ 4/40] | Train Acc: 60.75% (Loss: 1.0026) | Val Cycle Acc: 62.46% | Val Session Acc: 55.56% (Best: 62.46% @ep4)
+  Ep [ 5/40] | Train Acc: 66.49% (Loss: 0.9141) | Val Cycle Acc: 68.61% | Val Session Acc: 65.28% (Best: 68.61% @ep5)
+  Ep [ 6/40] | Train Acc: 72.35% (Loss: 0.8230) | Val Cycle Acc: 77.35% | Val Session Acc: 77.78% (Best: 77.35% @ep6)
+  Ep [ 7/40] | Train Acc: 77.26% (Loss: 0.7245) | Val Cycle Acc: 72.49% | Val Session Acc: 70.83% (Best: 77.35% @ep6)
+  Ep [ 8/40] | Train Acc: 81.54% (Loss: 0.6529) | Val Cycle Acc: 76.05% | Val Session Acc: 79.17% (Best: 77.35% @ep6)
+  Ep [ 9/40] | Train Acc: 83.67% (Loss: 0.6058) | Val Cycle Acc: 75.08% | Val Session Acc: 79.17% (Best: 77.35% @ep6)
+  Ep [10/40] | Train Acc: 86.16% (Loss: 0.5503) | Val Cycle Acc: 76.70% | Val Session Acc: 81.94% (Best: 77.35% @ep6)
+  Ep [11/40] | Train Acc: 88.17% (Loss: 0.5224) | Val Cycle Acc: 73.46% | Val Session Acc: 80.56% (Best: 77.35% @ep6)
+  Ep [12/40] | Train Acc: 91.42% (Loss: 0.4696) | Val Cycle Acc: 77.99% | Val Session Acc: 83.33% (Best: 77.99% @ep12)
+  Ep [13/40] | Train Acc: 90.98% (Loss: 0.4588) | Val Cycle Acc: 77.02% | Val Session Acc: 83.33% (Best: 77.99% @ep12)
+  Ep [14/40] | Train Acc: 92.25% (Loss: 0.4393) | Val Cycle Acc: 80.91% | Val Session Acc: 86.11% (Best: 80.91% @ep14)
+  Ep [15/40] | Train Acc: 92.89% (Loss: 0.4259) | Val Cycle Acc: 77.02% | Val Session Acc: 83.33% (Best: 80.91% @ep14)
+  Ep [16/40] | Train Acc: 93.81% (Loss: 0.4115) | Val Cycle Acc: 79.29% | Val Session Acc: 83.33% (Best: 80.91% @ep14)
+  Ep [17/40] | Train Acc: 93.75% (Loss: 0.4011) | Val Cycle Acc: 79.29% | Val Session Acc: 87.50% (Best: 80.91% @ep14)
+  Ep [18/40] | Train Acc: 95.12% (Loss: 0.3795) | Val Cycle Acc: 80.91% | Val Session Acc: 87.50% (Best: 80.91% @ep14)
+  Ep [19/40] | Train Acc: 96.14% (Loss: 0.3602) | Val Cycle Acc: 78.96% | Val Session Acc: 87.50% (Best: 80.91% @ep14)
+  Ep [20/40] | Train Acc: 96.17% (Loss: 0.3592) | Val Cycle Acc: 79.94% | Val Session Acc: 87.50% (Best: 80.91% @ep14)
+  Ep [21/40] | Train Acc: 96.30% (Loss: 0.3512) | Val Cycle Acc: 80.58% | Val Session Acc: 88.89% (Best: 80.91% @ep14)
+  Ep [22/40] | Train Acc: 96.52% (Loss: 0.3473) | Val Cycle Acc: 79.29% | Val Session Acc: 88.89% (Best: 80.91% @ep14)
+  Ep [23/40] | Train Acc: 97.07% (Loss: 0.3335) | Val Cycle Acc: 81.88% | Val Session Acc: 86.11% (Best: 81.88% @ep23)
+  Ep [24/40] | Train Acc: 97.29% (Loss: 0.3334) | Val Cycle Acc: 80.26% | Val Session Acc: 88.89% (Best: 81.88% @ep23)
+  Ep [25/40] | Train Acc: 97.58% (Loss: 0.3182) | Val Cycle Acc: 82.20% | Val Session Acc: 90.28% (Best: 82.20% @ep25)
+  Ep [26/40] | Train Acc: 98.60% (Loss: 0.3069) | Val Cycle Acc: 83.50% | Val Session Acc: 90.28% (Best: 83.50% @ep26)
+  Ep [27/40] | Train Acc: 97.90% (Loss: 0.3114) | Val Cycle Acc: 82.20% | Val Session Acc: 90.28% (Best: 83.50% @ep26)
+  Ep [28/40] | Train Acc: 98.47% (Loss: 0.3049) | Val Cycle Acc: 81.88% | Val Session Acc: 90.28% (Best: 83.50% @ep26)
+  Ep [29/40] | Train Acc: 98.66% (Loss: 0.2980) | Val Cycle Acc: 83.82% | Val Session Acc: 90.28% (Best: 83.82% @ep29)
+  Ep [30/40] | Train Acc: 98.69% (Loss: 0.2982) | Val Cycle Acc: 84.47% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+  Ep [31/40] | Train Acc: 99.08% (Loss: 0.2890) | Val Cycle Acc: 83.50% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+  Ep [32/40] | Train Acc: 99.39% (Loss: 0.2865) | Val Cycle Acc: 82.52% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+  Ep [33/40] | Train Acc: 99.30% (Loss: 0.2831) | Val Cycle Acc: 83.82% | Val Session Acc: 86.11% (Best: 84.47% @ep30)
+  Ep [34/40] | Train Acc: 99.33% (Loss: 0.2833) | Val Cycle Acc: 82.52% | Val Session Acc: 88.89% (Best: 84.47% @ep30)
+  Ep [35/40] | Train Acc: 99.49% (Loss: 0.2811) | Val Cycle Acc: 83.17% | Val Session Acc: 88.89% (Best: 84.47% @ep30)
+  Ep [36/40] | Train Acc: 99.33% (Loss: 0.2822) | Val Cycle Acc: 83.17% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+  Ep [37/40] | Train Acc: 99.39% (Loss: 0.2820) | Val Cycle Acc: 83.50% | Val Session Acc: 88.89% (Best: 84.47% @ep30)
+  Ep [38/40] | Train Acc: 99.39% (Loss: 0.2825) | Val Cycle Acc: 82.52% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+  Ep [39/40] | Train Acc: 99.65% (Loss: 0.2782) | Val Cycle Acc: 82.52% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+  Ep [40/40] | Train Acc: 99.55% (Loss: 0.2799) | Val Cycle Acc: 82.52% | Val Session Acc: 90.28% (Best: 84.47% @ep30)
+
+>> [Fold 7/10 RESULT] Test Cycle Acc: 92.07% (F1: 0.9301) | Test Session Acc: 97.30% (F1: 0.9745)
+                  prec  recall      f1  support
+normal           0.950   1.000   0.974       19
+diplegic         0.860   0.841   0.851       88
+hemiplegic       0.877   0.928   0.901       69
+neuropathic      0.987   1.000   0.993       74
+parkinson        0.949   0.913   0.931      103
+
+---------------------------------------------------------------------------
+[Fold 8/10] Train: 3154 cycles | Val: 350 cycles | Test: 309 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 36.68% (Loss: 1.4539) | Val Cycle Acc: 66.29% | Val Session Acc: 58.33% (Best: 66.29% @ep1)
+  Ep [ 2/40] | Train Acc: 53.24% (Loss: 1.1443) | Val Cycle Acc: 74.86% | Val Session Acc: 68.06% (Best: 74.86% @ep2)
+  Ep [ 3/40] | Train Acc: 57.77% (Loss: 1.0694) | Val Cycle Acc: 76.29% | Val Session Acc: 68.06% (Best: 76.29% @ep3)
+  Ep [ 4/40] | Train Acc: 67.01% (Loss: 0.9127) | Val Cycle Acc: 87.71% | Val Session Acc: 88.89% (Best: 87.71% @ep4)
+  Ep [ 5/40] | Train Acc: 74.37% (Loss: 0.7845) | Val Cycle Acc: 90.86% | Val Session Acc: 93.06% (Best: 90.86% @ep5)
+  Ep [ 6/40] | Train Acc: 78.55% (Loss: 0.7052) | Val Cycle Acc: 92.29% | Val Session Acc: 94.44% (Best: 92.29% @ep6)
+  Ep [ 7/40] | Train Acc: 81.57% (Loss: 0.6501) | Val Cycle Acc: 93.71% | Val Session Acc: 97.22% (Best: 93.71% @ep7)
+  Ep [ 8/40] | Train Acc: 85.37% (Loss: 0.5890) | Val Cycle Acc: 94.29% | Val Session Acc: 97.22% (Best: 94.29% @ep8)
+  Ep [ 9/40] | Train Acc: 87.75% (Loss: 0.5215) | Val Cycle Acc: 96.00% | Val Session Acc: 98.61% (Best: 96.00% @ep9)
+  Ep [10/40] | Train Acc: 88.17% (Loss: 0.5225) | Val Cycle Acc: 96.29% | Val Session Acc: 100.00% (Best: 96.29% @ep10)
+  Ep [11/40] | Train Acc: 90.77% (Loss: 0.4692) | Val Cycle Acc: 97.71% | Val Session Acc: 100.00% (Best: 97.71% @ep11)
+  Ep [12/40] | Train Acc: 90.74% (Loss: 0.4794) | Val Cycle Acc: 98.00% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [13/40] | Train Acc: 91.34% (Loss: 0.4544) | Val Cycle Acc: 97.14% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [14/40] | Train Acc: 92.23% (Loss: 0.4384) | Val Cycle Acc: 95.14% | Val Session Acc: 98.61% (Best: 98.00% @ep12)
+  Ep [15/40] | Train Acc: 93.40% (Loss: 0.4154) | Val Cycle Acc: 97.71% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [16/40] | Train Acc: 93.27% (Loss: 0.4187) | Val Cycle Acc: 96.57% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [17/40] | Train Acc: 95.05% (Loss: 0.3845) | Val Cycle Acc: 94.86% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [18/40] | Train Acc: 95.43% (Loss: 0.3720) | Val Cycle Acc: 96.00% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [19/40] | Train Acc: 95.40% (Loss: 0.3724) | Val Cycle Acc: 94.57% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [20/40] | Train Acc: 96.29% (Loss: 0.3578) | Val Cycle Acc: 95.14% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [21/40] | Train Acc: 96.29% (Loss: 0.3468) | Val Cycle Acc: 96.86% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [22/40] | Train Acc: 97.18% (Loss: 0.3367) | Val Cycle Acc: 96.29% | Val Session Acc: 98.61% (Best: 98.00% @ep12)
+  Ep [23/40] | Train Acc: 97.49% (Loss: 0.3262) | Val Cycle Acc: 94.00% | Val Session Acc: 95.83% (Best: 98.00% @ep12)
+  Ep [24/40] | Train Acc: 97.65% (Loss: 0.3276) | Val Cycle Acc: 95.43% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [25/40] | Train Acc: 98.19% (Loss: 0.3117) | Val Cycle Acc: 95.43% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [26/40] | Train Acc: 98.22% (Loss: 0.3112) | Val Cycle Acc: 96.00% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [27/40] | Train Acc: 98.60% (Loss: 0.3023) | Val Cycle Acc: 94.86% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [28/40] | Train Acc: 98.54% (Loss: 0.3036) | Val Cycle Acc: 95.71% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [29/40] | Train Acc: 99.27% (Loss: 0.2898) | Val Cycle Acc: 95.43% | Val Session Acc: 98.61% (Best: 98.00% @ep12)
+  Ep [30/40] | Train Acc: 99.05% (Loss: 0.2901) | Val Cycle Acc: 96.29% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [31/40] | Train Acc: 99.43% (Loss: 0.2853) | Val Cycle Acc: 95.43% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [32/40] | Train Acc: 99.40% (Loss: 0.2874) | Val Cycle Acc: 95.14% | Val Session Acc: 100.00% (Best: 98.00% @ep12)
+  Ep [33/40] | Train Acc: 99.43% (Loss: 0.2838) | Val Cycle Acc: 95.43% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [34/40] | Train Acc: 99.49% (Loss: 0.2851) | Val Cycle Acc: 95.43% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [35/40] | Train Acc: 99.62% (Loss: 0.2796) | Val Cycle Acc: 94.29% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [36/40] | Train Acc: 99.56% (Loss: 0.2803) | Val Cycle Acc: 94.86% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [37/40] | Train Acc: 99.62% (Loss: 0.2784) | Val Cycle Acc: 94.57% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [38/40] | Train Acc: 99.52% (Loss: 0.2790) | Val Cycle Acc: 94.00% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [39/40] | Train Acc: 99.71% (Loss: 0.2770) | Val Cycle Acc: 94.00% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+  Ep [40/40] | Train Acc: 99.68% (Loss: 0.2765) | Val Cycle Acc: 94.00% | Val Session Acc: 97.22% (Best: 98.00% @ep12)
+
+>> [Fold 8/10 RESULT] Test Cycle Acc: 85.44% (F1: 0.8811) | Test Session Acc: 86.11% (F1: 0.8732)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       15
+diplegic         0.700   0.671   0.685       73
+hemiplegic       0.733   1.000   0.846       66
+neuropathic      1.000   1.000   1.000       61
+parkinson        1.000   0.777   0.874       94
+
+---------------------------------------------------------------------------
+[Fold 9/10] Train: 3179 cycles | Val: 284 cycles | Test: 350 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 36.36% (Loss: 1.4551) | Val Cycle Acc: 52.46% | Val Session Acc: 45.31% (Best: 52.46% @ep1)
+  Ep [ 2/40] | Train Acc: 51.55% (Loss: 1.1709) | Val Cycle Acc: 63.03% | Val Session Acc: 67.19% (Best: 63.03% @ep2)
+  Ep [ 3/40] | Train Acc: 55.97% (Loss: 1.1034) | Val Cycle Acc: 62.68% | Val Session Acc: 67.19% (Best: 63.03% @ep2)
+  Ep [ 4/40] | Train Acc: 64.27% (Loss: 0.9585) | Val Cycle Acc: 72.89% | Val Session Acc: 70.31% (Best: 72.89% @ep4)
+  Ep [ 5/40] | Train Acc: 72.41% (Loss: 0.8085) | Val Cycle Acc: 83.80% | Val Session Acc: 90.62% (Best: 83.80% @ep5)
+  Ep [ 6/40] | Train Acc: 79.92% (Loss: 0.6983) | Val Cycle Acc: 87.68% | Val Session Acc: 90.62% (Best: 87.68% @ep6)
+  Ep [ 7/40] | Train Acc: 83.36% (Loss: 0.6209) | Val Cycle Acc: 88.38% | Val Session Acc: 84.38% (Best: 88.38% @ep7)
+  Ep [ 8/40] | Train Acc: 85.35% (Loss: 0.5766) | Val Cycle Acc: 88.38% | Val Session Acc: 89.06% (Best: 88.38% @ep8)
+  Ep [ 9/40] | Train Acc: 88.42% (Loss: 0.5223) | Val Cycle Acc: 88.38% | Val Session Acc: 92.19% (Best: 88.38% @ep9)
+  Ep [10/40] | Train Acc: 88.89% (Loss: 0.5022) | Val Cycle Acc: 87.68% | Val Session Acc: 89.06% (Best: 88.38% @ep9)
+  Ep [11/40] | Train Acc: 89.93% (Loss: 0.4922) | Val Cycle Acc: 86.62% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [12/40] | Train Acc: 91.60% (Loss: 0.4546) | Val Cycle Acc: 87.32% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [13/40] | Train Acc: 92.17% (Loss: 0.4446) | Val Cycle Acc: 87.68% | Val Session Acc: 82.81% (Best: 88.38% @ep9)
+  Ep [14/40] | Train Acc: 93.31% (Loss: 0.4238) | Val Cycle Acc: 85.92% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [15/40] | Train Acc: 94.19% (Loss: 0.4059) | Val Cycle Acc: 85.21% | Val Session Acc: 82.81% (Best: 88.38% @ep9)
+  Ep [16/40] | Train Acc: 94.89% (Loss: 0.3941) | Val Cycle Acc: 85.21% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [17/40] | Train Acc: 95.64% (Loss: 0.3713) | Val Cycle Acc: 84.51% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [18/40] | Train Acc: 95.90% (Loss: 0.3613) | Val Cycle Acc: 86.62% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [19/40] | Train Acc: 97.10% (Loss: 0.3467) | Val Cycle Acc: 84.51% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [20/40] | Train Acc: 97.00% (Loss: 0.3418) | Val Cycle Acc: 85.92% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [21/40] | Train Acc: 96.12% (Loss: 0.3520) | Val Cycle Acc: 86.27% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [22/40] | Train Acc: 97.51% (Loss: 0.3317) | Val Cycle Acc: 86.62% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [23/40] | Train Acc: 97.79% (Loss: 0.3227) | Val Cycle Acc: 85.92% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [24/40] | Train Acc: 98.14% (Loss: 0.3106) | Val Cycle Acc: 86.97% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [25/40] | Train Acc: 98.61% (Loss: 0.3019) | Val Cycle Acc: 86.62% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [26/40] | Train Acc: 98.61% (Loss: 0.3041) | Val Cycle Acc: 85.92% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [27/40] | Train Acc: 98.74% (Loss: 0.3016) | Val Cycle Acc: 85.56% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [28/40] | Train Acc: 98.83% (Loss: 0.2953) | Val Cycle Acc: 85.56% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [29/40] | Train Acc: 99.15% (Loss: 0.2900) | Val Cycle Acc: 85.21% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [30/40] | Train Acc: 99.05% (Loss: 0.2924) | Val Cycle Acc: 85.56% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [31/40] | Train Acc: 99.56% (Loss: 0.2827) | Val Cycle Acc: 86.97% | Val Session Acc: 79.69% (Best: 88.38% @ep9)
+  Ep [32/40] | Train Acc: 99.56% (Loss: 0.2815) | Val Cycle Acc: 86.62% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [33/40] | Train Acc: 99.65% (Loss: 0.2783) | Val Cycle Acc: 86.27% | Val Session Acc: 78.12% (Best: 88.38% @ep9)
+  Ep [34/40] | Train Acc: 99.87% (Loss: 0.2760) | Val Cycle Acc: 86.62% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [35/40] | Train Acc: 99.68% (Loss: 0.2786) | Val Cycle Acc: 86.62% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [36/40] | Train Acc: 99.68% (Loss: 0.2787) | Val Cycle Acc: 86.97% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [37/40] | Train Acc: 99.75% (Loss: 0.2764) | Val Cycle Acc: 86.27% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [38/40] | Train Acc: 99.78% (Loss: 0.2753) | Val Cycle Acc: 86.27% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [39/40] | Train Acc: 99.72% (Loss: 0.2759) | Val Cycle Acc: 86.27% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+  Ep [40/40] | Train Acc: 99.75% (Loss: 0.2737) | Val Cycle Acc: 86.62% | Val Session Acc: 76.56% (Best: 88.38% @ep9)
+
+>> [Fold 9/10 RESULT] Test Cycle Acc: 96.00% (F1: 0.9639) | Test Session Acc: 100.00% (F1: 1.0000)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       19
+diplegic         0.910   0.959   0.934       74
+hemiplegic       1.000   0.875   0.933       72
+neuropathic      0.952   1.000   0.976       60
+parkinson        0.969   0.984   0.976      125
+
+---------------------------------------------------------------------------
+[Fold 10/10] Train: 3015 cycles | Val: 514 cycles | Test: 284 cycles
+---------------------------------------------------------------------------
+[INFO] Inflating spatial convolutions with ImageNet ResNet-18 weights from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth...
+[SUCCESS] Spatial layers successfully initialized with generalizable ImageNet visual filters!
+  Ep [ 1/40] | Train Acc: 37.13% (Loss: 1.4547) | Val Cycle Acc: 55.84% | Val Session Acc: 44.44% (Best: 55.84% @ep1)
+  Ep [ 2/40] | Train Acc: 50.86% (Loss: 1.1900) | Val Cycle Acc: 66.15% | Val Session Acc: 61.11% (Best: 66.15% @ep2)
+  Ep [ 3/40] | Train Acc: 55.92% (Loss: 1.0812) | Val Cycle Acc: 72.57% | Val Session Acc: 69.44% (Best: 72.57% @ep3)
+  Ep [ 4/40] | Train Acc: 62.93% (Loss: 0.9690) | Val Cycle Acc: 80.74% | Val Session Acc: 77.78% (Best: 80.74% @ep4)
+  Ep [ 5/40] | Train Acc: 69.98% (Loss: 0.8482) | Val Cycle Acc: 80.74% | Val Session Acc: 82.41% (Best: 80.74% @ep5)
+  Ep [ 6/40] | Train Acc: 76.99% (Loss: 0.7351) | Val Cycle Acc: 85.99% | Val Session Acc: 87.96% (Best: 85.99% @ep6)
+  Ep [ 7/40] | Train Acc: 80.29% (Loss: 0.6671) | Val Cycle Acc: 86.38% | Val Session Acc: 89.81% (Best: 86.38% @ep7)
+  Ep [ 8/40] | Train Acc: 85.31% (Loss: 0.5922) | Val Cycle Acc: 88.13% | Val Session Acc: 89.81% (Best: 88.13% @ep8)
+  Ep [ 9/40] | Train Acc: 86.17% (Loss: 0.5616) | Val Cycle Acc: 89.11% | Val Session Acc: 91.67% (Best: 89.11% @ep9)
+  Ep [10/40] | Train Acc: 88.43% (Loss: 0.5174) | Val Cycle Acc: 89.30% | Val Session Acc: 91.67% (Best: 89.30% @ep10)
+  Ep [11/40] | Train Acc: 89.56% (Loss: 0.4886) | Val Cycle Acc: 88.33% | Val Session Acc: 92.59% (Best: 89.30% @ep10)
+  Ep [12/40] | Train Acc: 91.19% (Loss: 0.4652) | Val Cycle Acc: 89.49% | Val Session Acc: 94.44% (Best: 89.49% @ep12)
+  Ep [13/40] | Train Acc: 91.59% (Loss: 0.4580) | Val Cycle Acc: 88.33% | Val Session Acc: 90.74% (Best: 89.49% @ep12)
+  Ep [14/40] | Train Acc: 92.89% (Loss: 0.4314) | Val Cycle Acc: 87.16% | Val Session Acc: 90.74% (Best: 89.49% @ep12)
+  Ep [15/40] | Train Acc: 93.42% (Loss: 0.4183) | Val Cycle Acc: 90.66% | Val Session Acc: 94.44% (Best: 90.66% @ep15)
+  Ep [16/40] | Train Acc: 92.99% (Loss: 0.4159) | Val Cycle Acc: 90.27% | Val Session Acc: 91.67% (Best: 90.66% @ep15)
+  Ep [17/40] | Train Acc: 94.91% (Loss: 0.3859) | Val Cycle Acc: 86.96% | Val Session Acc: 87.96% (Best: 90.66% @ep15)
+  Ep [18/40] | Train Acc: 95.21% (Loss: 0.3761) | Val Cycle Acc: 90.86% | Val Session Acc: 92.59% (Best: 90.86% @ep18)
+  Ep [19/40] | Train Acc: 95.08% (Loss: 0.3780) | Val Cycle Acc: 89.30% | Val Session Acc: 92.59% (Best: 90.86% @ep18)
+  Ep [20/40] | Train Acc: 95.71% (Loss: 0.3660) | Val Cycle Acc: 89.11% | Val Session Acc: 90.74% (Best: 90.86% @ep18)
+  Ep [21/40] | Train Acc: 96.54% (Loss: 0.3542) | Val Cycle Acc: 91.25% | Val Session Acc: 93.52% (Best: 91.25% @ep21)
+  Ep [22/40] | Train Acc: 97.01% (Loss: 0.3346) | Val Cycle Acc: 90.66% | Val Session Acc: 93.52% (Best: 91.25% @ep21)
+  Ep [23/40] | Train Acc: 97.41% (Loss: 0.3334) | Val Cycle Acc: 90.27% | Val Session Acc: 93.52% (Best: 91.25% @ep21)
+  Ep [24/40] | Train Acc: 97.44% (Loss: 0.3276) | Val Cycle Acc: 91.25% | Val Session Acc: 96.30% (Best: 91.25% @ep21)
+  Ep [25/40] | Train Acc: 98.50% (Loss: 0.3089) | Val Cycle Acc: 91.83% | Val Session Acc: 96.30% (Best: 91.83% @ep25)
+  Ep [26/40] | Train Acc: 98.37% (Loss: 0.3109) | Val Cycle Acc: 90.66% | Val Session Acc: 96.30% (Best: 91.83% @ep25)
+  Ep [27/40] | Train Acc: 98.67% (Loss: 0.3030) | Val Cycle Acc: 92.02% | Val Session Acc: 95.37% (Best: 92.02% @ep27)
+  Ep [28/40] | Train Acc: 98.14% (Loss: 0.3062) | Val Cycle Acc: 91.83% | Val Session Acc: 96.30% (Best: 92.02% @ep27)
+  Ep [29/40] | Train Acc: 99.14% (Loss: 0.2959) | Val Cycle Acc: 92.80% | Val Session Acc: 96.30% (Best: 92.80% @ep29)
+  Ep [30/40] | Train Acc: 98.90% (Loss: 0.2925) | Val Cycle Acc: 93.39% | Val Session Acc: 99.07% (Best: 93.39% @ep30)
+  Ep [31/40] | Train Acc: 99.43% (Loss: 0.2854) | Val Cycle Acc: 93.00% | Val Session Acc: 98.15% (Best: 93.39% @ep30)
+  Ep [32/40] | Train Acc: 99.40% (Loss: 0.2848) | Val Cycle Acc: 93.97% | Val Session Acc: 99.07% (Best: 93.97% @ep32)
+  Ep [33/40] | Train Acc: 99.70% (Loss: 0.2809) | Val Cycle Acc: 94.94% | Val Session Acc: 99.07% (Best: 94.94% @ep33)
+  Ep [34/40] | Train Acc: 99.47% (Loss: 0.2834) | Val Cycle Acc: 93.77% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+  Ep [35/40] | Train Acc: 99.67% (Loss: 0.2783) | Val Cycle Acc: 93.00% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+  Ep [36/40] | Train Acc: 99.63% (Loss: 0.2775) | Val Cycle Acc: 93.19% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+  Ep [37/40] | Train Acc: 99.77% (Loss: 0.2764) | Val Cycle Acc: 92.41% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+  Ep [38/40] | Train Acc: 99.73% (Loss: 0.2762) | Val Cycle Acc: 93.58% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+  Ep [39/40] | Train Acc: 99.77% (Loss: 0.2768) | Val Cycle Acc: 93.19% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+  Ep [40/40] | Train Acc: 99.73% (Loss: 0.2763) | Val Cycle Acc: 93.19% | Val Session Acc: 97.22% (Best: 94.94% @ep33)
+
+>> [Fold 10/10 RESULT] Test Cycle Acc: 85.21% (F1: 0.8496) | Test Session Acc: 79.69% (F1: 0.7695)
+                  prec  recall      f1  support
+normal           1.000   1.000   1.000       18
+diplegic         0.952   0.333   0.494       60
+hemiplegic       0.786   0.987   0.875       78
+neuropathic      0.979   1.000   0.989       46
+parkinson        0.810   0.988   0.890       82
+
+===========================================================================
+ST-PhaseNet-Pretrained FINAL BENCHMARK SUMMARY (ALBUQUERQUE ET AL. PROTOCOL)
+===========================================================================
+Evaluated Folds: 10 / 10
+TEST Cycle-Level Accuracy:   89.51% +/- 6.60%
+TEST Cycle-Level Macro-F1:   0.9080 +/- 0.0545
+TEST Session-Level Accuracy: 92.64% +/- 7.25%
+TEST Session-Level Macro-F1: 0.9276 +/- 0.0744
+Per-Fold Cycle Accuracies:   [np.float64(95.14), np.float64(83.72), np.float64(98.03), np.float64(95.13), np.float64(76.07), np.float64(88.27), np.float64(92.07), np.float64(85.44), np.float64(96.0), np.float64(85.21)]
+Per-Fold Session Accuracies: [np.float64(99.07), np.float64(87.04), np.float64(99.07), np.float64(100.0), np.float64(84.29), np.float64(93.85), np.float64(97.3), np.float64(86.11), np.float64(100.0), np.float64(79.69)]
+
+Aggregated Confusion Matrix across evaluated test folds:
+Classes: ['normal', 'diplegic', 'hemiplegic', 'neuropathic', 'parkinson']
+[[ 200    0    1    1    0]
+ [   0  665   68    2  111]
+ [   1   61  701    9    8]
+ [   0   12    4  706    7]
+ [   0   92    1    0 1163]]
+===========================================================================
+[SUCCESS] All experiment artifacts & charts saved to: results_phasenet_pretrained

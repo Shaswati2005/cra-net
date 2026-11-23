@@ -1,0 +1,443 @@
+[INFO] Loaded phase cache C:\Users\Asus\Desktop\cra-net\cra-net\anatophasenet_v7\cache\init8_96_j2.pt: (589, 3, 9, 96, 96)
+[INFO] Loaded geometry cache C:\Users\Asus\Desktop\cra-net\cra-net\anatophasenet_v7\cache\init8_geom_j2.pt: (589, 3, 9, 9)
+===========================================================================
+  AnatoPhaseNet v7 | dataset: init8 | backbone: r2plus1d | variant: full
+  Geometry branch: True | Subject-adversarial: False | Severity task: False | Multi-cycle: True | Symmetry: True | Device: cuda
+===========================================================================
+[INFO] Geometry signals in use (9): ['height', 'width', 'lower_width', 'upper_width', 'head_bob', 'centroid_height', 'trunk_lean', 'mass_offset', 'fill']
+[INFO] Classes: ['nm', 'a-l0', 'a-l0.5', 'a-r0', 'a-r0.5', 'l-l0.5', 'l-r0.5', 'fb'] | cycles per class: [60, 65, 57, 66, 60, 60, 52, 169]
+[INFO] Architecture: AnatoPhaseNet v7 (r2plus1d) | Parameters: 5.005M
+[INFO] Created strict subject-exclusive 10-fold split for 10 subjects.
+  Fold  1: 1 subjects ['108'] -> 55 cycles
+  Fold  2: 1 subjects ['104'] -> 56 cycles
+  Fold  3: 1 subjects ['103'] -> 66 cycles
+  Fold  4: 1 subjects ['109'] -> 44 cycles
+  Fold  5: 1 subjects ['106'] -> 74 cycles
+  Fold  6: 1 subjects ['107'] -> 43 cycles
+  Fold  7: 1 subjects ['110'] -> 54 cycles
+  Fold  8: 1 subjects ['105'] -> 66 cycles
+  Fold  9: 1 subjects ['101'] -> 60 cycles
+  Fold 10: 1 subjects ['102'] -> 71 cycles
+
+---------------------------------------------------------------------------
+[Fold 1/10] Train: 478 cycles | Val: 56 cycles | Test: 55 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 22.66% (Loss: 4.1462) | Val Cycle Acc: 12.50% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 34.19% (Loss: 3.7866) | Val Cycle Acc: 21.43% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 40.25% (Loss: 3.6250) | Val Cycle Acc: 51.79% | Val Session Acc: 43.75%
+  Ep [ 4/20] | Train Acc: 41.88% (Loss: 3.3844) | Val Cycle Acc: 57.14% | Val Session Acc: 43.75%
+  Ep [ 5/20] | Train Acc: 48.71% (Loss: 3.2671) | Val Cycle Acc: 53.57% | Val Session Acc: 50.00%
+  Ep [ 6/20] | Train Acc: 53.58% (Loss: 2.8675) | Val Cycle Acc: 69.64% | Val Session Acc: 43.75%
+  Ep [ 7/20] | Train Acc: 49.68% (Loss: 2.8053) | Val Cycle Acc: 62.50% | Val Session Acc: 50.00%
+  Ep [ 8/20] | Train Acc: 58.66% (Loss: 2.4893) | Val Cycle Acc: 82.14% | Val Session Acc: 56.25%
+  Ep [ 9/20] | Train Acc: 58.01% (Loss: 2.3633) | Val Cycle Acc: 73.21% | Val Session Acc: 56.25%
+  Ep [10/20] | Train Acc: 65.73% (Loss: 2.0240) | Val Cycle Acc: 78.57% | Val Session Acc: 62.50%
+  Ep [11/20] | Train Acc: 70.66% (Loss: 1.8323) | Val Cycle Acc: 75.00% | Val Session Acc: 62.50%
+  Ep [12/20] | Train Acc: 71.34% (Loss: 1.7301) | Val Cycle Acc: 78.57% | Val Session Acc: 68.75%
+  Ep [13/20] | Train Acc: 70.07% (Loss: 1.8719) | Val Cycle Acc: 75.00% | Val Session Acc: 68.75%
+  Ep [14/20] | Train Acc: 74.68% (Loss: 1.6289) | Val Cycle Acc: 73.21% | Val Session Acc: 68.75%
+  Ep [15/20] | Train Acc: 78.33% (Loss: 1.4945) | Val Cycle Acc: 73.21% | Val Session Acc: 75.00%
+  Ep [16/20] | Train Acc: 77.71% (Loss: 1.5166) | Val Cycle Acc: 76.79% | Val Session Acc: 68.75%
+  Ep [17/20] | Train Acc: 75.11% (Loss: 1.6651) | Val Cycle Acc: 75.00% | Val Session Acc: 56.25%
+  Ep [18/20] | Train Acc: 76.08% (Loss: 1.4888) | Val Cycle Acc: 75.00% | Val Session Acc: 75.00%
+  Ep [19/20] | Train Acc: 79.24% (Loss: 1.4026) | Val Cycle Acc: 75.00% | Val Session Acc: 68.75%
+  Ep [20/20] | Train Acc: 78.28% (Loss: 1.4663) | Val Cycle Acc: 75.00% | Val Session Acc: 68.75%
+
+===========================================================================
+>> [Fold 1/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   85.45% | Macro-F1: 0.7901
+   Test Session Acc: 75.00% | Macro-F1: 0.7292 (multi-cycle head; vote = 87.50%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.462 | Recall: 1.000 | F1: 0.632 (support=6)
+     a-l0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     a-l0.5      : Precision: 0.000 | Recall: 0.000 | F1: 0.000 (support=6)
+     a-r0        : Precision: 1.000 | Recall: 0.833 | F1: 0.909 (support=6)
+     a-r0.5      : Precision: 0.857 | Recall: 1.000 | F1: 0.923 (support=6)
+     l-l0.5      : Precision: 1.000 | Recall: 0.750 | F1: 0.857 (support=4)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=4)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=17)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 2/10] Train: 467 cycles | Val: 66 cycles | Test: 56 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 25.76% (Loss: 3.9482) | Val Cycle Acc: 27.27% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 37.22% (Loss: 3.5338) | Val Cycle Acc: 27.27% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 34.90% (Loss: 3.8677) | Val Cycle Acc: 50.00% | Val Session Acc: 25.00%
+  Ep [ 4/20] | Train Acc: 35.90% (Loss: 3.7324) | Val Cycle Acc: 46.97% | Val Session Acc: 37.50%
+  Ep [ 5/20] | Train Acc: 40.84% (Loss: 3.3014) | Val Cycle Acc: 74.24% | Val Session Acc: 62.50%
+  Ep [ 6/20] | Train Acc: 46.83% (Loss: 3.0377) | Val Cycle Acc: 81.82% | Val Session Acc: 68.75%
+  Ep [ 7/20] | Train Acc: 50.22% (Loss: 2.9213) | Val Cycle Acc: 80.30% | Val Session Acc: 62.50%
+  Ep [ 8/20] | Train Acc: 56.54% (Loss: 2.4777) | Val Cycle Acc: 84.85% | Val Session Acc: 81.25%
+  Ep [ 9/20] | Train Acc: 64.57% (Loss: 2.2578) | Val Cycle Acc: 81.82% | Val Session Acc: 87.50%
+  Ep [10/20] | Train Acc: 65.27% (Loss: 2.1562) | Val Cycle Acc: 86.36% | Val Session Acc: 75.00%
+  Ep [11/20] | Train Acc: 61.84% (Loss: 2.1389) | Val Cycle Acc: 86.36% | Val Session Acc: 87.50%
+  Ep [12/20] | Train Acc: 63.72% (Loss: 2.1611) | Val Cycle Acc: 86.36% | Val Session Acc: 81.25%
+  Ep [13/20] | Train Acc: 67.04% (Loss: 1.8235) | Val Cycle Acc: 84.85% | Val Session Acc: 81.25%
+  Ep [14/20] | Train Acc: 74.18% (Loss: 1.7216) | Val Cycle Acc: 86.36% | Val Session Acc: 75.00%
+  Ep [15/20] | Train Acc: 77.19% (Loss: 1.5874) | Val Cycle Acc: 84.85% | Val Session Acc: 75.00%
+  Ep [16/20] | Train Acc: 71.43% (Loss: 1.7405) | Val Cycle Acc: 86.36% | Val Session Acc: 81.25%
+  Ep [17/20] | Train Acc: 76.00% (Loss: 1.5226) | Val Cycle Acc: 86.36% | Val Session Acc: 75.00%
+  Ep [18/20] | Train Acc: 75.83% (Loss: 1.5135) | Val Cycle Acc: 87.88% | Val Session Acc: 87.50%
+  Ep [19/20] | Train Acc: 78.89% (Loss: 1.4717) | Val Cycle Acc: 86.36% | Val Session Acc: 87.50%
+  Ep [20/20] | Train Acc: 81.62% (Loss: 1.4021) | Val Cycle Acc: 86.36% | Val Session Acc: 87.50%
+
+===========================================================================
+>> [Fold 2/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   87.50% | Macro-F1: 0.8699
+   Test Session Acc: 81.25% | Macro-F1: 0.7667 (multi-cycle head; vote = 81.25%)
+   Per-Class Test Metrics:
+     nm          : Precision: 1.000 | Recall: 0.571 | F1: 0.727 (support=7)
+     a-l0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=8)
+     a-l0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     a-r0        : Precision: 1.000 | Recall: 0.429 | F1: 0.600 (support=7)
+     a-r0.5      : Precision: 0.462 | Recall: 1.000 | F1: 0.632 (support=6)
+     l-l0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=4)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=12)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 3/10] Train: 479 cycles | Val: 44 cycles | Test: 66 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 28.27% (Loss: 4.0330) | Val Cycle Acc: 13.64% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 33.40% (Loss: 3.6981) | Val Cycle Acc: 29.55% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 33.62% (Loss: 3.8866) | Val Cycle Acc: 75.00% | Val Session Acc: 62.50%
+  Ep [ 4/20] | Train Acc: 39.35% (Loss: 3.4377) | Val Cycle Acc: 77.27% | Val Session Acc: 56.25%
+  Ep [ 5/20] | Train Acc: 45.30% (Loss: 3.2599) | Val Cycle Acc: 81.82% | Val Session Acc: 62.50%
+  Ep [ 6/20] | Train Acc: 53.12% (Loss: 2.8942) | Val Cycle Acc: 81.82% | Val Session Acc: 68.75%
+  Ep [ 7/20] | Train Acc: 59.15% (Loss: 2.4159) | Val Cycle Acc: 81.82% | Val Session Acc: 68.75%
+  Ep [ 8/20] | Train Acc: 57.02% (Loss: 2.3957) | Val Cycle Acc: 79.55% | Val Session Acc: 62.50%
+  Ep [ 9/20] | Train Acc: 62.69% (Loss: 2.1394) | Val Cycle Acc: 84.09% | Val Session Acc: 62.50%
+  Ep [10/20] | Train Acc: 70.11% (Loss: 1.9152) | Val Cycle Acc: 79.55% | Val Session Acc: 68.75%
+  Ep [11/20] | Train Acc: 68.72% (Loss: 2.0013) | Val Cycle Acc: 79.55% | Val Session Acc: 68.75%
+  Ep [12/20] | Train Acc: 71.19% (Loss: 1.7877) | Val Cycle Acc: 79.55% | Val Session Acc: 68.75%
+  Ep [13/20] | Train Acc: 69.85% (Loss: 1.6738) | Val Cycle Acc: 84.09% | Val Session Acc: 62.50%
+  Ep [14/20] | Train Acc: 70.63% (Loss: 1.8048) | Val Cycle Acc: 81.82% | Val Session Acc: 62.50%
+  Ep [15/20] | Train Acc: 67.09% (Loss: 1.8703) | Val Cycle Acc: 84.09% | Val Session Acc: 75.00%
+  Ep [16/20] | Train Acc: 76.56% (Loss: 1.4569) | Val Cycle Acc: 81.82% | Val Session Acc: 75.00%
+  Ep [17/20] | Train Acc: 81.94% (Loss: 1.2928) | Val Cycle Acc: 81.82% | Val Session Acc: 68.75%
+  Ep [18/20] | Train Acc: 81.36% (Loss: 1.2570) | Val Cycle Acc: 81.82% | Val Session Acc: 68.75%
+  Ep [19/20] | Train Acc: 79.62% (Loss: 1.5140) | Val Cycle Acc: 79.55% | Val Session Acc: 68.75%
+  Ep [20/20] | Train Acc: 78.85% (Loss: 1.4828) | Val Cycle Acc: 81.82% | Val Session Acc: 68.75%
+
+===========================================================================
+>> [Fold 3/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   87.88% | Macro-F1: 0.8083
+   Test Session Acc: 87.50% | Macro-F1: 0.8333 (multi-cycle head; vote = 87.50%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.429 | Recall: 1.000 | F1: 0.600 (support=6)
+     a-l0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=8)
+     a-l0.5      : Precision: 1.000 | Recall: 0.875 | F1: 0.933 (support=8)
+     a-r0        : Precision: 1.000 | Recall: 0.875 | F1: 0.933 (support=8)
+     a-r0.5      : Precision: 0.000 | Recall: 0.000 | F1: 0.000 (support=6)
+     l-l0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=18)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 4/10] Train: 471 cycles | Val: 74 cycles | Test: 44 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 22.61% (Loss: 4.0236) | Val Cycle Acc: 33.78% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 35.57% (Loss: 3.6527) | Val Cycle Acc: 33.78% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 36.72% (Loss: 3.7544) | Val Cycle Acc: 74.32% | Val Session Acc: 56.25%
+  Ep [ 4/20] | Train Acc: 40.91% (Loss: 3.4312) | Val Cycle Acc: 87.84% | Val Session Acc: 56.25%
+  Ep [ 5/20] | Train Acc: 46.62% (Loss: 3.0017) | Val Cycle Acc: 87.84% | Val Session Acc: 75.00%
+  Ep [ 6/20] | Train Acc: 53.17% (Loss: 2.6951) | Val Cycle Acc: 78.38% | Val Session Acc: 68.75%
+  Ep [ 7/20] | Train Acc: 52.81% (Loss: 2.6723) | Val Cycle Acc: 87.84% | Val Session Acc: 75.00%
+  Ep [ 8/20] | Train Acc: 59.74% (Loss: 2.3700) | Val Cycle Acc: 94.59% | Val Session Acc: 87.50%
+  Ep [ 9/20] | Train Acc: 66.23% (Loss: 2.0294) | Val Cycle Acc: 94.59% | Val Session Acc: 100.00%
+  Ep [10/20] | Train Acc: 67.11% (Loss: 2.0653) | Val Cycle Acc: 93.24% | Val Session Acc: 87.50%
+  Ep [11/20] | Train Acc: 70.74% (Loss: 1.9543) | Val Cycle Acc: 90.54% | Val Session Acc: 100.00%
+  Ep [12/20] | Train Acc: 71.71% (Loss: 1.7785) | Val Cycle Acc: 91.89% | Val Session Acc: 100.00%
+  Ep [13/20] | Train Acc: 75.06% (Loss: 1.5085) | Val Cycle Acc: 93.24% | Val Session Acc: 100.00%
+  Ep [14/20] | Train Acc: 75.66% (Loss: 1.5600) | Val Cycle Acc: 91.89% | Val Session Acc: 100.00%
+  Ep [15/20] | Train Acc: 75.22% (Loss: 1.5512) | Val Cycle Acc: 93.24% | Val Session Acc: 100.00%
+  Ep [16/20] | Train Acc: 77.90% (Loss: 1.6415) | Val Cycle Acc: 93.24% | Val Session Acc: 100.00%
+  Ep [17/20] | Train Acc: 71.77% (Loss: 1.6850) | Val Cycle Acc: 94.59% | Val Session Acc: 100.00%
+  Ep [18/20] | Train Acc: 83.99% (Loss: 1.2336) | Val Cycle Acc: 94.59% | Val Session Acc: 100.00%
+  Ep [19/20] | Train Acc: 76.42% (Loss: 1.5415) | Val Cycle Acc: 94.59% | Val Session Acc: 100.00%
+  Ep [20/20] | Train Acc: 77.17% (Loss: 1.4941) | Val Cycle Acc: 94.59% | Val Session Acc: 100.00%
+
+===========================================================================
+>> [Fold 4/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   86.36% | Macro-F1: 0.8016
+   Test Session Acc: 81.25% | Macro-F1: 0.8214 (multi-cycle head; vote = 81.25%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.500 | Recall: 1.000 | F1: 0.667 (support=4)
+     a-l0        : Precision: 0.750 | Recall: 1.000 | F1: 0.857 (support=3)
+     a-l0.5      : Precision: 1.000 | Recall: 0.500 | F1: 0.667 (support=4)
+     a-r0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     a-r0.5      : Precision: 1.000 | Recall: 0.200 | F1: 0.333 (support=5)
+     l-l0.5      : Precision: 0.800 | Recall: 1.000 | F1: 0.889 (support=4)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=5)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=13)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 5/10] Train: 472 cycles | Val: 43 cycles | Test: 74 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 25.32% (Loss: 3.9886) | Val Cycle Acc: 30.23% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 28.87% (Loss: 3.7958) | Val Cycle Acc: 30.23% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 36.32% (Loss: 3.6605) | Val Cycle Acc: 53.49% | Val Session Acc: 37.50%
+  Ep [ 4/20] | Train Acc: 42.77% (Loss: 3.3809) | Val Cycle Acc: 81.40% | Val Session Acc: 56.25%
+  Ep [ 5/20] | Train Acc: 49.68% (Loss: 3.2285) | Val Cycle Acc: 72.09% | Val Session Acc: 56.25%
+  Ep [ 6/20] | Train Acc: 48.72% (Loss: 3.1007) | Val Cycle Acc: 65.12% | Val Session Acc: 43.75%
+  Ep [ 7/20] | Train Acc: 53.39% (Loss: 2.8928) | Val Cycle Acc: 88.37% | Val Session Acc: 68.75%
+  Ep [ 8/20] | Train Acc: 59.57% (Loss: 2.5555) | Val Cycle Acc: 90.70% | Val Session Acc: 56.25%
+  Ep [ 9/20] | Train Acc: 61.15% (Loss: 2.3085) | Val Cycle Acc: 79.07% | Val Session Acc: 75.00%
+  Ep [10/20] | Train Acc: 57.11% (Loss: 2.4541) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [11/20] | Train Acc: 68.51% (Loss: 2.1010) | Val Cycle Acc: 90.70% | Val Session Acc: 68.75%
+  Ep [12/20] | Train Acc: 66.88% (Loss: 2.0955) | Val Cycle Acc: 88.37% | Val Session Acc: 68.75%
+  Ep [13/20] | Train Acc: 76.56% (Loss: 1.6632) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [14/20] | Train Acc: 74.04% (Loss: 1.5939) | Val Cycle Acc: 90.70% | Val Session Acc: 81.25%
+  Ep [15/20] | Train Acc: 75.91% (Loss: 1.5670) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [16/20] | Train Acc: 74.84% (Loss: 1.6532) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [17/20] | Train Acc: 76.97% (Loss: 1.4464) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [18/20] | Train Acc: 81.24% (Loss: 1.3445) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [19/20] | Train Acc: 77.02% (Loss: 1.5816) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+  Ep [20/20] | Train Acc: 74.68% (Loss: 1.6016) | Val Cycle Acc: 90.70% | Val Session Acc: 75.00%
+
+===========================================================================
+>> [Fold 5/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   93.24% | Macro-F1: 0.9175
+   Test Session Acc: 100.00% | Macro-F1: 1.0000 (multi-cycle head; vote = 100.00%)
+   Per-Class Test Metrics:
+     nm          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=5)
+     a-l0        : Precision: 0.750 | Recall: 1.000 | F1: 0.857 (support=6)
+     a-l0.5      : Precision: 1.000 | Recall: 0.714 | F1: 0.833 (support=7)
+     a-r0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     a-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     l-l0.5      : Precision: 1.000 | Recall: 0.786 | F1: 0.880 (support=14)
+     l-r0.5      : Precision: 0.625 | Recall: 1.000 | F1: 0.769 (support=5)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=25)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 6/10] Train: 492 cycles | Val: 54 cycles | Test: 43 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 23.01% (Loss: 4.0879) | Val Cycle Acc:  7.41% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 34.22% (Loss: 3.5896) | Val Cycle Acc: 29.63% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 37.47% (Loss: 3.4750) | Val Cycle Acc: 66.67% | Val Session Acc: 68.75%
+  Ep [ 4/20] | Train Acc: 41.22% (Loss: 3.5564) | Val Cycle Acc: 62.96% | Val Session Acc: 56.25%
+  Ep [ 5/20] | Train Acc: 43.88% (Loss: 3.3699) | Val Cycle Acc: 74.07% | Val Session Acc: 37.50%
+  Ep [ 6/20] | Train Acc: 48.98% (Loss: 3.0316) | Val Cycle Acc: 68.52% | Val Session Acc: 43.75%
+  Ep [ 7/20] | Train Acc: 49.39% (Loss: 2.9694) | Val Cycle Acc: 68.52% | Val Session Acc: 68.75%
+  Ep [ 8/20] | Train Acc: 56.85% (Loss: 2.3583) | Val Cycle Acc: 77.78% | Val Session Acc: 75.00%
+  Ep [ 9/20] | Train Acc: 61.48% (Loss: 2.1784) | Val Cycle Acc: 75.93% | Val Session Acc: 75.00%
+  Ep [10/20] | Train Acc: 62.99% (Loss: 2.2171) | Val Cycle Acc: 79.63% | Val Session Acc: 75.00%
+  Ep [11/20] | Train Acc: 64.84% (Loss: 2.0070) | Val Cycle Acc: 79.63% | Val Session Acc: 75.00%
+  Ep [12/20] | Train Acc: 70.26% (Loss: 1.9618) | Val Cycle Acc: 79.63% | Val Session Acc: 75.00%
+  Ep [13/20] | Train Acc: 73.93% (Loss: 1.7509) | Val Cycle Acc: 81.48% | Val Session Acc: 75.00%
+  Ep [14/20] | Train Acc: 72.10% (Loss: 1.8221) | Val Cycle Acc: 79.63% | Val Session Acc: 75.00%
+  Ep [15/20] | Train Acc: 75.72% (Loss: 1.6070) | Val Cycle Acc: 79.63% | Val Session Acc: 75.00%
+  Ep [16/20] | Train Acc: 79.39% (Loss: 1.3952) | Val Cycle Acc: 79.63% | Val Session Acc: 75.00%
+  Ep [17/20] | Train Acc: 84.76% (Loss: 1.2539) | Val Cycle Acc: 81.48% | Val Session Acc: 75.00%
+  Ep [18/20] | Train Acc: 78.16% (Loss: 1.5784) | Val Cycle Acc: 81.48% | Val Session Acc: 75.00%
+  Ep [19/20] | Train Acc: 82.99% (Loss: 1.3034) | Val Cycle Acc: 81.48% | Val Session Acc: 75.00%
+  Ep [20/20] | Train Acc: 83.30% (Loss: 1.3322) | Val Cycle Acc: 81.48% | Val Session Acc: 75.00%
+
+===========================================================================
+>> [Fold 6/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   88.37% | Macro-F1: 0.7434
+   Test Session Acc: 75.00% | Macro-F1: 0.7458 (multi-cycle head; vote = 75.00%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.750 | Recall: 1.000 | F1: 0.857 (support=6)
+     a-l0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     a-l0.5      : Precision: 0.600 | Recall: 1.000 | F1: 0.750 (support=3)
+     a-r0        : Precision: 0.857 | Recall: 1.000 | F1: 0.923 (support=6)
+     a-r0.5      : Precision: 1.000 | Recall: 0.600 | F1: 0.750 (support=5)
+     l-l0.5      : Precision: 1.000 | Recall: 0.500 | F1: 0.667 (support=2)
+     l-r0.5      : Precision: 0.000 | Recall: 0.000 | F1: 0.000 (support=2)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=13)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 7/10] Train: 469 cycles | Val: 66 cycles | Test: 54 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 23.16% (Loss: 4.1709) | Val Cycle Acc: 28.79% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 31.50% (Loss: 3.7470) | Val Cycle Acc: 28.79% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 37.04% (Loss: 3.7145) | Val Cycle Acc: 56.06% | Val Session Acc: 37.50%
+  Ep [ 4/20] | Train Acc: 39.57% (Loss: 3.5866) | Val Cycle Acc: 80.30% | Val Session Acc: 62.50%
+  Ep [ 5/20] | Train Acc: 46.42% (Loss: 3.1987) | Val Cycle Acc: 81.82% | Val Session Acc: 81.25%
+  Ep [ 6/20] | Train Acc: 51.75% (Loss: 2.8961) | Val Cycle Acc: 75.76% | Val Session Acc: 100.00%
+  Ep [ 7/20] | Train Acc: 54.25% (Loss: 2.5151) | Val Cycle Acc: 71.21% | Val Session Acc: 68.75%
+  Ep [ 8/20] | Train Acc: 62.80% (Loss: 2.2767) | Val Cycle Acc: 80.30% | Val Session Acc: 75.00%
+  Ep [ 9/20] | Train Acc: 66.59% (Loss: 1.9614) | Val Cycle Acc: 74.24% | Val Session Acc: 68.75%
+  Ep [10/20] | Train Acc: 71.08% (Loss: 1.8817) | Val Cycle Acc: 74.24% | Val Session Acc: 81.25%
+  Ep [11/20] | Train Acc: 65.71% (Loss: 2.1116) | Val Cycle Acc: 74.24% | Val Session Acc: 81.25%
+  Ep [12/20] | Train Acc: 71.30% (Loss: 1.7415) | Val Cycle Acc: 81.82% | Val Session Acc: 87.50%
+  Ep [13/20] | Train Acc: 77.36% (Loss: 1.7483) | Val Cycle Acc: 78.79% | Val Session Acc: 87.50%
+  Ep [14/20] | Train Acc: 78.26% (Loss: 1.5631) | Val Cycle Acc: 78.79% | Val Session Acc: 81.25%
+  Ep [15/20] | Train Acc: 77.61% (Loss: 1.7358) | Val Cycle Acc: 78.79% | Val Session Acc: 75.00%
+  Ep [16/20] | Train Acc: 78.17% (Loss: 1.5066) | Val Cycle Acc: 78.79% | Val Session Acc: 87.50%
+  Ep [17/20] | Train Acc: 82.68% (Loss: 1.3389) | Val Cycle Acc: 78.79% | Val Session Acc: 87.50%
+  Ep [18/20] | Train Acc: 77.61% (Loss: 1.7183) | Val Cycle Acc: 78.79% | Val Session Acc: 81.25%
+  Ep [19/20] | Train Acc: 79.87% (Loss: 1.4529) | Val Cycle Acc: 75.76% | Val Session Acc: 87.50%
+  Ep [20/20] | Train Acc: 83.00% (Loss: 1.3180) | Val Cycle Acc: 77.27% | Val Session Acc: 87.50%
+
+===========================================================================
+>> [Fold 7/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   81.48% | Macro-F1: 0.7000
+   Test Session Acc: 75.00% | Macro-F1: 0.6667 (multi-cycle head; vote = 75.00%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.571 | Recall: 1.000 | F1: 0.727 (support=4)
+     a-l0        : Precision: 0.538 | Recall: 1.000 | F1: 0.700 (support=7)
+     a-l0.5      : Precision: 1.000 | Recall: 0.143 | F1: 0.250 (support=7)
+     a-r0        : Precision: 0.857 | Recall: 1.000 | F1: 0.923 (support=6)
+     a-r0.5      : Precision: 0.000 | Recall: 0.000 | F1: 0.000 (support=4)
+     l-l0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=4)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=16)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 8/10] Train: 463 cycles | Val: 60 cycles | Test: 66 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 27.70% (Loss: 3.9506) | Val Cycle Acc: 20.00% | Val Session Acc: 25.00%
+  Ep [ 2/20] | Train Acc: 32.59% (Loss: 3.6719) | Val Cycle Acc: 20.00% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 37.33% (Loss: 3.8062) | Val Cycle Acc: 48.33% | Val Session Acc: 37.50%
+  Ep [ 4/20] | Train Acc: 44.15% (Loss: 3.3639) | Val Cycle Acc: 56.67% | Val Session Acc: 56.25%
+  Ep [ 5/20] | Train Acc: 46.43% (Loss: 3.1118) | Val Cycle Acc: 75.00% | Val Session Acc: 56.25%
+  Ep [ 6/20] | Train Acc: 49.89% (Loss: 2.9497) | Val Cycle Acc: 63.33% | Val Session Acc: 81.25%
+  Ep [ 7/20] | Train Acc: 49.56% (Loss: 2.9240) | Val Cycle Acc: 73.33% | Val Session Acc: 62.50%
+  Ep [ 8/20] | Train Acc: 55.53% (Loss: 2.4416) | Val Cycle Acc: 78.33% | Val Session Acc: 68.75%
+  Ep [ 9/20] | Train Acc: 59.28% (Loss: 2.2911) | Val Cycle Acc: 83.33% | Val Session Acc: 75.00%
+  Ep [10/20] | Train Acc: 63.68% (Loss: 2.1812) | Val Cycle Acc: 91.67% | Val Session Acc: 81.25%
+  Ep [11/20] | Train Acc: 67.56% (Loss: 2.0299) | Val Cycle Acc: 86.67% | Val Session Acc: 93.75%
+  Ep [12/20] | Train Acc: 71.30% (Loss: 1.7253) | Val Cycle Acc: 85.00% | Val Session Acc: 93.75%
+  Ep [13/20] | Train Acc: 71.59% (Loss: 1.6819) | Val Cycle Acc: 86.67% | Val Session Acc: 93.75%
+  Ep [14/20] | Train Acc: 74.55% (Loss: 1.5868) | Val Cycle Acc: 85.00% | Val Session Acc: 93.75%
+  Ep [15/20] | Train Acc: 77.97% (Loss: 1.5524) | Val Cycle Acc: 88.33% | Val Session Acc: 93.75%
+  Ep [16/20] | Train Acc: 77.83% (Loss: 1.4317) | Val Cycle Acc: 88.33% | Val Session Acc: 93.75%
+  Ep [17/20] | Train Acc: 73.08% (Loss: 1.5446) | Val Cycle Acc: 88.33% | Val Session Acc: 93.75%
+  Ep [18/20] | Train Acc: 82.02% (Loss: 1.3031) | Val Cycle Acc: 88.33% | Val Session Acc: 93.75%
+  Ep [19/20] | Train Acc: 85.08% (Loss: 1.1932) | Val Cycle Acc: 88.33% | Val Session Acc: 93.75%
+  Ep [20/20] | Train Acc: 76.35% (Loss: 1.4948) | Val Cycle Acc: 88.33% | Val Session Acc: 93.75%
+
+===========================================================================
+>> [Fold 8/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   81.82% | Macro-F1: 0.7539
+   Test Session Acc: 81.25% | Macro-F1: 0.7917 (multi-cycle head; vote = 87.50%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.833 | Recall: 0.833 | F1: 0.833 (support=6)
+     a-l0        : Precision: 0.833 | Recall: 0.833 | F1: 0.833 (support=6)
+     a-l0.5      : Precision: 0.800 | Recall: 0.800 | F1: 0.800 (support=5)
+     a-r0        : Precision: 0.462 | Recall: 1.000 | F1: 0.632 (support=6)
+     a-r0.5      : Precision: 0.000 | Recall: 0.000 | F1: 0.000 (support=9)
+     l-l0.5      : Precision: 0.875 | Recall: 1.000 | F1: 0.933 (support=7)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=8)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=19)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 9/10] Train: 458 cycles | Val: 71 cycles | Test: 60 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 20.90% (Loss: 4.1382) | Val Cycle Acc: 33.80% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 33.86% (Loss: 3.6647) | Val Cycle Acc: 33.80% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 37.41% (Loss: 3.7592) | Val Cycle Acc: 61.97% | Val Session Acc: 43.75%
+  Ep [ 4/20] | Train Acc: 44.02% (Loss: 3.5081) | Val Cycle Acc: 81.69% | Val Session Acc: 43.75%
+  Ep [ 5/20] | Train Acc: 44.70% (Loss: 3.3611) | Val Cycle Acc: 80.28% | Val Session Acc: 81.25%
+  Ep [ 6/20] | Train Acc: 45.27% (Loss: 3.1659) | Val Cycle Acc: 73.24% | Val Session Acc: 62.50%
+  Ep [ 7/20] | Train Acc: 52.25% (Loss: 3.0215) | Val Cycle Acc: 81.69% | Val Session Acc: 75.00%
+  Ep [ 8/20] | Train Acc: 54.75% (Loss: 2.7025) | Val Cycle Acc: 88.73% | Val Session Acc: 81.25%
+  Ep [ 9/20] | Train Acc: 56.43% (Loss: 2.5377) | Val Cycle Acc: 84.51% | Val Session Acc: 81.25%
+  Ep [10/20] | Train Acc: 57.24% (Loss: 2.4249) | Val Cycle Acc: 84.51% | Val Session Acc: 75.00%
+  Ep [11/20] | Train Acc: 62.47% (Loss: 2.1305) | Val Cycle Acc: 85.92% | Val Session Acc: 81.25%
+  Ep [12/20] | Train Acc: 70.79% (Loss: 1.7847) | Val Cycle Acc: 87.32% | Val Session Acc: 93.75%
+  Ep [13/20] | Train Acc: 69.59% (Loss: 1.8320) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+  Ep [14/20] | Train Acc: 64.35% (Loss: 2.0462) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+  Ep [15/20] | Train Acc: 70.34% (Loss: 1.7872) | Val Cycle Acc: 91.55% | Val Session Acc: 93.75%
+  Ep [16/20] | Train Acc: 73.65% (Loss: 1.6346) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+  Ep [17/20] | Train Acc: 72.48% (Loss: 1.6140) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+  Ep [18/20] | Train Acc: 81.17% (Loss: 1.3444) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+  Ep [19/20] | Train Acc: 78.38% (Loss: 1.4083) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+  Ep [20/20] | Train Acc: 75.50% (Loss: 1.6072) | Val Cycle Acc: 94.37% | Val Session Acc: 93.75%
+
+===========================================================================
+>> [Fold 9/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   83.33% | Macro-F1: 0.8295
+   Test Session Acc: 87.50% | Macro-F1: 0.8667 (multi-cycle head; vote = 81.25%)
+   Per-Class Test Metrics:
+     nm          : Precision: 0.833 | Recall: 0.625 | F1: 0.714 (support=8)
+     a-l0        : Precision: 1.000 | Recall: 0.750 | F1: 0.857 (support=8)
+     a-l0.5      : Precision: 0.800 | Recall: 1.000 | F1: 0.889 (support=4)
+     a-r0        : Precision: 0.500 | Recall: 1.000 | F1: 0.667 (support=8)
+     a-r0.5      : Precision: 1.000 | Recall: 0.429 | F1: 0.600 (support=7)
+     l-l0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=7)
+     l-r0.5      : Precision: 1.000 | Recall: 0.833 | F1: 0.909 (support=6)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=12)
+===========================================================================
+
+---------------------------------------------------------------------------
+[Fold 10/10] Train: 463 cycles | Val: 55 cycles | Test: 71 cycles
+---------------------------------------------------------------------------
+[INFO] Loaded 75 ImageNet ResNet-18 tensors (conv + BN) from C:\Users\Asus\Desktop\cra-net\cra-net\resnet18_pretrained.pth. Newly initialised backbone tensors: 30 ['bn_t', 'tconv']
+  Ep [ 1/20] | Train Acc: 24.67% (Loss: 4.0695) | Val Cycle Acc: 30.91% | Val Session Acc: 12.50%
+  Ep [ 2/20] | Train Acc: 30.04% (Loss: 3.6873) | Val Cycle Acc: 30.91% | Val Session Acc: 12.50%
+  Ep [ 3/20] | Train Acc: 35.06% (Loss: 3.8374) | Val Cycle Acc: 56.36% | Val Session Acc: 31.25%
+  Ep [ 4/20] | Train Acc: 38.05% (Loss: 3.5666) | Val Cycle Acc: 58.18% | Val Session Acc: 31.25%
+  Ep [ 5/20] | Train Acc: 39.96% (Loss: 3.4898) | Val Cycle Acc: 63.64% | Val Session Acc: 37.50%
+  Ep [ 6/20] | Train Acc: 47.59% (Loss: 3.1511) | Val Cycle Acc: 56.36% | Val Session Acc: 50.00%
+  Ep [ 7/20] | Train Acc: 52.68% (Loss: 2.8131) | Val Cycle Acc: 67.27% | Val Session Acc: 50.00%
+  Ep [ 8/20] | Train Acc: 54.53% (Loss: 2.6146) | Val Cycle Acc: 81.82% | Val Session Acc: 56.25%
+  Ep [ 9/20] | Train Acc: 58.19% (Loss: 2.5693) | Val Cycle Acc: 74.55% | Val Session Acc: 68.75%
+  Ep [10/20] | Train Acc: 63.58% (Loss: 2.3156) | Val Cycle Acc: 81.82% | Val Session Acc: 75.00%
+  Ep [11/20] | Train Acc: 66.07% (Loss: 1.9458) | Val Cycle Acc: 85.45% | Val Session Acc: 81.25%
+  Ep [12/20] | Train Acc: 69.84% (Loss: 1.9235) | Val Cycle Acc: 87.27% | Val Session Acc: 81.25%
+  Ep [13/20] | Train Acc: 67.86% (Loss: 1.8463) | Val Cycle Acc: 87.27% | Val Session Acc: 75.00%
+  Ep [14/20] | Train Acc: 71.11% (Loss: 1.8989) | Val Cycle Acc: 85.45% | Val Session Acc: 81.25%
+  Ep [15/20] | Train Acc: 69.06% (Loss: 1.7197) | Val Cycle Acc: 87.27% | Val Session Acc: 87.50%
+  Ep [16/20] | Train Acc: 69.71% (Loss: 1.8414) | Val Cycle Acc: 85.45% | Val Session Acc: 81.25%
+  Ep [17/20] | Train Acc: 80.76% (Loss: 1.3539) | Val Cycle Acc: 85.45% | Val Session Acc: 81.25%
+  Ep [18/20] | Train Acc: 73.51% (Loss: 1.6089) | Val Cycle Acc: 85.45% | Val Session Acc: 87.50%
+  Ep [19/20] | Train Acc: 76.67% (Loss: 1.6180) | Val Cycle Acc: 83.64% | Val Session Acc: 81.25%
+  Ep [20/20] | Train Acc: 79.07% (Loss: 1.3876) | Val Cycle Acc: 83.64% | Val Session Acc: 87.50%
+
+===========================================================================
+>> [Fold 10/10 FINAL TEST RESULT on Unseen Subjects]
+   Test Cycle Acc:   94.37% | Macro-F1: 0.9222
+   Test Session Acc: 93.75% | Macro-F1: 0.9333 (multi-cycle head; vote = 93.75%)
+   Per-Class Test Metrics:
+     nm          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=8)
+     a-l0        : Precision: 0.636 | Recall: 1.000 | F1: 0.778 (support=7)
+     a-l0.5      : Precision: 1.000 | Recall: 0.429 | F1: 0.600 (support=7)
+     a-r0        : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=7)
+     a-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     l-l0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     l-r0.5      : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=6)
+     fb          : Precision: 1.000 | Recall: 1.000 | F1: 1.000 (support=24)
+===========================================================================
+
+===========================================================================
+        ANATOPHASENET V7 FINAL BENCHMARK SUMMARY (init8, r2plus1d, full)
+===========================================================================
+Evaluated Folds: 10 / 10
+TEST Cycle-Level Accuracy         : 86.98% +/- 4.12%
+TEST Session-Level Accuracy       : 83.75% +/- 8.00%
+TEST Session Accuracy (vote)      : 85.00% +/- 7.50%
+TEST Session Accuracy (multi-cycle): 83.75% +/- 8.00%
+TEST Cycle-Level Macro-F1         : 0.8136 +/- 0.0694
+TEST Session-Level Macro-F1       : 0.8155 +/- 0.0940
+
+Aggregated Confusion Matrix across evaluated test folds:
+Classes: ['nm', 'a-l0', 'a-l0.5', 'a-r0', 'a-r0.5', 'l-l0.5', 'l-r0.5', 'fb']
+[[ 53   0   0   3   4   0   0   0]
+ [  0  62   0   2   0   1   0   0]
+ [  8  14  35   0   0   0   0   0]
+ [  1   0   0  60   5   0   0   0]
+ [ 14   0   3  11  31   1   0   0]
+ [  2   0   0   0   0  55   3   0]
+ [  1   0   1   1   0   0  49   0]
+ [  0   0   0   0   0   0   0 169]]
+[SUCCESS] All experiment artifacts saved to: C:\Users\Asus\Desktop\cra-net\cra-net\anatophasenet_v7\sweep_results\init8_bs4

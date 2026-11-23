@@ -1,0 +1,109 @@
+{
+  "args": {
+    "dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\GAIT_IT",
+    "img_size": 64,
+    "batch_size": 16,
+    "epochs": 40,
+    "lr": 0.0012,
+    "weight_decay": 0.05,
+    "ema": 0.98,
+    "folds": 10,
+    "run_folds": 0,
+    "pretrained_path": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\resnet18_pretrained.pth",
+    "asym": true,
+    "seed": 42,
+    "out_dir": "results_phasenet_pretrained"
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "val_cycle_acc": 84.96868475991648,
+      "test_cycle_acc": 95.13618677042801,
+      "test_cycle_f1": 0.9546437725531796,
+      "test_session_acc": 99.07407407407408,
+      "test_session_f1": 0.9916630481980026,
+      "best_epoch": 12
+    },
+    {
+      "fold": 2,
+      "val_cycle_acc": 97.1326164874552,
+      "test_cycle_acc": 83.7160751565762,
+      "test_cycle_f1": 0.8670719695963995,
+      "test_session_acc": 87.03703703703704,
+      "test_session_f1": 0.8858862379794763,
+      "best_epoch": 26
+    },
+    {
+      "fold": 3,
+      "val_cycle_acc": 97.72727272727273,
+      "test_cycle_acc": 98.02867383512545,
+      "test_cycle_f1": 0.9811487296065916,
+      "test_session_acc": 99.07407407407408,
+      "test_session_f1": 0.9916630481980026,
+      "best_epoch": 39
+    },
+    {
+      "fold": 4,
+      "val_cycle_acc": 75.21367521367522,
+      "test_cycle_acc": 95.12987012987013,
+      "test_cycle_f1": 0.9506637565632602,
+      "test_session_acc": 100.0,
+      "test_session_f1": 1.0,
+      "best_epoch": 31
+    },
+    {
+      "fold": 5,
+      "val_cycle_acc": 96.09120521172639,
+      "test_cycle_acc": 76.06837606837607,
+      "test_cycle_f1": 0.803910502648874,
+      "test_session_acc": 84.28571428571429,
+      "test_session_f1": 0.858433743311792,
+      "best_epoch": 39
+    },
+    {
+      "fold": 6,
+      "val_cycle_acc": 90.36827195467421,
+      "test_cycle_acc": 88.27361563517914,
+      "test_cycle_f1": 0.8977821735704825,
+      "test_session_acc": 93.84615384615384,
+      "test_session_f1": 0.9314285714285713,
+      "best_epoch": 17
+    },
+    {
+      "fold": 7,
+      "val_cycle_acc": 84.46601941747572,
+      "test_cycle_acc": 92.06798866855524,
+      "test_cycle_f1": 0.930064759523567,
+      "test_session_acc": 97.2972972972973,
+      "test_session_f1": 0.9745454545454546,
+      "best_epoch": 30
+    },
+    {
+      "fold": 8,
+      "val_cycle_acc": 98.0,
+      "test_cycle_acc": 85.43689320388349,
+      "test_cycle_f1": 0.8811440056949038,
+      "test_session_acc": 86.11111111111111,
+      "test_session_f1": 0.8731829573934837,
+      "best_epoch": 12
+    },
+    {
+      "fold": 9,
+      "val_cycle_acc": 88.38028169014085,
+      "test_cycle_acc": 96.0,
+      "test_cycle_f1": 0.963868818387432,
+      "test_session_acc": 100.0,
+      "test_session_f1": 1.0,
+      "best_epoch": 9
+    },
+    {
+      "fold": 10,
+      "val_cycle_acc": 94.94163424124513,
+      "test_cycle_acc": 85.2112676056338,
+      "test_cycle_f1": 0.8496368724863348,
+      "test_session_acc": 79.6875,
+      "test_session_f1": 0.7694642010431484,
+      "best_epoch": 33
+    }
+  ]
+}

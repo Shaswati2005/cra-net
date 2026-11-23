@@ -1,0 +1,180 @@
+{
+    "dataset": "gait_it",
+    "args": {
+        "dataset": "gait_it",
+        "dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\GAIT_IT",
+        "init_classes": 8,
+        "pretrained_path": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\resnet18_pretrained.pth",
+        "out_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\anatophasenet_v4\\results_gait_it_tsm",
+        "img_size": 96,
+        "jitter": 2,
+        "no_canon": false,
+        "backbone": "tsm",
+        "num_parts": 6,
+        "last_stride": 2,
+        "head_dim": 128,
+        "dropout": 0.3,
+        "epochs": 20,
+        "batch_size": 16,
+        "lr": 0.001,
+        "backbone_lr_mult": 0.3,
+        "weight_decay": 0.05,
+        "focal_gamma": 1.5,
+        "label_smoothing": 0.05,
+        "part_loss_weight": 0.5,
+        "balance": "sqrt",
+        "ema": 0.98,
+        "select": "last",
+        "no_tta": false,
+        "folds": 10,
+        "run_folds": 10,
+        "fold_ids": null,
+        "seed": 42,
+        "save_models": false
+    },
+    "params": 3615203,
+    "val_cycle_accuracy_mean": 95.13272795909361,
+    "cycle_accuracy_mean": 94.04173182549557,
+    "cycle_accuracy_std": 3.3030091822370276,
+    "session_accuracy_mean": 94.12848602707092,
+    "session_accuracy_std": 5.353709216855981,
+    "aggregated_confusion": [
+        [
+            200,
+            0,
+            2,
+            0,
+            0
+        ],
+        [
+            0,
+            705,
+            65,
+            0,
+            76
+        ],
+        [
+            2,
+            24,
+            752,
+            2,
+            0
+        ],
+        [
+            0,
+            0,
+            5,
+            724,
+            0
+        ],
+        [
+            0,
+            45,
+            0,
+            0,
+            1211
+        ]
+    ],
+    "fold_results": [
+        {
+            "fold": 1,
+            "best_epoch": 20,
+            "val_cycle_acc": 97.33840304182509,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 94.63519313304721,
+            "test_cycle_f1": 0.9497920279929298,
+            "test_sess_acc": 95.45454545454545,
+            "test_sess_f1": 0.9578762615182097
+        },
+        {
+            "fold": 2,
+            "best_epoch": 20,
+            "val_cycle_acc": 89.83402489626556,
+            "val_sess_acc": 88.67924528301887,
+            "test_cycle_acc": 95.24714828897338,
+            "test_cycle_f1": 0.9631375524385921,
+            "test_sess_acc": 96.29629629629629,
+            "test_sess_f1": 0.9664335664335665
+        },
+        {
+            "fold": 3,
+            "best_epoch": 20,
+            "val_cycle_acc": 97.53424657534246,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 92.9460580912863,
+            "test_cycle_f1": 0.9429858102622519,
+            "test_sess_acc": 92.45283018867924,
+            "test_sess_f1": 0.9297777777777778
+        },
+        {
+            "fold": 4,
+            "best_epoch": 20,
+            "val_cycle_acc": 96.84210526315789,
+            "val_sess_acc": 96.82539682539682,
+            "test_cycle_acc": 98.08219178082192,
+            "test_cycle_f1": 0.9761702339228645,
+            "test_sess_acc": 98.64864864864865,
+            "test_sess_f1": 0.9874877810361682
+        },
+        {
+            "fold": 5,
+            "best_epoch": 20,
+            "val_cycle_acc": 98.42931937172776,
+            "val_sess_acc": 98.61111111111111,
+            "test_cycle_acc": 95.43859649122807,
+            "test_cycle_f1": 0.9601563681632557,
+            "test_sess_acc": 95.23809523809523,
+            "test_sess_f1": 0.9477313974591652
+        },
+        {
+            "fold": 6,
+            "best_epoch": 20,
+            "val_cycle_acc": 98.4423676012461,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 91.09947643979058,
+            "test_cycle_f1": 0.9169744059574567,
+            "test_sess_acc": 90.27777777777779,
+            "test_sess_f1": 0.908102564102564
+        },
+        {
+            "fold": 7,
+            "best_epoch": 20,
+            "val_cycle_acc": 95.69620253164557,
+            "val_sess_acc": 95.83333333333334,
+            "test_cycle_acc": 98.13084112149532,
+            "test_cycle_f1": 0.9820855614973262,
+            "test_sess_acc": 100.0,
+            "test_sess_f1": 1.0
+        },
+        {
+            "fold": 8,
+            "best_epoch": 20,
+            "val_cycle_acc": 87.72563176895306,
+            "val_sess_acc": 81.25,
+            "test_cycle_acc": 96.70886075949367,
+            "test_cycle_f1": 0.9573702450363,
+            "test_sess_acc": 100.0,
+            "test_sess_f1": 1.0
+        },
+        {
+            "fold": 9,
+            "best_epoch": 20,
+            "val_cycle_acc": 100.0,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 87.36462093862815,
+            "test_cycle_f1": 0.8984291898577613,
+            "test_sess_acc": 81.25,
+            "test_sess_f1": 0.8266666666666668
+        },
+        {
+            "fold": 10,
+            "best_epoch": 20,
+            "val_cycle_acc": 89.48497854077253,
+            "val_sess_acc": 92.72727272727272,
+            "test_cycle_acc": 90.76433121019109,
+            "test_cycle_f1": 0.9233408836739596,
+            "test_sess_acc": 91.66666666666666,
+            "test_sess_f1": 0.9222672064777327
+        }
+    ]
+}

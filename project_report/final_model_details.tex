@@ -1,0 +1,461 @@
+% =====================================================================
+%  AnatoPhaseNet (final model, v6): complete technical specification
+%  Every number below was read from the code (anatophasenet_v4/v5/v6)
+%  or from the saved run anatophasenet_v6/results_gait_it_r2plus1d_full.
+%  Compile with pdflatex (e.g. Overleaf, same folder as report_4page.tex).
+% =====================================================================
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{figures/}}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.15}
+
+\title{\textbf{AnatoPhaseNet: Complete Specification of the Final Model}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-12mm}
+
+% =====================================================================
+\section{Summary}
+AnatoPhaseNet classifies pathological gait from side-view binary silhouettes.
+One sample is one gait cycle, represented by its 9 clinical key frames. The
+model is a (2+1)D ResNet-18-style backbone (ImageNet-initialised), followed by a
+body-part phase head, a posture-geometry branch, a severity head and a
+multi-cycle walk head.
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Item & Value \\
+\midrule
+Code & \texttt{anatophasenet\_v6/anato\_phasenet\_v6.py} (imports v4 and v5) \\
+Saved run & \texttt{anatophasenet\_v6/results\_gait\_it\_r2plus1d\_full} \\
+Command & \texttt{python anato\_phasenet\_v6.py --dataset gait\_it} (all defaults) \\
+Trainable parameters & \textbf{4{,}995{,}522} (5.00\,M) for 5 classes \\
+Input per sample & 9 frames $\times$ 96 $\times$ 96 + 9 $\times$ 9 geometry values \\
+Outputs & cycle class (5), severity (3), walk class (5) \\
+GAIT-IT cycle accuracy & $\mathbf{95.47 \pm 4.11\,\%}$, macro-F1 $0.962 \pm 0.033$ \\
+GAIT-IT walk accuracy & $\mathbf{96.28 \pm 5.72\,\%}$ (walk head), macro-F1 $0.965$; 95.53\,\% by voting \\
+Protocol & 10-fold, subject-exclusive (no person in two splits), 23 subjects \\
+Hardware & NVIDIA GeForce RTX 3050 Laptop GPU, PyTorch 2.6 with mixed precision \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =====================================================================
+\section{Data and preprocessing}
+
+\subsection{Dataset (GAIT-IT, side view)}
+\begin{itemize}\itemsep0pt
+\item 5 classes: normal, diplegic, hemiplegic, neuropathic, Parkinsonian.
+\item 23 subjects, 813 walks (sequences), 3{,}813 gait cycles.
+\item Cycles per class: normal 202, diplegic 846, hemiplegic 780, neuropathic 729, Parkinsonian 1{,}256.
+\item Cycles per walk: 1 to 14 (median 4).
+\item Severity labels from the sequence name: \texttt{lvl1} = mild (1{,}751 cycles),
+      \texttt{lvl2} = severe (1{,}860), normal walks = normal (202).
+\end{itemize}
+
+\subsection{From a video to a cycle}
+\begin{enumerate}\itemsep0pt
+\item \textbf{Key frames.} GAIT-IT's \texttt{key\_frames.json} gives 9 frames per cycle:
+  IC, LR, MSt, TSt, PSw, ISw, MSw, TSw and cycle completion (COMP).
+  Consecutive cycles share their boundary frame when the file lists it twice.
+\item \textbf{Phase jitter.} For every key frame, the frames at offsets $\{-2, 0, +2\}$
+  are also stored (clamped to the sequence), giving 3 ``views'' per phase.
+\item \textbf{Crop.} Pixels $>30$ define the bounding box, padded by 8\,\% of its height/width.
+  The crop is resized, keeping its aspect ratio, so the long side is 96\,px, and pasted
+  centred on a black $96\times96$ canvas (bilinear interpolation).
+\item \textbf{Direction canonicalisation.} \texttt{\_back} walks are mirrored horizontally,
+  so every cycle walks the same way (front and mirrored-back mean silhouettes correlate at 0.996).
+\item \textbf{Cache.} Stored as \texttt{uint8} of shape $[3813, 3, 9, 96, 96]$
+  (cycles, jitter views, phases, height, width), about 0.95\,GB.
+\end{enumerate}
+
+\subsection{Posture-geometry features (measured before cropping)}
+Cropping makes every silhouette the same height, which hides crouch, stoop and vertical bob.
+For each frame, 9 values are measured on the raw silhouette (threshold 127). All are divided
+by the walk's median silhouette height $h_{\text{ref}}$, so camera distance cancels out:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}rlL@{}}
+\toprule
+\# & Feature & Definition \\
+\midrule
+0 & height & $h / h_{\text{ref}} - 1$ (crouch, stoop) \\
+1 & width & bounding-box width $/ h_{\text{ref}}$ (stride width) \\
+2 & lower-body width & width of the bottom 30\,\% of the box $/ h_{\text{ref}}$ (feet) \\
+3 & upper-body width & width of the 15--55\,\% band $/ h_{\text{ref}}$ (arms and torso) \\
+4 & head bob & (top $y$ $-$ walk median top $y$) $/ h_{\text{ref}}$ \\
+5 & centroid height & (centroid $y$ $-$ top $y$) $/ h$ \\
+6 & trunk lean & ($x$ of top 30\,\% $-$ $x$ of bottom 30\,\%) $/ h_{\text{ref}}$, signed in walking direction \\
+7 & mass offset & (centroid $x$ $-$ box centre $x$) $/ h_{\text{ref}}$, signed in walking direction \\
+8 & fill ratio & silhouette area $/ (h \cdot w)$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+They are stored per cycle as $[3813, 3, 9, 9]$ (same jitter views as the images).
+Empty frames give zeros; NaN/Inf values are set to 0.
+
+\subsection{Network input}
+The 9 frames $x \in [0,1]^{9\times96\times96}$ are turned into 3 channels
+(no ImageNet mean/std normalisation):
+\begin{align*}
+\text{channel 1 (silhouette)} &= (x - 0.5)/0.5 \in [-1, 1],\\
+\text{channel 2 (motion)} &= x_t - x_{t-1} \quad \text{(cyclic: phase 1 minus phase 9)},\\
+\text{channel 3 (deviation)} &= x_t - \tfrac{1}{9}\textstyle\sum_{t'} x_{t'} \quad \text{(difference from the cycle's gait energy image)}.
+\end{align*}
+Tensor fed to the backbone: $[B, 3, 9, 96, 96]$.
+
+% =====================================================================
+\section{Architecture, layer by layer}
+
+\subsection{Backbone: (2+1)D ResNet-18 (stem + layers 1--3, layer 4 removed)}
+Each residual block (\emph{FactorizedSpatiotemporalBlock}):
+\[
+\begin{aligned}
+u &= \mathrm{ReLU}(\mathrm{BN}(\mathrm{Conv}_{1\times3\times3}(h))) && \text{spatial}\\
+u &= \mathrm{ReLU}\big(u + \mathrm{BN}_t(\mathrm{Conv}_{3\times1\times1}(\mathrm{circpad}(u)))\big) && \text{temporal, circular over the 9 phases}\\
+u &= \mathrm{BN}(\mathrm{Conv}_{1\times3\times3}(u)) && \text{spatial}\\
+\text{out} &= \mathrm{ReLU}(u + \text{shortcut}(h)) && \text{shortcut} = \mathrm{Conv}_{1\times1\times1}+\mathrm{BN} \text{ when shape changes}
+\end{aligned}
+\]
+All convolutions have no bias. Temporal padding is \emph{circular} because a gait cycle is periodic
+(COMP $\approx$ the next IC). $\mathrm{BN}_t$'s scale is initialised to 0, so at the start the
+block is exactly the pretrained 2D ResNet block.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lLlr@{}}
+\toprule
+Stage & Operation & Output $[C, T, H, W]$ & Params \\
+\midrule
+Input & silhouette, motion, deviation & $3\times9\times96\times96$ & -- \\
+Stem & Conv $1{\times}7{\times}7$, stride $(1,2,2)$, 64 ch; BN; ReLU & $64\times9\times48\times48$ & 9{,}536 \\
+ & MaxPool $1{\times}3{\times}3$, stride $(1,2,2)$ & $64\times9\times24\times24$ & 0 \\
+Layer 1 & 2 blocks, 64 ch, stride 1 & $64\times9\times24\times24$ & 172{,}800 \\
+Layer 2 & 2 blocks, 128 ch, first block spatial stride 2 & $128\times9\times12\times12$ & 624{,}384 \\
+Layer 3 & 2 blocks, 256 ch, first block spatial stride 2 & $256\times9\times6\times6$ & 2{,}493{,}952 \\
+\midrule
+\multicolumn{3}{@{}l}{Backbone total (of which 517{,}888 are the new temporal convs + $\mathrm{BN}_t$)} & 3{,}300{,}672 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+The time axis is never down-sampled: all 9 phases survive to the head.
+
+\subsection{Body-part phase head}
+Input: $[B, 9, 256, 6, 6]$. $P = 7$ parts = 6 horizontal body strips + 1 global part.
+\begin{enumerate}\itemsep0pt
+\item \textbf{Part pooling.} For each phase: average-pool and max-pool each of the 6 rows of the
+  $6\times6$ map, plus the whole map; concatenate avg and max $\Rightarrow$ $7 \times 512$.
+\item \textbf{Per-part projection.} A separate linear map per part, $512 \to 128$ (no bias, no activation).
+\item \textbf{Phase embedding.} Add a learned vector per (phase, part), $9\times7\times128$.
+\item \textbf{Temporal conv.} Grouped Conv1d (one group per part), kernel 3, circular padding,
+  then BN and ReLU; added back as a residual.
+\item \textbf{Three summaries over the 9 phases, per part} (each 128-d):
+  \begin{itemize}\itemsep0pt
+  \item attention pooling: score$_t = f_t \cdot a_p$, weights $= \mathrm{softmax}$ over the 9 phases;
+  \item max over phases;
+  \item half-cycle symmetry: $\frac{1}{4}\sum_{t=1}^{4} |f_t - f_{t+4}|$ (one leg's stance vs.\ the other's).
+  \end{itemize}
+\item \textbf{Descriptor.} $7 \times 384 = 2688$-d, BatchNorm1d.
+\item \textbf{Per-part classifiers.} Dropout 0.3, then one linear $384 \to 5$ per part $\Rightarrow$ 7 sets of logits.
+\end{enumerate}
+Parameters: 832{,}419.
+
+\subsection{Posture-geometry branch}
+Input: $[B, 9, 9]$ (phases $\times$ features).
+BatchNorm1d(9) $\to$ Conv1d $9\to64$, $k{=}3$, circular, BN, ReLU $\to$ residual Conv1d $64\to64$, $k{=}3$,
+circular, BN, ReLU $\to$ [mean, max, half-cycle symmetry] over phases $= 192$-d $\to$ BatchNorm1d
+$\to$ Dropout 0.3 $\to$ Linear $192\to5$. This is an 8th classifier.
+Parameters: 15{,}639.
+
+\subsection{Output heads}
+Cycle descriptor $g = [\,2688 \text{ (image)}, 192 \text{ (geometry)}\,] = 2880$-d.
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lLr@{}}
+\toprule
+Head & Layers & Params \\
+\midrule
+Cycle class & mean of the 8 classifiers' logits (7 parts + geometry) & -- \\
+Severity & Dropout 0.3 $\to$ Linear $2880\to3$ (normal / mild / severe) & 8{,}643 \\
+Cycle embedding & Dropout 0.3 $\to$ Linear $2880\to256$ $\to$ ReLU & 737{,}536 \\
+Walk head & $K$ cycle embeddings of one walk $\to$ [mean, std, mean $|e_{k+1}-e_k|$] $= 768$-d
+  $\to$ LayerNorm $\to$ Dropout 0.3 $\to$ Linear $768\to128$ $\to$ ReLU $\to$ Linear $128\to5$ & 100{,}613 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+The walk head describes stride-to-stride variability: the mean successive difference is
+large for irregular (e.g.\ Parkinsonian) strides and small for stereotyped ones.
+
+\subsection{Parameter count}
+\begin{center}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Module & Parameters \\
+\midrule
+Backbone (stem + layers 1--3) & 3{,}300{,}672 \\
+Body-part phase head & 832{,}419 \\
+Cycle embedding & 737{,}536 \\
+Walk head & 100{,}613 \\
+Geometry branch & 15{,}639 \\
+Severity head & 8{,}643 \\
+\midrule
+\textbf{Total} & \textbf{4{,}995{,}522} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Activation and output functions}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lL@{}}
+\toprule
+Function & Where it is used \\
+\midrule
+ReLU & after every conv + BN in the backbone, the part-head temporal conv, both geometry convs,
+  the cycle embedding, and the hidden layer of the walk head \\
+Softmax & attention pooling over the 9 phases (per body part); turning logits into class
+  probabilities at test time \\
+Log-softmax & inside every loss; walk voting averages log-probabilities over the cycles of a walk \\
+BatchNorm & every conv (2D/3D/1D); the 2688-d and 192-d descriptors; the raw geometry input \\
+LayerNorm & first layer of the walk head \\
+Not used & sigmoid, tanh, GELU, self-attention/transformer layers \\
+\bottomrule
+\end{tabularx}
+\end{center}
+The network outputs raw logits. Prediction $= \arg\max$ of the logits, which is the same
+as $\arg\max$ of the softmax.
+
+% =====================================================================
+\section{Training objective}
+Focal loss with label smoothing ($\gamma = 1.5$, $\varepsilon = 0.05$, $C$ classes):
+\[
+\mathrm{FL}(z, y) = -\sum_{c=1}^{C} (1 - p_c)^{\gamma}\, \tilde y_c \log p_c,\qquad
+p = \mathrm{softmax}(z),\quad
+\tilde y_c = \begin{cases} 1-\varepsilon = 0.95 & c = y\\ \varepsilon/(C-1) = 0.0125 & c \ne y\end{cases}
+\]
+Total loss per step:
+\[
+\mathcal{L} = \underbrace{\mathrm{FL}(\bar z, y)}_{\text{cycle}}
++ 0.5\,\underbrace{\tfrac{1}{8}\textstyle\sum_{k=1}^{8}\mathrm{FL}(z_k, y)}_{\text{each part + geometry}}
++ 0.3\,\underbrace{\mathrm{CE}(s, y_{\text{sev}})}_{\text{severity}}
++ 1.0\,\underbrace{\mathrm{FL}(z_{\text{walk}}, y)}_{\text{walk head}}
+\]
+$\bar z$ is the mean of the 8 classifier logits. The severity term is plain cross-entropy
+(no focal term, no smoothing) and skips cycles without a severity label. Padded cycle slots
+in a walk are masked out of all losses.
+
+% =====================================================================
+\section{Optimisation}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lL@{}}
+\toprule
+Setting & Value \\
+\midrule
+Optimiser & AdamW, $\beta_2 = 0.999$, $\epsilon = 10^{-8}$, $\beta_1$ cycled by the scheduler (0.95 $\to$ 0.85 $\to$ 0.95) \\
+Weight decay & 0.05 (decoupled), on all parameters including BN and biases \\
+Peak learning rate & heads $1\times10^{-3}$; backbone $3\times10^{-4}$ ($0.3\times$) \\
+Schedule & OneCycleLR, updated every step: 15\,\% cosine warm-up from peak/25, then cosine
+  decay to peak/($25\times10^4$) \\
+Epochs & 20 (no early stopping) \\
+Batch & 16 cycle slots per step (see Sec.~\ref{sec:batch}) \\
+Steps & 175--201 per epoch depending on the fold (3{,}500--4{,}020 in total) \\
+Gradient clipping & global L2 norm 2.0 \\
+Precision & mixed (float16 autocast + gradient scaler) \\
+Model averaging & EMA of all weights and BN statistics, decay 0.98, updated every step \\
+Model used for testing & EMA weights after epoch 20 (\texttt{--select last}) \\
+Seeds & training seed 42; fold-split seed 42 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Learning rate at every epoch}
+Values at the first step of each epoch for fold 1 (176 steps per epoch, 3{,}520 steps in total,
+peak at step 528). Other folds have the same shape, stretched to their own step count.
+
+\begin{center}
+\small
+\begin{tabular}{@{}rccc@{\qquad}rccc@{}}
+\toprule
+Epoch & Head LR & Backbone LR & $\beta_1$ & Epoch & Head LR & Backbone LR & $\beta_1$ \\
+\midrule
+1  & $4.00\times10^{-5}$ & $1.20\times10^{-5}$ & 0.950 & 11 & $6.36\times10^{-4}$ & $1.91\times10^{-4}$ & 0.886 \\
+2  & $2.81\times10^{-4}$ & $8.42\times10^{-5}$ & 0.925 & 12 & $5.46\times10^{-4}$ & $1.64\times10^{-4}$ & 0.895 \\
+3  & $7.62\times10^{-4}$ & $2.28\times10^{-4}$ & 0.875 & 13 & $4.53\times10^{-4}$ & $1.36\times10^{-4}$ & 0.905 \\
+4  & $1.00\times10^{-3}$ & $3.00\times10^{-4}$ & 0.850 & 14 & $3.63\times10^{-4}$ & $1.09\times10^{-4}$ & 0.914 \\
+5  & $9.91\times10^{-4}$ & $2.97\times10^{-4}$ & 0.851 & 15 & $2.77\times10^{-4}$ & $8.30\times10^{-5}$ & 0.922 \\
+6  & $9.66\times10^{-4}$ & $2.90\times10^{-4}$ & 0.853 & 16 & $1.98\times10^{-4}$ & $5.95\times10^{-5}$ & 0.930 \\
+7  & $9.25\times10^{-4}$ & $2.77\times10^{-4}$ & 0.858 & 17 & $1.30\times10^{-4}$ & $3.90\times10^{-5}$ & 0.937 \\
+8  & $8.69\times10^{-4}$ & $2.61\times10^{-4}$ & 0.863 & 18 & $7.46\times10^{-5}$ & $2.24\times10^{-5}$ & 0.943 \\
+9  & $8.01\times10^{-4}$ & $2.40\times10^{-4}$ & 0.870 & 19 & $3.36\times10^{-5}$ & $1.01\times10^{-5}$ & 0.947 \\
+10 & $7.22\times10^{-4}$ & $2.17\times10^{-4}$ & 0.878 & 20 & $8.42\times10^{-6}$ & $2.53\times10^{-6}$ & 0.949 \\
+\midrule
+\multicolumn{8}{@{}l}{Last step: head $4.3\times10^{-9}$, backbone $1.3\times10^{-9}$.} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{How a batch is built}\label{sec:batch}
+\begin{enumerate}\itemsep0pt
+\item Draw $K$ uniformly from $\{2,\dots,6\}$; take $\lfloor 16/K \rfloor$ walks.
+\item Walks are sampled with replacement, with probability $\propto 1/\sqrt{n_c}$
+  ($n_c$ = number of training walks of that class), so rare classes are seen more often
+  without being forced to equal frequency.
+\item From each walk take $K$ \emph{consecutive} cycles from a random start. Shorter walks are
+  padded with a repeat of their first cycle and a mask.
+\item For each of the 9 phases, one of the 3 jitter views is chosen at random.
+\end{enumerate}
+
+% =====================================================================
+\section{Regularisation (everything used)}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lL@{}}
+\toprule
+Technique & Setting \\
+\midrule
+Weight decay & 0.05 (AdamW) \\
+Dropout & 0.3 before every classifier: part classifiers, geometry classifier, severity head,
+  cycle embedding, walk head \\
+Label smoothing & 0.05 (in every focal-loss term) \\
+Focal loss & $\gamma = 1.5$ (down-weights easy cycles) \\
+Batch normalisation & every conv layer and both descriptors \\
+EMA weight averaging & decay 0.98 per step; the EMA model is the one evaluated and tested \\
+Gradient clipping & norm 2.0 \\
+Lower backbone LR & $0.3\times$ the head LR, so the pretrained filters change slowly \\
+Pretrained initialisation & ImageNet ResNet-18: 75 conv/BN tensors copied, 2D kernels inflated to $1\times k\times k$ \\
+Zero-initialised temporal branch & $\mathrm{BN}_t$ scale $= 0$: training starts from the pretrained 2D model \\
+Auxiliary (deep) supervision & each of the 8 classifiers gets its own loss (weight 0.5) \\
+Classifier ensemble & cycle prediction = mean of 8 classifiers' logits \\
+Multi-task learning & severity head (weight 0.3) \\
+Balanced sampling & square-root inverse class frequency over walks \\
+Image augmentation & see Sec.~\ref{sec:aug} \\
+Geometry augmentation & scale all 9 values by $1 \pm 5\,\%$ (one factor per sample) and add Gaussian noise
+  with std $0.05\times$ each feature's std \\
+Phase jitter & each key frame randomly replaced by the frame 2 earlier or 2 later \\
+Fixed training length & 20 epochs, last EMA weights; the validation fold never selects a checkpoint \\
+\bottomrule
+\end{tabularx}
+\end{center}
+Not used: early stopping, mixup/cutmix, stochastic depth, subject-adversarial training
+(tested separately: 95.16\,\%, no gain).
+
+\subsection{Image augmentation (on the GPU, every training step)}\label{sec:aug}
+The same transform is applied to all 9 frames of a cycle, so the motion between phases is unchanged.
+\begin{itemize}\itemsep0pt
+\item Random affine: rotation $\pm5^\circ$, scale $1\pm0.08$, translation $\pm0.05$ in normalised
+  coordinates (about $\pm2.4$\,px), bilinear, zero padding.
+\item Segmentation noise: with probability 0.15 a $3\times3$ dilation, with probability 0.15 a
+  $3\times3$ erosion, otherwise unchanged.
+\item Random erasing: probability 0.2; box height and width $\in [6, 16]$\,px; same box in all 9 frames.
+\end{itemize}
+
+\subsection{Initialisation}
+\begin{itemize}\itemsep0pt
+\item Backbone: 75 tensors from ImageNet ResNet-18 (\texttt{resnet18\_pretrained.pth}): stem, layers 1--3,
+  all conv weights and BN parameters and running statistics. The 30 new tensors are the temporal
+  convs and their $\mathrm{BN}_t$ (scale initialised to 0).
+\item Part projections and part classifiers: Xavier uniform. Phase embeddings: $\mathcal N(0, 0.02^2)$.
+  Attention vectors: 0 (uniform attention over phases at the start).
+\item Everything else: PyTorch defaults (Kaiming uniform for conv and linear layers, BN scale 1 and shift 0).
+\end{itemize}
+
+% =====================================================================
+\section{Evaluation protocol}
+\begin{itemize}\itemsep0pt
+\item The 23 subjects are shuffled (seed 42) and dealt into 10 folds (2--3 subjects each).
+  Every person's cycles, of all five gait types, sit in one fold only.
+\item For fold $i$: test $=$ fold $i$, validation $=$ fold $i{+}1$, training $=$ the other 8 folds.
+  Validation is only monitored; it does not choose the checkpoint.
+\item Test-time augmentation: the logits of the 3 jitter views are averaged.
+\item Cycle accuracy: each cycle on its own. Walk accuracy: the walk head sees all cycles of a walk.
+  The vote (mean log-probability over cycles) gives 95.53\,\%.
+\end{itemize}
+
+\begin{center}
+\small
+\begin{tabular}{@{}rlrrrcc@{}}
+\toprule
+Fold & Test subjects & Train & Val & Test & Test cycle acc.\,(\%) & Test walk acc.\,(\%) \\
+\midrule
+1  & s1, s3, s18   & 2821 & 526 & 466 & 97.42 & 99.09 \\
+2  & s10, s12, s23 & 2805 & 482 & 526 & 96.01 & 99.07 \\
+3  & s6, s7, s11   & 2966 & 365 & 482 & 87.55 & 87.74 \\
+4  & s2, s22       & 3163 & 285 & 365 & 99.18 & 100.00 \\
+5  & s14, s19      & 3146 & 382 & 285 & 96.14 & 96.83 \\
+6  & s8, s21       & 3110 & 321 & 382 & 98.43 & 100.00 \\
+7  & s4, s13       & 3097 & 395 & 321 & 97.20 & 97.22 \\
+8  & s5, s20       & 3141 & 277 & 395 & 98.23 & 100.00 \\
+9  & s9, s16       & 3222 & 314 & 277 & 87.36 & 82.81 \\
+10 & s15, s17      & 3033 & 466 & 314 & 97.13 & 100.00 \\
+\midrule
+\multicolumn{5}{@{}l}{Mean $\pm$ std} & $\mathbf{95.47\pm4.11}$ & $\mathbf{96.28\pm5.72}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =====================================================================
+\section{Results}
+
+\subsection{GAIT-IT}
+Aggregated test confusion matrix over all 10 folds (rows = true class, 3{,}813 cycles):
+\begin{center}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+True $\backslash$ predicted & normal & diplegic & hemiplegic & neuropathic & Parkinsonian & Recall\,(\%) \\
+\midrule
+normal       & \textbf{202} & 0 & 0 & 0 & 0 & 100.0 \\
+diplegic     & 0 & \textbf{744} & 31 & 0 & 71 & 87.9 \\
+hemiplegic   & 0 & 24 & \textbf{755} & 1 & 0 & 96.8 \\
+neuropathic  & 0 & 0 & 2 & \textbf{727} & 0 & 99.7 \\
+Parkinsonian & 0 & 43 & 1 & 0 & \textbf{1212} & 96.5 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Severity accuracy (cycle level, 3 classes): 80.68\,\%.
+The main error is diplegic $\leftrightarrow$ Parkinsonian (both bilateral, symmetric and flexed).
+
+\subsection{INIT (6 classes, same model and settings)}
+Leave-one-subject-out over 10 subjects, 4{,}998{,}539 parameters (6-class heads):
+cycle accuracy $92.39\pm5.15\,\%$ (macro-F1 0.906), walk accuracy $90.63\pm6.99\,\%$ (walk head),
+93.12\,\% by voting, severity accuracy 77.87\,\%.
+
+% =====================================================================
+\section{All hyperparameters (command-line defaults used in the final run)}
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{\qquad}ll@{}}
+\toprule
+Argument & Value & Argument & Value \\
+\midrule
+\texttt{img\_size} & 96 & \texttt{epochs} & 20 \\
+\texttt{jitter} & 2 (views $-2, 0, +2$) & \texttt{batch\_size} & 16 \\
+\texttt{backbone} & r2plus1d & \texttt{lr} & $1\times10^{-3}$ \\
+\texttt{num\_parts} & 6 (+ 1 global) & \texttt{backbone\_lr\_mult} & 0.3 \\
+\texttt{last\_stride} & 2 ($6\times6$ map) & \texttt{weight\_decay} & 0.05 \\
+\texttt{head\_dim} & 128 & \texttt{focal\_gamma} & 1.5 \\
+\texttt{dropout} & 0.3 & \texttt{label\_smoothing} & 0.05 \\
+\texttt{severity\_weight} & 0.3 & \texttt{part\_loss\_weight} & 0.5 \\
+\texttt{session\_weight} & 1.0 & \texttt{balance} & sqrt \\
+\texttt{k\_max} & 6 & \texttt{ema} & 0.98 (no warm-up) \\
+\texttt{geom\_dim} & 64 & \texttt{select} & last \\
+symmetry feature & on & TTA & on (3 views) \\
+geometry branch & on & \texttt{folds} & 10 \\
+subject adversary & off & \texttt{seed}, \texttt{split\_seed} & 42, 42 \\
+direction canonicalisation & on & pretrained weights & ImageNet ResNet-18 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

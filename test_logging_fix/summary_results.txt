@@ -1,0 +1,19 @@
+===========================================================================
+ST-PhaseNet FINAL BENCHMARK SUMMARY (ALBUQUERQUE ET AL. PROTOCOL)
+===========================================================================
+Evaluated Folds: 1 / 10
+TEST Cycle-Level Accuracy:   60.70% +/- 0.00%
+TEST Cycle-Level Macro-F1:   0.4162 +/- 0.0000
+TEST Session-Level Accuracy: 54.63% +/- 0.00%
+TEST Session-Level Macro-F1: 0.4223 +/- 0.0000
+Per-Fold Cycle Accuracies:   [np.float64(60.7)]
+Per-Fold Session Accuracies: [np.float64(54.63)]
+
+Aggregated Confusion Matrix across evaluated test folds:
+Classes: ['normal', 'diplegic', 'hemiplegic', 'neuropathic', 'parkinson']
+[[  0   0   0  25   0]
+ [  0  23  10  44  44]
+ [  0  15  21  58   6]
+ [  0   0   0  94   0]
+ [  0   0   0   0 174]]
+===========================================================================

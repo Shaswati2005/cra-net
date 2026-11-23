@@ -1,0 +1,103 @@
+{
+    "dataset": "gait_it",
+    "args": {
+        "dataset": "gait_it",
+        "dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\GAIT_IT",
+        "init_classes": 8,
+        "pretrained_path": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\resnet18_pretrained.pth",
+        "out_dir": "results_f39_last",
+        "img_size": 96,
+        "jitter": 2,
+        "no_canon": false,
+        "backbone": "r2plus1d",
+        "num_parts": 6,
+        "last_stride": 2,
+        "head_dim": 128,
+        "dropout": 0.3,
+        "epochs": 20,
+        "batch_size": 16,
+        "lr": 0.001,
+        "backbone_lr_mult": 0.3,
+        "weight_decay": 0.05,
+        "focal_gamma": 1.5,
+        "label_smoothing": 0.05,
+        "part_loss_weight": 0.5,
+        "balance": "sqrt",
+        "ema": 0.98,
+        "select": "last",
+        "no_tta": false,
+        "folds": 10,
+        "run_folds": 10,
+        "fold_ids": [
+            3,
+            9
+        ],
+        "seed": 42,
+        "save_models": false
+    },
+    "params": 4133091,
+    "val_cycle_accuracy_mean": 98.88186022162114,
+    "cycle_accuracy_mean": 89.01838009497132,
+    "cycle_accuracy_std": 3.0978024776427944,
+    "session_accuracy_mean": 85.59846698113208,
+    "session_accuracy_std": 5.910966981132077,
+    "aggregated_confusion": [
+        [
+            45,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            147,
+            10,
+            0,
+            24
+        ],
+        [
+            0,
+            4,
+            173,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            3,
+            139,
+            0
+        ],
+        [
+            0,
+            36,
+            0,
+            0,
+            178
+        ]
+    ],
+    "fold_results": [
+        {
+            "fold": 3,
+            "best_epoch": 20,
+            "val_cycle_acc": 98.08219178082192,
+            "val_sess_acc": 98.64864864864865,
+            "test_cycle_acc": 92.11618257261411,
+            "test_cycle_f1": 0.9358768445677876,
+            "test_sess_acc": 91.50943396226415,
+            "test_sess_f1": 0.9198592257415787
+        },
+        {
+            "fold": 9,
+            "best_epoch": 20,
+            "val_cycle_acc": 99.68152866242038,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 85.92057761732852,
+            "test_cycle_f1": 0.8873922457907089,
+            "test_sess_acc": 79.6875,
+            "test_sess_f1": 0.8114285714285714
+        }
+    ]
+}

@@ -1,0 +1,225 @@
+{
+    "dataset": "init8",
+    "args": {
+        "dataset": "init",
+        "dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\INIT\\INIT_GaitDB\\INIT_8\\silhouettes",
+        "init_classes": 8,
+        "pretrained_path": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\resnet18_pretrained.pth",
+        "out_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\anatophasenet_v4\\results_init8_r2plus1d",
+        "img_size": 96,
+        "jitter": 2,
+        "no_canon": false,
+        "backbone": "r2plus1d",
+        "num_parts": 6,
+        "last_stride": 2,
+        "head_dim": 128,
+        "dropout": 0.3,
+        "epochs": 20,
+        "batch_size": 16,
+        "lr": 0.001,
+        "backbone_lr_mult": 0.3,
+        "weight_decay": 0.05,
+        "focal_gamma": 1.5,
+        "label_smoothing": 0.05,
+        "part_loss_weight": 0.5,
+        "balance": "sqrt",
+        "ema": 0.98,
+        "select": "last",
+        "no_tta": false,
+        "folds": 10,
+        "run_folds": 10,
+        "fold_ids": null,
+        "seed": 42,
+        "save_models": false
+    },
+    "params": 4141176,
+    "val_cycle_accuracy_mean": 86.22453004175898,
+    "cycle_accuracy_mean": 85.55974155654798,
+    "cycle_accuracy_std": 8.192433524461423,
+    "session_accuracy_mean": 83.75,
+    "session_accuracy_std": 8.926785535678562,
+    "aggregated_confusion": [
+        [
+            51,
+            0,
+            0,
+            3,
+            6,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            54,
+            8,
+            2,
+            0,
+            1,
+            0,
+            0
+        ],
+        [
+            8,
+            12,
+            36,
+            0,
+            1,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            59,
+            7,
+            0,
+            0,
+            0
+        ],
+        [
+            10,
+            0,
+            5,
+            9,
+            35,
+            1,
+            0,
+            0
+        ],
+        [
+            2,
+            1,
+            0,
+            0,
+            0,
+            54,
+            3,
+            0
+        ],
+        [
+            2,
+            0,
+            2,
+            0,
+            0,
+            0,
+            48,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            169
+        ]
+    ],
+    "fold_results": [
+        {
+            "fold": 1,
+            "best_epoch": 20,
+            "val_cycle_acc": 75.0,
+            "val_sess_acc": 75.0,
+            "test_cycle_acc": 85.45454545454545,
+            "test_cycle_f1": 0.7901112045848888,
+            "test_sess_acc": 87.5,
+            "test_sess_f1": 0.8333333333333333
+        },
+        {
+            "fold": 2,
+            "best_epoch": 20,
+            "val_cycle_acc": 95.45454545454545,
+            "val_sess_acc": 87.5,
+            "test_cycle_acc": 66.07142857142857,
+            "test_cycle_f1": 0.599179292929293,
+            "test_sess_acc": 68.75,
+            "test_sess_f1": 0.6130952380952381
+        },
+        {
+            "fold": 3,
+            "best_epoch": 20,
+            "val_cycle_acc": 81.81818181818183,
+            "val_sess_acc": 81.25,
+            "test_cycle_acc": 87.87878787878788,
+            "test_cycle_f1": 0.8071428571428572,
+            "test_sess_acc": 87.5,
+            "test_sess_f1": 0.8333333333333333
+        },
+        {
+            "fold": 4,
+            "best_epoch": 20,
+            "val_cycle_acc": 91.8918918918919,
+            "val_sess_acc": 100.0,
+            "test_cycle_acc": 90.9090909090909,
+            "test_cycle_f1": 0.8733211233211233,
+            "test_sess_acc": 87.5,
+            "test_sess_f1": 0.8333333333333333
+        },
+        {
+            "fold": 5,
+            "best_epoch": 20,
+            "val_cycle_acc": 88.37209302325581,
+            "val_sess_acc": 75.0,
+            "test_cycle_acc": 95.94594594594594,
+            "test_cycle_f1": 0.954551282051282,
+            "test_sess_acc": 100.0,
+            "test_sess_f1": 1.0
+        },
+        {
+            "fold": 6,
+            "best_epoch": 20,
+            "val_cycle_acc": 79.62962962962963,
+            "val_sess_acc": 75.0,
+            "test_cycle_acc": 88.37209302325581,
+            "test_cycle_f1": 0.7458333333333333,
+            "test_sess_acc": 75.0,
+            "test_sess_f1": 0.7130952380952381
+        },
+        {
+            "fold": 7,
+            "best_epoch": 20,
+            "val_cycle_acc": 84.84848484848484,
+            "val_sess_acc": 81.25,
+            "test_cycle_acc": 79.62962962962963,
+            "test_cycle_f1": 0.6654761904761906,
+            "test_sess_acc": 75.0,
+            "test_sess_f1": 0.6583333333333333
+        },
+        {
+            "fold": 8,
+            "best_epoch": 20,
+            "val_cycle_acc": 85.0,
+            "val_sess_acc": 81.25,
+            "test_cycle_acc": 80.3030303030303,
+            "test_cycle_f1": 0.7427807486631016,
+            "test_sess_acc": 81.25,
+            "test_sess_f1": 0.7916666666666666
+        },
+        {
+            "fold": 9,
+            "best_epoch": 20,
+            "val_cycle_acc": 92.95774647887323,
+            "val_sess_acc": 93.75,
+            "test_cycle_acc": 86.66666666666667,
+            "test_cycle_f1": 0.8595904095904097,
+            "test_sess_acc": 81.25,
+            "test_sess_f1": 0.8083333333333333
+        },
+        {
+            "fold": 10,
+            "best_epoch": 20,
+            "val_cycle_acc": 87.27272727272727,
+            "val_sess_acc": 87.5,
+            "test_cycle_acc": 94.36619718309859,
+            "test_cycle_f1": 0.9222222222222223,
+            "test_sess_acc": 93.75,
+            "test_sess_f1": 0.9333333333333333
+        }
+    ]
+}

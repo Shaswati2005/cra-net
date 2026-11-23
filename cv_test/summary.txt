@@ -1,0 +1,12 @@
+CONFIG pool=trap asym=False crop=False params=0.319M folds=5 seeds=[42] epochs=2
+TEST accuracy: 22.22 +/- 0.00 %   (over 1 fold runs)
+TEST macro-F1: 0.0727 +/- 0.0000
+Per-fold test acc: 22.2
+
+Pooled confusion matrix (rows=true, cols=pred): ['normal', 'diplegic', 'hemiplegic', 'neuropathic', 'parkinson']
+[[ 0  0  0 20  0]
+ [ 0  0  0 40  0]
+ [ 0  0  0 40  0]
+ [ 0  0  0 40  0]
+ [ 0  0  0 40  0]]
+Pooled accuracy over all test folds: 22.22%

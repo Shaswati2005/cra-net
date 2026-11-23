@@ -1,0 +1,34 @@
+[INFO] device=cuda amp=True | pool=trap asym=False crop=False folds=5 seeds=[42] epochs=2
+[INFO] args: {"dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\GAIT_IT", "pool": "trap", "asym": false, "crop": false, "folds": 5, "run_folds": 1, "seeds": [42], "seq_len": 16, "cache_len": 32, "img_size": 64, "base_width": 24, "batch_size": 16, "epochs": 2, "lr": 0.002, "weight_decay": 0.05, "mixup": 0.0, "ema": 0.98, "out_dir": "cv_test", "no_amp": false}
+[INFO] 822 sequences. Caching 64px, 32 frames, crop=False ...
+  cached 100/822
+  cached 200/822
+  cached 300/822
+  cached 400/822
+  cached 500/822
+  cached 600/822
+  cached 700/822
+  cached 800/822
+  cached 822/822
+[INFO] sequences=822 people=114 params=0.319M views={'back': 411, 'front': 411}
+
+=== seed42-fold1/5: train=460 val=182 test=180 (people 64/25/25) ===
+C:\Users\Asus\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\optim\lr_scheduler.py:227: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+  [seed42-fold1/5] epoch 1/2 | val acc 23.08% f1 0.075 | best 23.08% @ 1
+  [seed42-fold1/5] epoch 2/2 | val acc 23.08% f1 0.075 | best 23.08% @ 2
+  >> seed42-fold1/5: best val 23.08% @ep2 | TEST acc 22.22% f1 0.0727
+
+CONFIG pool=trap asym=False crop=False params=0.319M folds=5 seeds=[42] epochs=2
+TEST accuracy: 22.22 +/- 0.00 %   (over 1 fold runs)
+TEST macro-F1: 0.0727 +/- 0.0000
+Per-fold test acc: 22.2
+
+Pooled confusion matrix (rows=true, cols=pred): ['normal', 'diplegic', 'hemiplegic', 'neuropathic', 'parkinson']
+[[ 0  0  0 20  0]
+ [ 0  0  0 40  0]
+ [ 0  0  0 40  0]
+ [ 0  0  0 40  0]
+ [ 0  0  0 40  0]]
+Pooled accuracy over all test folds: 22.22%
+[SAVED] cv_test\summary.txt

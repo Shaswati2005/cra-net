@@ -1,0 +1,36 @@
+{
+  "args": {
+    "dataset_dir": "C:\\Users\\Asus\\Desktop\\cra-net\\cra-net\\Gait_Dataset_silhoutte_based\\GAIT_IT",
+    "pool": "trap",
+    "asym": false,
+    "crop": false,
+    "folds": 5,
+    "run_folds": 0,
+    "seeds": [
+      42
+    ],
+    "seq_len": 16,
+    "cache_len": 32,
+    "img_size": 64,
+    "base_width": 24,
+    "batch_size": 16,
+    "epochs": 60,
+    "lr": 0.002,
+    "weight_decay": 0.05,
+    "mixup": 0.0,
+    "ema": 0.98,
+    "out_dir": "cv_trap",
+    "no_amp": false
+  },
+  "params": 319270,
+  "folds": [
+    {
+      "seed": 42,
+      "fold": 1,
+      "val_acc": 70.87912087912088,
+      "best_epoch": 57,
+      "test_acc": 65.55555555555556,
+      "test_f1": 0.6834517760964436
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+    "cycle_accuracy_mean": 91.07818449225931,
+    "cycle_accuracy_std": 6.3539580122488015,
+    "session_accuracy_mean": 93.25901214403572,
+    "session_accuracy_std": 6.246275810462446,
+    "fold_results": [
+        {
+            "fold": 1,
+            "test_cycle_acc": 94.4206008583691,
+            "test_cycle_f1": 0.9487076548933379,
+            "test_sess_acc": 96.36363636363636,
+            "test_sess_f1": 0.9666086956521738
+        },
+        {
+            "fold": 2,
+            "test_cycle_acc": 93.15589353612167,
+            "test_cycle_f1": 0.9475018784593047,
+            "test_sess_acc": 96.29629629629629,
+            "test_sess_f1": 0.9666086956521738
+        },
+        {
+            "fold": 3,
+            "test_cycle_acc": 82.36514522821577,
+            "test_cycle_f1": 0.8533925274247854,
+            "test_sess_acc": 86.79245283018868,
+            "test_sess_f1": 0.877908229036987
+        },
+        {
+            "fold": 4,
+            "test_cycle_acc": 97.80821917808218,
+            "test_cycle_f1": 0.9828282828282828,
+            "test_sess_acc": 98.64864864864865,
+            "test_sess_f1": 0.9874877810361682
+        },
+        {
+            "fold": 5,
+            "test_cycle_acc": 80.35087719298247,
+            "test_cycle_f1": 0.8530249993109342,
+            "test_sess_acc": 87.3015873015873,
+            "test_sess_f1": 0.8708817204301076
+        },
+        {
+            "fold": 6,
+            "test_cycle_acc": 96.8586387434555,
+            "test_cycle_f1": 0.9711293608352431,
+            "test_sess_acc": 100.0,
+            "test_sess_f1": 1.0
+        },
+        {
+            "fold": 7,
+            "test_cycle_acc": 90.65420560747664,
+            "test_cycle_f1": 0.9172399782786197,
+            "test_sess_acc": 93.05555555555556,
+            "test_sess_f1": 0.9355707173151393
+        },
+        {
+            "fold": 8,
+            "test_cycle_acc": 94.68354430379748,
+            "test_cycle_f1": 0.9273533666556922,
+            "test_sess_acc": 95.83333333333334,
+            "test_sess_f1": 0.9557809330628804
+        },
+        {
+            "fold": 9,
+            "test_cycle_acc": 83.03249097472924,
+            "test_cycle_f1": 0.8533099234579234,
+            "test_sess_acc": 79.6875,
+            "test_sess_f1": 0.8114285714285714
+        },
+        {
+            "fold": 10,
+            "test_cycle_acc": 97.45222929936305,
+            "test_cycle_f1": 0.974008899461572,
+            "test_sess_acc": 98.61111111111111,
+            "test_sess_f1": 0.9806060606060607
+        }
+    ]
+}

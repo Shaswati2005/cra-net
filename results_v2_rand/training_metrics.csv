@@ -1,0 +1,2 @@
+Epoch,Train_Loss,Train_Acc,Val_Loss,Val_Acc,Val_Macro_F1
+1,1.9202,22.61,1.5971,22.76,0.0742
